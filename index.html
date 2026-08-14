@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -7,1182 +6,802 @@
 
 <title>Nelli Photography</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root{
-  --bg:#080808;
-  --bg2:#11100f;
-  --bg3:#171513;
-  --gold:#c9a66b;
-  --gold-light:#e4c992;
-  --text:#f5f1e9;
-  --muted:#a6a098;
-  --border:rgba(201,166,107,.22);
+    --bg:#090909;
+    --bg2:#121110;
+    --gold:#c9a66b;
+    --gold2:#e5ca96;
+    --text:#f5f1e9;
+    --muted:#aaa39a;
+    --border:rgba(201,166,107,.25);
 }
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:"Montserrat",sans-serif;
-  font-weight:300;
-  line-height:1.7;
-}
-
-body,
-button,
-input,
-textarea,
-select{
-  -webkit-font-smoothing:antialiased;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Montserrat,sans-serif;
+    font-weight:300;
 }
 
 a{
-  color:inherit;
-  text-decoration:none;
+    color:inherit;
+    text-decoration:none;
 }
 
 button,
 input,
 textarea,
 select{
-  font-family:inherit;
+    font-family:inherit;
 }
-
-img{
-  max-width:100%;
-  display:block;
-}
-
-/* =========================
-   HEADER
-========================= */
 
 header{
-  position:fixed;
-  top:0;
-  left:0;
-  right:0;
-  z-index:1000;
-
-  background:rgba(8,8,8,.84);
-  backdrop-filter:blur(18px);
-
-  border-bottom:1px solid var(--border);
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+    background:rgba(9,9,9,.88);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--border);
 }
 
 .nav{
-  width:min(1180px,calc(100% - 40px));
-  min-height:82px;
-  margin:auto;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:30px;
+    width:min(1180px,calc(100% - 35px));
+    min-height:80px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:14px;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
 .logo img{
-  width:55px;
-  height:55px;
-
-  object-fit:contain;
-
-  border:0 !important;
-  outline:0 !important;
-  box-shadow:none !important;
-  border-radius:0 !important;
+    width:52px;
+    height:52px;
+    object-fit:contain;
+    border:0!important;
+    outline:0!important;
+    box-shadow:none!important;
 }
 
 .logo-name{
-  font-size:20px;
-  letter-spacing:5px;
+    font-size:19px;
+    letter-spacing:5px;
 }
 
 .logo-sub{
-  display:block;
-  color:var(--gold);
-  font-size:8px;
-  letter-spacing:4px;
-  margin-top:-3px;
+    display:block;
+    color:var(--gold);
+    font-size:7px;
+    letter-spacing:3px;
 }
 
 .nav-right{
-  display:flex;
-  align-items:center;
-  gap:25px;
+    display:flex;
+    align-items:center;
+    gap:25px;
 }
 
 .nav-links{
-  display:flex;
-  gap:25px;
+    display:flex;
+    gap:25px;
 }
 
 .nav-links a{
-  font-size:9px;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
-  color:#d0cbc3;
-  transition:.25s;
+    font-size:9px;
+    text-transform:uppercase;
+    letter-spacing:1.7px;
+    color:#ccc;
 }
 
 .nav-links a:hover{
-  color:var(--gold-light);
+    color:var(--gold2);
 }
 
-/* =========================
-   LANGUAGE
-========================= */
-
 .languages{
-  display:flex;
-  align-items:center;
-  gap:4px;
+    display:flex;
+    gap:3px;
 }
 
 .lang{
-  border:1px solid transparent;
-  background:transparent;
-  color:#777;
-  padding:6px 7px;
-  cursor:pointer;
-  font-size:9px;
-  letter-spacing:1px;
-  transition:.25s;
+    background:none;
+    border:1px solid transparent;
+    color:#777;
+    padding:6px;
+    cursor:pointer;
+    font-size:9px;
 }
 
+.lang.active,
 .lang:hover{
-  color:var(--gold-light);
+    color:var(--gold2);
 }
 
 .lang.active{
-  color:var(--gold-light);
-  border-color:var(--border);
+    border-color:var(--border);
 }
 
-/* =========================
-   HERO
-========================= */
+section{
+    padding:120px 0;
+}
+
+.container,
+.hero-inner{
+    width:min(1180px,calc(100% - 35px));
+    margin:auto;
+}
 
 .hero{
-  min-height:100vh;
-  position:relative;
-  overflow:hidden;
-
-  display:flex;
-  align-items:center;
-
-  background:
-    radial-gradient(
-      circle at 76% 42%,
-      rgba(201,166,107,.11),
-      transparent 32%
-    ),
-    var(--bg);
-}
-
-.hero::before{
-  content:"NELLI";
-
-  position:absolute;
-  right:-90px;
-  bottom:-110px;
-
-  font-family:"Cormorant Garamond",serif;
-  font-size:270px;
-  font-weight:300;
-
-  color:rgba(255,255,255,.025);
-
-  pointer-events:none;
-}
-
-.hero-inner{
-  width:min(1180px,calc(100% - 40px));
-  margin:auto;
-  padding-top:90px;
-}
-
-.eyebrow{
-  color:var(--gold);
-  font-size:9px;
-  letter-spacing:5px;
-  text-transform:uppercase;
-  margin-bottom:24px;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 75% 45%,rgba(201,166,107,.12),transparent 30%),
+        var(--bg);
 }
 
 .hero h1{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(80px,13vw,155px);
-  line-height:.75;
-  font-weight:300;
-  letter-spacing:-4px;
-  margin-bottom:40px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(75px,13vw,155px);
+    line-height:.72;
+    font-weight:300;
+    letter-spacing:-5px;
+    margin:25px 0 40px;
 }
 
 .hero h1 span{
-  color:var(--gold);
-  font-style:italic;
+    color:var(--gold);
+    font-style:italic;
+}
+
+.eyebrow{
+    color:var(--gold);
+    font-size:9px;
+    letter-spacing:4px;
+    text-transform:uppercase;
 }
 
 .hero-text{
-  max-width:550px;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:35px;
+    max-width:550px;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.9;
+    margin-bottom:35px;
 }
 
-.main-button{
-  display:inline-flex;
-  align-items:center;
-  gap:20px;
-
-  padding:15px 25px;
-
-  border:1px solid var(--gold);
-
-  color:var(--gold-light);
-
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:9px;
-
-  transition:.3s;
+.button{
+    display:inline-block;
+    border:1px solid var(--gold);
+    color:var(--gold2);
+    padding:14px 25px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:9px;
+    transition:.3s;
 }
 
-.main-button:hover{
-  background:var(--gold);
-  color:#080808;
+.button:hover{
+    background:var(--gold);
+    color:#080808;
 }
 
-.hero-scroll{
-  position:absolute;
-  left:25px;
-  bottom:30px;
-
-  color:#666;
-  font-size:8px;
-  letter-spacing:3px;
-  text-transform:uppercase;
+.section-title{
+    margin-bottom:55px;
 }
 
-/* =========================
-   SECTIONS
-========================= */
-
-section{
-  padding:120px 0;
+.section-title h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(55px,7vw,90px);
+    line-height:.85;
+    font-weight:300;
+    margin-top:15px;
 }
 
-.container{
-  width:min(1180px,calc(100% - 40px));
-  margin:auto;
+.section-title h2 span{
+    color:var(--gold);
+    font-style:italic;
 }
-
-.section-head{
-  margin-bottom:55px;
-}
-
-.section-head .eyebrow{
-  margin-bottom:18px;
-}
-
-.section-head h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:clamp(55px,7vw,90px);
-  line-height:.85;
-  font-weight:300;
-  letter-spacing:-2px;
-}
-
-.section-head h2 span{
-  color:var(--gold);
-  font-style:italic;
-}
-
-/* =========================
-   ABOUT
-========================= */
 
 .about{
-  background:var(--bg2);
+    background:var(--bg2);
 }
 
 .about-grid{
-  display:grid;
-  grid-template-columns:.9fr 1.1fr;
-  gap:90px;
-  align-items:center;
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:80px;
+    align-items:center;
 }
 
 .about-photo{
-  height:600px;
-  overflow:hidden;
-  background:#171411;
+    height:600px;
+    background:#151310;
 }
 
 .about-photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.about-copy p{
-  max-width:600px;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:20px;
+.about-text{
+    color:var(--muted);
+    font-size:13px;
+    line-height:2;
+    margin-bottom:18px;
 }
 
 .signature{
-  margin-top:30px;
-
-  font-family:"Cormorant Garamond",serif;
-  font-size:42px;
-  color:var(--gold);
-  font-style:italic;
+    color:var(--gold);
+    font-family:"Cormorant Garamond",serif;
+    font-size:42px;
+    font-style:italic;
+    margin-top:30px;
 }
 
-/* =========================
-   PORTFOLIO
-========================= */
+.portfolio{
+    background:var(--bg);
+}
 
 .portfolio-grid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:12px;
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    gap:12px;
 }
 
 .work{
-  position:relative;
-  overflow:hidden;
-  background:#151310;
-  min-height:380px;
+    min-height:380px;
+    grid-column:span 4;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#27211b,#0e0d0c);
 }
 
-.work:nth-child(1){
-  grid-column:span 7;
-  min-height:560px;
+.work.big{
+    grid-column:span 7;
+    min-height:550px;
 }
 
-.work:nth-child(2){
-  grid-column:span 5;
-  min-height:560px;
-}
-
-.work:nth-child(3),
-.work:nth-child(4),
-.work:nth-child(5){
-  grid-column:span 4;
-}
-
-.work img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:transform .7s ease;
-}
-
-.work:hover img{
-  transform:scale(1.04);
+.work.tall{
+    grid-column:span 5;
+    min-height:550px;
 }
 
 .work-placeholder{
-  width:100%;
-  height:100%;
-  min-height:inherit;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:
-    linear-gradient(135deg,#28231e,#0d0c0b);
-
-  color:rgba(201,166,107,.18);
-
-  font-family:"Cormorant Garamond",serif;
-  font-size:80px;
+    width:100%;
+    height:100%;
+    min-height:inherit;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:"Cormorant Garamond",serif;
+    font-size:90px;
+    color:rgba(201,166,107,.17);
 }
 
 .work::after{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:linear-gradient(
-    transparent 45%,
-    rgba(0,0,0,.75)
-  );
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent 40%,rgba(0,0,0,.8));
 }
 
 .work-info{
-  position:absolute;
-  z-index:2;
-  left:22px;
-  bottom:20px;
+    position:absolute;
+    z-index:2;
+    left:22px;
+    bottom:20px;
 }
 
 .work-info small{
-  display:block;
-  color:var(--gold-light);
-  font-size:8px;
-  letter-spacing:2px;
-  text-transform:uppercase;
+    color:var(--gold2);
+    font-size:8px;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
 .work-info strong{
-  display:block;
-  font-family:"Cormorant Garamond",serif;
-  font-size:30px;
-  font-weight:400;
+    display:block;
+    font-family:"Cormorant Garamond",serif;
+    font-size:30px;
+    font-weight:400;
 }
 
-/* =========================
-   SERVICES
-========================= */
-
 .services{
-  background:var(--bg2);
+    background:var(--bg2);
 }
 
 .services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:1px;
-  background:var(--border);
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--border);
 }
 
 .service{
-  min-height:310px;
-  padding:42px 35px;
-  background:var(--bg2);
-  transition:.3s;
-}
-
-.service:hover{
-  background:#181613;
+    padding:40px 32px;
+    min-height:300px;
+    background:var(--bg2);
 }
 
 .service-number{
-  color:var(--gold);
-  font-family:"Cormorant Garamond",serif;
-  font-size:34px;
+    color:var(--gold);
+    font-family:"Cormorant Garamond",serif;
+    font-size:32px;
 }
 
 .service h3{
-  margin:42px 0 14px;
-
-  font-family:"Cormorant Garamond",serif;
-  font-size:38px;
-  font-weight:400;
+    font-family:"Cormorant Garamond",serif;
+    font-size:38px;
+    font-weight:400;
+    margin:40px 0 15px;
 }
 
 .service p{
-  color:var(--muted);
-  font-size:12px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
 }
 
-/* =========================
-   CONTACT
-========================= */
-
 .contact{
-  background:
-    radial-gradient(
-      circle at 80% 30%,
-      rgba(201,166,107,.08),
-      transparent 34%
-    ),
-    var(--bg);
+    background:
+        radial-gradient(circle at 80% 30%,rgba(201,166,107,.08),transparent 35%),
+        var(--bg);
 }
 
 .contact-grid{
-  display:grid;
-  grid-template-columns:.8fr 1.2fr;
-  gap:80px;
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:70px;
 }
 
-.contact-copy p{
-  color:var(--muted);
-  font-size:13px;
-  max-width:450px;
-  margin-bottom:30px;
+.contact-text{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.9;
+    max-width:450px;
+    margin-bottom:30px;
 }
 
 .contact-links{
-  display:grid;
-  gap:12px;
+    display:grid;
+    gap:12px;
+    color:var(--gold2);
+    font-size:12px;
 }
-
-.contact-links a{
-  color:var(--gold-light);
-  font-size:12px;
-}
-
-/* =========================
-   FORM
-========================= */
 
 .booking{
-  padding:40px;
-
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.015);
+    border:1px solid var(--border);
+    padding:35px;
+    background:rgba(255,255,255,.015);
 }
 
 .form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
 }
 
 .field{
-  display:grid;
-  gap:7px;
+    display:grid;
+    gap:7px;
 }
 
 .field.full{
-  grid-column:1/-1;
+    grid-column:1/-1;
 }
 
 .field label{
-  color:#8e8981;
-  font-size:8px;
-  letter-spacing:2px;
-  text-transform:uppercase;
+    color:#888;
+    font-size:8px;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
 .field input,
 .field textarea,
 .field select{
-  width:100%;
-
-  padding:13px 14px;
-
-  background:#0d0d0d;
-  color:#eee;
-
-  border:1px solid rgba(255,255,255,.12);
-
-  outline:none;
-
-  border-radius:0;
+    width:100%;
+    padding:13px;
+    border:1px solid rgba(255,255,255,.12);
+    background:#0d0d0d;
+    color:#eee;
+    outline:none;
 }
 
 .field input:focus,
 .field textarea:focus,
 .field select:focus{
-  border-color:var(--gold);
+    border-color:var(--gold);
 }
 
 .field textarea{
-  min-height:130px;
-  resize:vertical;
+    min-height:120px;
+    resize:vertical;
 }
 
-.submit-line{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  gap:20px;
-  margin-top:25px;
-}
-
-#formMessage{
-  color:var(--gold-light);
-  font-size:11px;
+.form-bottom{
+    margin-top:25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
 .submit{
-  border:1px solid var(--gold);
-  background:var(--gold);
-  color:#080808;
-
-  padding:14px 25px;
-
-  cursor:pointer;
-
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:9px;
-
-  transition:.3s;
+    border:1px solid var(--gold);
+    background:var(--gold);
+    color:#080808;
+    padding:14px 25px;
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:9px;
 }
 
 .submit:hover{
-  background:transparent;
-  color:var(--gold-light);
+    background:transparent;
+    color:var(--gold2);
 }
 
 .submit:disabled{
-  opacity:.5;
-  cursor:wait;
+    opacity:.5;
 }
 
-/* =========================
-   CLIENT PROFILE
-========================= */
+#formMessage{
+    font-size:11px;
+    color:var(--gold2);
+}
 
 .client-profile{
-  display:none;
-
-  margin-top:35px;
-  padding:30px;
-
-  border:1px solid var(--border);
-  background:#0e0e0e;
+    display:none;
+    margin-top:25px;
+    padding:28px;
+    border:1px solid var(--border);
+    background:#0d0d0d;
 }
 
 .client-profile.show{
-  display:block;
+    display:block;
 }
 
 .client-profile h3{
-  margin-bottom:20px;
-
-  color:var(--gold-light);
-
-  font-family:"Cormorant Garamond",serif;
-  font-size:34px;
-  font-weight:400;
+    font-family:"Cormorant Garamond",serif;
+    color:var(--gold2);
+    font-size:34px;
+    font-weight:400;
+    margin-bottom:18px;
 }
 
 .profile-row{
-  display:grid;
-  grid-template-columns:160px 1fr;
-
-  padding:10px 0;
-
-  border-bottom:1px solid rgba(255,255,255,.07);
-
-  font-size:11px;
+    display:grid;
+    grid-template-columns:150px 1fr;
+    padding:10px 0;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    font-size:11px;
 }
 
 .profile-row span:first-child{
-  color:#777;
+    color:#777;
 }
 
 .profile-row span:last-child{
-  color:#ddd;
+    color:#ddd;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 footer{
-  padding:45px 0;
-  border-top:1px solid var(--border);
+    border-top:1px solid var(--border);
+    padding:40px 0;
 }
 
 .footer{
-  width:min(1180px,calc(100% - 40px));
-  margin:auto;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
+    width:min(1180px,calc(100% - 35px));
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
 }
 
 .footer-name{
-  color:var(--gold);
-  letter-spacing:5px;
-  font-size:17px;
+    color:var(--gold);
+    letter-spacing:5px;
 }
 
 .footer-copy{
-  color:#666;
-  font-size:9px;
+    color:#666;
+    font-size:9px;
 }
-
-/* =========================
-   MOBILE
-========================= */
 
 @media(max-width:900px){
 
-  .nav-links{
-    display:none;
-  }
+    .nav-links{
+        display:none;
+    }
 
-  .about-grid,
-  .contact-grid{
-    grid-template-columns:1fr;
-  }
+    .about-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
+    }
 
-  .services-grid{
-    grid-template-columns:1fr;
-  }
-
-  .about-photo{
-    height:500px;
-  }
-
+    .services-grid{
+        grid-template-columns:1fr;
+    }
 }
 
 @media(max-width:650px){
 
-  .nav{
-    width:calc(100% - 25px);
-  }
+    .form-grid{
+        grid-template-columns:1fr;
+    }
 
-  .container,
-  .hero-inner,
-  .footer{
-    width:calc(100% - 25px);
-  }
+    .field.full{
+        grid-column:auto;
+    }
 
-  .logo-name{
-    font-size:17px;
-  }
+    .portfolio-grid{
+        grid-template-columns:1fr;
+    }
 
-  .logo-sub{
-    font-size:6px;
-  }
+    .work,
+    .work.big,
+    .work.tall{
+        grid-column:1;
+        min-height:380px;
+    }
 
-  .logo img{
-    width:48px;
-    height:48px;
-  }
+    .about-photo{
+        height:450px;
+    }
 
-  .languages{
-    gap:0;
-  }
+    .booking{
+        padding:22px;
+    }
 
-  .lang{
-    padding:5px 4px;
-    font-size:8px;
-  }
+    .form-bottom{
+        flex-direction:column;
+        align-items:stretch;
+    }
 
-  section{
-    padding:80px 0;
-  }
+    .submit{
+        width:100%;
+    }
 
-  .hero h1{
-    font-size:78px;
-  }
-
-  .portfolio-grid{
-    grid-template-columns:1fr;
-  }
-
-  .work,
-  .work:nth-child(1),
-  .work:nth-child(2),
-  .work:nth-child(3),
-  .work:nth-child(4),
-  .work:nth-child(5){
-    grid-column:span 1;
-    min-height:380px;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .field.full{
-    grid-column:auto;
-  }
-
-  .booking{
-    padding:23px;
-  }
-
-  .submit-line{
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  .submit{
-    width:100%;
-  }
-
-  .footer{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
+    .footer{
+        flex-direction:column;
+        gap:15px;
+    }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header>
-
 <div class="nav">
 
 <a href="#home" class="logo">
-
-<img
-src="e6e5c1df-9682-4b22-adb4-764d0fd31df0.png"
-alt="Nelli Photography"
->
-
+<img src="e6e5c1df-9682-4b22-adb4-764d0fd31df0.png" alt="Nelli">
 <div>
 <div class="logo-name">NELLI</div>
 <span class="logo-sub">PHOTOGRAPHY</span>
 </div>
-
 </a>
 
 <div class="nav-right">
 
 <nav class="nav-links">
-
-<a href="#about" data-t="navAbout"></a>
-<a href="#portfolio" data-t="navPortfolio"></a>
-<a href="#services" data-t="navServices"></a>
-<a href="#contact" data-t="navContact"></a>
-
+<a href="#about" data-t="aboutNav"></a>
+<a href="#portfolio" data-t="portfolioNav"></a>
+<a href="#services" data-t="servicesNav"></a>
+<a href="#contact" data-t="contactNav"></a>
 </nav>
 
 <div class="languages">
-
-<button class="lang active" data-language="uk">UA</button>
-<button class="lang" data-language="ru">RU</button>
-<button class="lang" data-language="en">EN</button>
-<button class="lang" data-language="cz">CZ</button>
-
+<button class="lang active" data-lang="uk">UA</button>
+<button class="lang" data-lang="ru">RU</button>
+<button class="lang" data-lang="en">EN</button>
+<button class="lang" data-lang="cz">CZ</button>
 </div>
 
 </div>
-
 </div>
-
 </header>
 
 
-<!-- ================= HERO ================= -->
-
 <section class="hero" id="home">
-
 <div class="hero-inner">
 
 <div class="eyebrow" data-t="heroEyebrow"></div>
 
 <h1>
-<span data-t="heroTitle1"></span>
+<span data-t="hero1"></span>
 <br>
-<span data-t="heroTitle2"></span>
+<span data-t="hero2"></span>
 </h1>
 
-<p
-class="hero-text"
-data-t="heroText">
-</p>
+<p class="hero-text" data-t="heroText"></p>
 
-<a
-href="#contact"
-class="main-button"
->
-
-<span data-t="heroButton"></span>
-
-<span>→</span>
-
-</a>
+<a href="#contact" class="button" data-t="heroButton"></a>
 
 </div>
-
-<div
-class="hero-scroll"
-data-t="heroScroll">
-</div>
-
 </section>
 
 
-<!-- ================= ABOUT ================= -->
-
 <section class="about" id="about">
-
 <div class="container">
 
 <div class="about-grid">
 
 <div class="about-photo">
-
-<img
-src="e6e5c1df-9682-4b22-adb4-764d0fd31df0.png"
-alt="Nelli"
->
-
+<img src="e6e5c1df-9682-4b22-adb4-764d0fd31df0.png" alt="Nelli">
 </div>
 
-<div class="about-copy">
+<div>
 
-<div class="section-head">
-
-<div
-class="eyebrow"
-data-t="aboutEyebrow">
-</div>
-
+<div class="section-title">
+<div class="eyebrow" data-t="aboutEyebrow"></div>
 <h2>
 <span data-t="aboutTitle1"></span>
 <br>
 <span data-t="aboutTitle2"></span>
 </h2>
-
 </div>
 
-<p data-t="aboutText1"></p>
-<p data-t="aboutText2"></p>
-<p data-t="aboutText3"></p>
+<p class="about-text" data-t="aboutText1"></p>
+<p class="about-text" data-t="aboutText2"></p>
+<p class="about-text" data-t="aboutText3"></p>
 
 <div class="signature">Nelli</div>
 
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 
-<!-- ================= PORTFOLIO ================= -->
-
-<section id="portfolio">
-
+<section class="portfolio" id="portfolio">
 <div class="container">
 
-<div class="section-head">
-
-<div
-class="eyebrow"
-data-t="portfolioEyebrow">
-</div>
-
+<div class="section-title">
+<div class="eyebrow" data-t="portfolioEyebrow"></div>
 <h2>
 <span data-t="portfolioTitle1"></span>
 <br>
 <span data-t="portfolioTitle2"></span>
 </h2>
-
 </div>
-
 
 <div class="portfolio-grid">
 
-
-<div class="work">
-
+<div class="work big">
 <div class="work-placeholder">I</div>
-
 <div class="work-info">
-
-<small data-t="workWedding"></small>
-<strong data-t="workWeddingTitle"></strong>
-
+<small data-t="wedding"></small>
+<strong data-t="weddingWork"></strong>
+</div>
 </div>
 
-</div>
-
-
-<div class="work">
-
+<div class="work tall">
 <div class="work-placeholder">II</div>
-
 <div class="work-info">
-
-<small data-t="workLove"></small>
-<strong data-t="workLoveTitle"></strong>
-
+<small data-t="love"></small>
+<strong data-t="loveWork"></strong>
 </div>
-
 </div>
-
 
 <div class="work">
-
 <div class="work-placeholder">III</div>
-
 <div class="work-info">
-
-<small data-t="workPortrait"></small>
-<strong data-t="workPortraitTitle"></strong>
-
+<small data-t="portrait"></small>
+<strong data-t="portraitWork"></strong>
 </div>
-
 </div>
-
 
 <div class="work">
-
 <div class="work-placeholder">IV</div>
-
 <div class="work-info">
-
-<small data-t="workCouple"></small>
-<strong data-t="workCoupleTitle"></strong>
-
+<small data-t="couple"></small>
+<strong data-t="coupleWork"></strong>
 </div>
-
 </div>
-
 
 <div class="work">
-
 <div class="work-placeholder">V</div>
-
 <div class="work-info">
-
-<small data-t="workPortrait2"></small>
-<strong data-t="workPortrait2Title"></strong>
-
+<small data-t="portrait"></small>
+<strong data-t="youWork"></strong>
+</div>
 </div>
 
 </div>
-
-
 </div>
-
-</div>
-
 </section>
 
 
-<!-- ================= SERVICES ================= -->
-
 <section class="services" id="services">
-
 <div class="container">
 
-<div class="section-head">
-
-<div
-class="eyebrow"
-data-t="servicesEyebrow">
-</div>
-
+<div class="section-title">
+<div class="eyebrow" data-t="servicesEyebrow"></div>
 <h2>
 <span data-t="servicesTitle1"></span>
 <br>
 <span data-t="servicesTitle2"></span>
 </h2>
-
 </div>
-
 
 <div class="services-grid">
 
-
-<article class="service">
-
+<div class="service">
 <div class="service-number">01</div>
-
 <h3 data-t="portraitTitle"></h3>
-
 <p data-t="portraitText"></p>
+</div>
 
-</article>
-
-
-<article class="service">
-
+<div class="service">
 <div class="service-number">02</div>
-
 <h3 data-t="loveTitle"></h3>
-
 <p data-t="loveText"></p>
+</div>
 
-</article>
-
-
-<article class="service">
-
+<div class="service">
 <div class="service-number">03</div>
-
 <h3 data-t="weddingTitle"></h3>
-
 <p data-t="weddingText"></p>
-
-</article>
-
-
 </div>
 
 </div>
-
+</div>
 </section>
 
 
-<!-- ================= CONTACT ================= -->
-
 <section class="contact" id="contact">
-
 <div class="container">
 
 <div class="contact-grid">
 
+<div>
 
-<div class="contact-copy">
-
-<div class="section-head">
-
-<div
-class="eyebrow"
-data-t="contactEyebrow">
-</div>
-
+<div class="section-title">
+<div class="eyebrow" data-t="contactEyebrow"></div>
 <h2>
 <span data-t="contactTitle1"></span>
 <br>
 <span data-t="contactTitle2"></span>
 </h2>
-
 </div>
 
-<p data-t="contactText"></p>
+<p class="contact-text" data-t="contactText"></p>
 
 <div class="contact-links">
-
-<a href="mailto:nelli@example.com">
-nelli@example.com
-</a>
-
-<a href="tel:+380000000000">
-+38 000 000 00 00
-</a>
-
-<a href="#">
-Instagram · @nelli.photography
-</a>
-
+<a href="mailto:nelli@example.com">nelli@example.com</a>
+<a href="tel:+420000000000">+420 000 000 000</a>
+<a href="#">Instagram · @nelli.photography</a>
 </div>
 
 </div>
 
-
-<!-- FORM -->
 
 <div>
 
@@ -1190,141 +809,40 @@ Instagram · @nelli.photography
 
 <div class="form-grid">
 
-
 <div class="field">
-
-<label
-for="name"
-data-t="labelName">
-</label>
-
-<input
-id="name"
-name="name"
-type="text"
-required
-data-p="namePlaceholder"
->
-
+<label data-t="nameLabel"></label>
+<input id="name" type="text" required data-placeholder="name">
 </div>
 
-
 <div class="field">
-
-<label
-for="phone"
-data-t="labelPhone">
-</label>
-
-<input
-id="phone"
-name="phone"
-type="tel"
-required
-data-p="phonePlaceholder"
->
-
+<label data-t="phoneLabel"></label>
+<input id="phone" type="tel" required data-placeholder="phone">
 </div>
-
-
-<div class="field">
-
-<label
-for="email"
-data-t="labelEmail">
-</label>
-
-<input
-id="email"
-name="email"
-type="email"
-data-p="emailPlaceholder"
->
-
-</div>
-
-
-<div class="field">
-
-<label
-for="service"
-data-t="labelService">
-</label>
-
-<select id="service" name="service">
-
-<option value="" data-t="chooseService"></option>
-
-<option value="portrait" data-t="optionPortrait"></option>
-
-<option value="love" data-t="optionLove"></option>
-
-<option value="wedding" data-t="optionWedding"></option>
-
-<option value="other" data-t="optionOther"></option>
-
-</select>
-
-</div>
-
 
 <div class="field full">
-
-<label
-for="date"
-data-t="labelDate">
-</label>
-
-<input
-id="date"
-name="date"
-type="date"
->
-
+<label data-t="emailLabel"></label>
+<input id="email" type="email" data-placeholder="email">
 </div>
-
 
 <div class="field full">
-
-<label
-for="message"
-data-t="labelMessage">
-</label>
-
-<textarea
-id="message"
-name="message"
-data-p="messagePlaceholder">
-</textarea>
+<label data-t="messageLabel"></label>
+<textarea id="message" data-placeholder="message"></textarea>
+</div>
 
 </div>
 
-
-</div>
-
-
-<div class="submit-line">
+<div class="form-bottom">
 
 <div id="formMessage"></div>
 
-<button
-type="submit"
-class="submit"
-id="submit"
-data-t="submitButton">
-</button>
+<button class="submit" id="submitButton" type="submit" data-t="submit"></button>
 
 </div>
 
 </form>
 
 
-<!-- CLIENT PROFILE -->
-
-<div
-class="client-profile"
-id="clientProfile"
->
+<div class="client-profile" id="clientProfile">
 
 <h3 data-t="profileTitle"></h3>
 
@@ -1344,16 +862,6 @@ id="clientProfile"
 </div>
 
 <div class="profile-row">
-<span data-t="profileService"></span>
-<span id="profileService">—</span>
-</div>
-
-<div class="profile-row">
-<span data-t="profileDate"></span>
-<span id="profileDate">—</span>
-</div>
-
-<div class="profile-row">
 <span data-t="profileStatus"></span>
 <span id="profileStatus">—</span>
 </div>
@@ -1363,77 +871,69 @@ id="clientProfile"
 </div>
 
 </div>
-
 </div>
-
 </section>
 
 
-<!-- ================= FOOTER ================= -->
-
 <footer>
-
 <div class="footer">
-
 <div class="footer-name">NELLI</div>
-
-<div
-class="footer-copy"
-data-t="footer">
+<div class="footer-copy" data-t="footer"></div>
 </div>
-
-</div>
-
 </footer>
 
 
 <script>
 
-/* =====================================================
-   COMPLETE LANGUAGE SYSTEM
-===================================================== */
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+    "http://127.0.0.1:54321";
+
+const SUPABASE_KEY =
+    "sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH";
+
+
+/* =========================================================
+   LANGUAGES
+========================================================= */
 
 const translations = {
 
-uk: {
-
-navAbout:"Про мене",
-navPortfolio:"Портфоліо",
-navServices:"Послуги",
-navContact:"Контакти",
+uk:{
+aboutNav:"Про мене",
+portfolioNav:"Портфоліо",
+servicesNav:"Послуги",
+contactNav:"Контакти",
 
 heroEyebrow:"Фотографія · Прага · Європа",
-heroTitle1:"ТВОЯ",
-heroTitle2:"ІСТОРІЯ",
+hero1:"ТВОЯ",
+hero2:"ІСТОРІЯ",
 heroText:"Фотографія про людей, почуття та моменти, які хочеться залишити з собою назавжди.",
 heroButton:"Забронювати зйомку",
-heroScroll:"Гортайте далі",
 
 aboutEyebrow:"Про мене",
 aboutTitle1:"ПРИВІТ,",
 aboutTitle2:"Я НЕЛЛІ.",
 aboutText1:"Я фотографую людей такими, якими вони є — справжніми, живими та різними.",
-aboutText2:"Для мене хороша фотографія — це не просто правильне світло чи композиція. Це відчуття, яке повертає вас у конкретний момент.",
-aboutText3:"На моїх зйомках не потрібно вміти позувати. Я допоможу вам розслабитися і просто бути собою.",
+aboutText2:"Для мене фотографія — це не просто світло та композиція. Це почуття, яке повертає вас у конкретний момент.",
+aboutText3:"На моїх зйомках не потрібно вміти позувати. Я допоможу вам розслабитися і бути собою.",
 
 portfolioEyebrow:"Вибрані роботи",
 portfolioTitle1:"МОЇ",
 portfolioTitle2:"РОБОТИ",
 
-workWedding:"Весілля",
-workWeddingTitle:"Цей день",
-
-workLove:"Історія кохання",
-workLoveTitle:"Тільки ми",
-
-workPortrait:"Портрет",
-workPortraitTitle:"Її історія",
-
-workCouple:"Пара",
-workCoupleTitle:"Разом",
-
-workPortrait2:"Портрет",
-workPortrait2Title:"Ти",
+wedding:"Весілля",
+weddingWork:"Цей день",
+love:"Історія кохання",
+loveWork:"Тільки ми",
+portrait:"Портрет",
+portraitWork:"Її історія",
+couple:"Пара",
+coupleWork:"Разом",
+youWork:"Ти",
 
 servicesEyebrow:"Послуги",
 servicesTitle1:"ЩО Я",
@@ -1443,7 +943,7 @@ portraitTitle:"Портрет",
 portraitText:"Індивідуальні портрети, особистий бренд та зйомки для себе.",
 
 loveTitle:"Історія кохання",
-loveText:"Щирі історії двох людей — прогулянки, побачення та ваші особливі моменти.",
+loveText:"Щирі історії двох людей — прогулянки, побачення та особливі моменти.",
 
 weddingTitle:"Весілля",
 weddingText:"Повний день або окремі частини весілля — від деталей до справжніх емоцій.",
@@ -1451,86 +951,66 @@ weddingText:"Повний день або окремі частини весіл
 contactEyebrow:"Контакти",
 contactTitle1:"ДАВАЙТЕ",
 contactTitle2:"СТВОРЮВАТИ",
-contactText:"Розкажіть мені про вашу ідею, дату та формат зйомки. Я особисто зв'яжуся з вами.",
+contactText:"Розкажіть мені про вашу ідею. Я особисто зв'яжуся з вами.",
 
-labelName:"Ім'я та прізвище",
-labelPhone:"Телефон",
-labelEmail:"Електронна пошта",
-labelService:"Тип зйомки",
-labelDate:"Бажана дата",
-labelMessage:"Повідомлення",
+nameLabel:"Ім'я та прізвище",
+phoneLabel:"Телефон",
+emailLabel:"Електронна пошта",
+messageLabel:"Повідомлення",
 
-namePlaceholder:"Ваше ім'я",
-phonePlaceholder:"+420...",
-emailPlaceholder:"email@example.com",
-messagePlaceholder:"Розкажіть про вашу зйомку...",
+name:"Ваше ім'я",
+phone:"+420...",
+email:"email@example.com",
+message:"Розкажіть про вашу зйомку...",
 
-chooseService:"Оберіть тип зйомки",
-optionPortrait:"Портрет",
-optionLove:"Історія кохання",
-optionWedding:"Весілля",
-optionOther:"Інше",
-
-submitButton:"Надіслати заявку",
+submit:"Надіслати заявку",
 
 profileTitle:"Ваш профіль",
 profileName:"Ім'я",
 profilePhone:"Телефон",
 profileEmail:"Пошта",
-profileService:"Зйомка",
-profileDate:"Дата",
 profileStatus:"Статус",
 
-newStatus:"Нова заявка",
-
+newClient:"Нова заявка",
 sending:"Надсилаємо заявку...",
-success:"Заявку успішно надіслано ✓",
-error:"Не вдалося надіслати заявку.",
+success:"Заявку успішно збережено в базі ✓",
+error:"Помилка. Заявку не вдалося зберегти.",
 
 footer:"© 2026 Nelli Photography"
-
 },
 
-
-ru: {
-
-navAbout:"Обо мне",
-navPortfolio:"Портфолио",
-navServices:"Услуги",
-navContact:"Контакты",
+ru:{
+aboutNav:"Обо мне",
+portfolioNav:"Портфолио",
+servicesNav:"Услуги",
+contactNav:"Контакты",
 
 heroEyebrow:"Фотография · Прага · Европа",
-heroTitle1:"ТВОЯ",
-heroTitle2:"ИСТОРИЯ",
+hero1:"ТВОЯ",
+hero2:"ИСТОРИЯ",
 heroText:"Фотография о людях, чувствах и моментах, которые хочется сохранить навсегда.",
 heroButton:"Забронировать съёмку",
-heroScroll:"Листайте дальше",
 
 aboutEyebrow:"Обо мне",
 aboutTitle1:"ПРИВЕТ,",
 aboutTitle2:"Я НЕЛЛИ.",
 aboutText1:"Я фотографирую людей такими, какие они есть — настоящими, живыми и разными.",
-aboutText2:"Для меня хорошая фотография — это не просто правильный свет или композиция. Это чувство, которое возвращает вас в конкретный момент.",
-aboutText3:"На моих съёмках не нужно уметь позировать. Я помогу вам расслабиться и просто быть собой.",
+aboutText2:"Для меня фотография — это не просто свет и композиция. Это чувство, которое возвращает вас в конкретный момент.",
+aboutText3:"На моих съёмках не нужно уметь позировать. Я помогу вам расслабиться и быть собой.",
 
 portfolioEyebrow:"Избранные работы",
 portfolioTitle1:"МОИ",
 portfolioTitle2:"РАБОТЫ",
 
-workWedding:"Свадьба",
-workWeddingTitle:"Этот день",
-
-workLove:"История любви",
-workLoveTitle:"Только мы",
-
-workPortrait:"Портрет",
-workPortraitTitle:"Её история",
-
-workCouple:"Пара",
-workCoupleTitle:"Вместе",
-
-workPortrait2:"Портрет",
-workPortrait2Title:"Ты",
+wedding:"Свадьба",
+weddingWork:"Этот день",
+love:"История любви",
+loveWork:"Только мы",
+portrait:"Портрет",
+portraitWork:"Её история",
+couple:"Пара",
+coupleWork:"Вместе",
+youWork:"Ты",
 
 servicesEyebrow:"Услуги",
 servicesTitle1:"ЧТО Я",
@@ -1538,96 +1018,74 @@ servicesTitle2:"ДЕЛАЮ",
 
 portraitTitle:"Портрет",
 portraitText:"Индивидуальные портреты, личный бренд и съёмки для себя.",
-
 loveTitle:"История любви",
-loveText:"Искренние истории двух людей — прогулки, свидания и ваши особенные моменты.",
-
+loveText:"Искренние истории двух людей и ваши особенные моменты.",
 weddingTitle:"Свадьба",
-weddingText:"Полный день или отдельные части свадьбы — от деталей до настоящих эмоций.",
+weddingText:"Полный день или отдельные части свадьбы — от деталей до эмоций.",
 
 contactEyebrow:"Контакты",
 contactTitle1:"ДАВАЙТЕ",
 contactTitle2:"СОЗДАВАТЬ",
-contactText:"Расскажите мне о вашей идее, дате и формате съёмки. Я лично свяжусь с вами.",
+contactText:"Расскажите мне о вашей идее. Я лично свяжусь с вами.",
 
-labelName:"Имя и фамилия",
-labelPhone:"Телефон",
-labelEmail:"Электронная почта",
-labelService:"Тип съёмки",
-labelDate:"Желаемая дата",
-labelMessage:"Сообщение",
+nameLabel:"Имя и фамилия",
+phoneLabel:"Телефон",
+emailLabel:"Электронная почта",
+messageLabel:"Сообщение",
 
-namePlaceholder:"Ваше имя",
-phonePlaceholder:"+420...",
-emailPlaceholder:"email@example.com",
-messagePlaceholder:"Расскажите о вашей съёмке...",
+name:"Ваше имя",
+phone:"+420...",
+email:"email@example.com",
+message:"Расскажите о вашей съёмке...",
 
-chooseService:"Выберите тип съёмки",
-optionPortrait:"Портрет",
-optionLove:"История любви",
-optionWedding:"Свадьба",
-optionOther:"Другое",
-
-submitButton:"Отправить заявку",
+submit:"Отправить заявку",
 
 profileTitle:"Ваш профиль",
 profileName:"Имя",
 profilePhone:"Телефон",
 profileEmail:"Почта",
-profileService:"Съёмка",
-profileDate:"Дата",
 profileStatus:"Статус",
 
-newStatus:"Новая заявка",
-
+newClient:"Новая заявка",
 sending:"Отправляем заявку...",
-success:"Заявка успешно отправлена ✓",
-error:"Не удалось отправить заявку.",
+success:"Заявка успешно сохранена в базе ✓",
+error:"Ошибка. Заявку не удалось сохранить.",
 
 footer:"© 2026 Nelli Photography"
-
 },
 
-
-en: {
-
-navAbout:"About me",
-navPortfolio:"Portfolio",
-navServices:"Services",
-navContact:"Contact",
+en:{
+aboutNav:"About me",
+portfolioNav:"Portfolio",
+servicesNav:"Services",
+contactNav:"Contact",
 
 heroEyebrow:"Photography · Prague · Europe",
-heroTitle1:"YOUR",
-heroTitle2:"STORY",
+hero1:"YOUR",
+hero2:"STORY",
 heroText:"Photography about people, feelings and moments you want to keep forever.",
 heroButton:"Book a session",
-heroScroll:"Scroll down",
 
 aboutEyebrow:"About me",
 aboutTitle1:"HELLO,",
 aboutTitle2:"I'M NELLI.",
 aboutText1:"I photograph people as they really are — authentic, alive and unique.",
-aboutText2:"For me, a good photograph is not only about perfect light or composition. It is about a feeling that takes you back to a particular moment.",
-aboutText3:"You don't need to know how to pose during my sessions. I will help you relax and simply be yourself.",
+aboutText2:"For me, photography is not only about light and composition. It is about a feeling that takes you back to a moment.",
+aboutText3:"You don't need to know how to pose. I will help you relax and simply be yourself.",
 
 portfolioEyebrow:"Selected work",
 portfolioTitle1:"MY",
 portfolioTitle2:"WORK",
 
-workWedding:"Wedding",
-workWeddingTitle:"The day",
-
-workLove:"Love story",
-workLoveTitle:"Just us",
-
-workPortrait:"Portrait",
-workPortraitTitle:"Her story",
-
-workCouple:"Couple",
-workCoupleTitle:"Together",
-
-workPortrait2:"Portrait",
-workPortrait2Title:"You",
+wedding:"Wedding",
+weddingWork:"The day",
+love:"Love story",
+loveWork:"Just us",
+portrait:"Portrait",
+portraitWork:"Her story",
+couple:"Couple",
+coupleWork:"Together",
+youWork:"You",
 
 servicesEyebrow:"Services",
 servicesTitle1:"WHAT I",
@@ -1635,96 +1093,74 @@ servicesTitle2:"DO",
 
 portraitTitle:"Portrait",
 portraitText:"Individual portraits, personal branding and photoshoots for yourself.",
-
 loveTitle:"Love story",
-loveText:"Honest stories of two people — walks, dates and your special moments.",
-
+loveText:"Honest stories of two people and your special moments.",
 weddingTitle:"Wedding",
-weddingText:"A full wedding day or selected parts of it — from details to real emotions.",
+weddingText:"A full wedding day or selected parts — from details to real emotions.",
 
 contactEyebrow:"Contact",
 contactTitle1:"LET'S",
 contactTitle2:"CREATE",
-contactText:"Tell me about your idea, date and type of photoshoot. I will personally get back to you.",
+contactText:"Tell me about your idea. I will personally get back to you.",
 
-labelName:"Full name",
-labelPhone:"Phone",
-labelEmail:"Email",
-labelService:"Session type",
-labelDate:"Preferred date",
-labelMessage:"Message",
+nameLabel:"Full name",
+phoneLabel:"Phone",
+emailLabel:"Email",
+messageLabel:"Message",
 
-namePlaceholder:"Your name",
-phonePlaceholder:"+420...",
-emailPlaceholder:"email@example.com",
-messagePlaceholder:"Tell me about your photoshoot...",
+name:"Your name",
+phone:"+420...",
+email:"email@example.com",
+message:"Tell me about your photoshoot...",
 
-chooseService:"Choose session type",
-optionPortrait:"Portrait",
-optionLove:"Love story",
-optionWedding:"Wedding",
-optionOther:"Other",
-
-submitButton:"Send request",
+submit:"Send request",
 
 profileTitle:"Your profile",
 profileName:"Name",
 profilePhone:"Phone",
 profileEmail:"Email",
-profileService:"Session",
-profileDate:"Date",
 profileStatus:"Status",
 
-newStatus:"New request",
-
+newClient:"New request",
 sending:"Sending your request...",
-success:"Request sent successfully ✓",
-error:"Could not send the request.",
+success:"Request successfully saved to the database ✓",
+error:"Error. The request could not be saved.",
 
 footer:"© 2026 Nelli Photography"
-
 },
 
-
-cz: {
-
-navAbout:"O mně",
-navPortfolio:"Portfolio",
-navServices:"Služby",
-navContact:"Kontakt",
+cz:{
+aboutNav:"O mně",
+portfolioNav:"Portfolio",
+servicesNav:"Služby",
+contactNav:"Kontakt",
 
 heroEyebrow:"Fotografie · Praha · Evropa",
-heroTitle1:"TVŮJ",
-heroTitle2:"PŘÍBĚH",
+hero1:"TVŮJ",
+hero2:"PŘÍBĚH",
 heroText:"Fotografie o lidech, emocích a okamžicích, které si chcete uchovat navždy.",
 heroButton:"Rezervovat focení",
-heroScroll:"Pokračujte dolů",
 
 aboutEyebrow:"O mně",
 aboutTitle1:"AHOJ,",
 aboutTitle2:"JSEM NELLI.",
 aboutText1:"Fotografuji lidi takové, jací skutečně jsou — opravdové, živé a jedinečné.",
-aboutText2:"Pro mě dobrá fotografie není jen o správném světle nebo kompozici. Je o pocitu, který vás vrátí do konkrétního okamžiku.",
-aboutText3:"Během focení nemusíte umět pózovat. Pomohu vám uvolnit se a jednoduše být sami sebou.",
+aboutText2:"Pro mě fotografie není jen o světle a kompozici. Je o pocitu, který vás vrátí do konkrétního okamžiku.",
+aboutText3:"Nemusíte umět pózovat. Pomohu vám uvolnit se a být sami sebou.",
 
 portfolioEyebrow:"Vybrané práce",
 portfolioTitle1:"MOJE",
 portfolioTitle2:"PRÁCE",
 
-workWedding:"Svatba",
-workWeddingTitle:"Tento den",
-
-workLove:"Příběh lásky",
-workLoveTitle:"Jen my",
-
-workPortrait:"Portrét",
-workPortraitTitle:"Její příběh",
-
-workCouple:"Pár",
-workCoupleTitle:"Spolu",
-
-workPortrait2:"Portrét",
-workPortrait2Title:"Ty",
+wedding:"Svatba",
+weddingWork:"Tento den",
+love:"Příběh lásky",
+loveWork:"Jen my",
+portrait:"Portrét",
+portraitWork:"Její příběh",
+couple:"Pár",
+coupleWork:"Spolu",
+youWork:"Ty",
 
 servicesEyebrow:"Služby",
 servicesTitle1:"CO",
@@ -1732,353 +1168,305 @@ servicesTitle2:"DĚLÁM",
 
 portraitTitle:"Portrét",
 portraitText:"Individuální portréty, osobní značka a focení pro vás.",
-
 loveTitle:"Příběh lásky",
-loveText:"Upřímné příběhy dvou lidí — procházky, rande a vaše výjimečné okamžiky.",
-
+loveText:"Upřímné příběhy dvou lidí a vaše výjimečné okamžiky.",
 weddingTitle:"Svatba",
-weddingText:"Celý svatební den nebo jeho jednotlivé části — od detailů až po skutečné emoce.",
+weddingText:"Celý svatební den nebo jeho jednotlivé části.",
 
 contactEyebrow:"Kontakt",
 contactTitle1:"POJĎME",
 contactTitle2:"TVOŘIT",
-contactText:"Napište mi o vašem nápadu, datu a typu focení. Osobně se vám ozvu.",
+contactText:"Napište mi o vašem nápadu. Osobně se vám ozvu.",
 
-labelName:"Jméno a příjmení",
-labelPhone:"Telefon",
-labelEmail:"E-mail",
-labelService:"Typ focení",
-labelDate:"Preferované datum",
-labelMessage:"Zpráva",
+nameLabel:"Jméno a příjmení",
+phoneLabel:"Telefon",
+emailLabel:"E-mail",
+messageLabel:"Zpráva",
 
-namePlaceholder:"Vaše jméno",
-phonePlaceholder:"+420...",
-emailPlaceholder:"email@example.com",
-messagePlaceholder:"Napište mi o vašem focení...",
+name:"Vaše jméno",
+phone:"+420...",
+email:"email@example.com",
+message:"Napište mi o vašem focení...",
 
-chooseService:"Vyberte typ focení",
-optionPortrait:"Portrét",
-optionLove:"Příběh lásky",
-optionWedding:"Svatba",
-optionOther:"Jiné",
-
-submitButton:"Odeslat žádost",
+submit:"Odeslat žádost",
 
 profileTitle:"Váš profil",
 profileName:"Jméno",
 profilePhone:"Telefon",
 profileEmail:"E-mail",
-profileService:"Focení",
-profileDate:"Datum",
 profileStatus:"Stav",
 
-newStatus:"Nová žádost",
-
+newClient:"Nová žádost",
 sending:"Odesíláme žádost...",
-success:"Žádost byla úspěšně odeslána ✓",
-error:"Žádost se nepodařilo odeslat.",
+success:"Žádost byla úspěšně uložena do databáze ✓",
+error:"Chyba. Žádost se nepodařilo uložit.",
 
 footer:"© 2026 Nelli Photography"
-
 }
 
 };
 
 
-/* =========================
-   LANGUAGE ENGINE
-========================= */
-
 let currentLanguage =
 localStorage.getItem("nelli-language") || "uk";
 
 
-function translatePage(language){
+function setLanguage(language){
 
-  if(!translations[language]){
-    language="uk";
-  }
+    const t = translations[language];
 
-  currentLanguage=language;
+    if(!t) return;
 
-  localStorage.setItem(
-    "nelli-language",
-    language
-  );
+    currentLanguage = language;
 
-  document.documentElement.lang =
-    language === "cz" ? "cs" : language;
+    localStorage.setItem(
+        "nelli-language",
+        language
+    );
 
-  const t=translations[language];
+    document.documentElement.lang =
+        language === "cz" ? "cs" : language;
 
+    document
+        .querySelectorAll("[data-t]")
+        .forEach(el=>{
+            const key = el.dataset.t;
+            if(t[key] !== undefined){
+                el.textContent = t[key];
+            }
+        });
 
-  document
-    .querySelectorAll("[data-t]")
-    .forEach(element=>{
+    document
+        .querySelectorAll("[data-placeholder]")
+        .forEach(el=>{
+            const key = el.dataset.placeholder;
+            if(t[key] !== undefined){
+                el.placeholder = t[key];
+            }
+        });
 
-      const key=element.dataset.t;
+    document
+        .querySelectorAll(".lang")
+        .forEach(btn=>{
+            btn.classList.toggle(
+                "active",
+                btn.dataset.lang === language
+            );
+        });
 
-      if(t[key] !== undefined){
-        element.textContent=t[key];
-      }
-
-    });
-
-
-  document
-    .querySelectorAll("[data-p]")
-    .forEach(element=>{
-
-      const key=element.dataset.p;
-
-      if(t[key] !== undefined){
-        element.placeholder=t[key];
-      }
-
-    });
-
-
-  document
-    .querySelectorAll(".lang")
-    .forEach(button=>{
-
-      button.classList.toggle(
-        "active",
-        button.dataset.language===language
-      );
-
-    });
-
-
-  updateStatusMessage();
-
+    updateMessage();
 }
 
 
 document
-  .querySelectorAll(".lang")
-  .forEach(button=>{
-
-    button.addEventListener(
-      "click",
-      ()=>{
-
-        translatePage(
-          button.dataset.language
+    .querySelectorAll(".lang")
+    .forEach(btn=>{
+        btn.addEventListener(
+            "click",
+            ()=>{
+                setLanguage(btn.dataset.lang);
+            }
         );
-
-      }
-    );
-
-  });
+    });
 
 
-/* =========================
-   FORM
-========================= */
+/* =========================================================
+   FORM → SUPABASE
+========================================================= */
 
-const form=
-  document.getElementById("bookingForm");
+const form =
+    document.getElementById("bookingForm");
 
-const message=
-  document.getElementById("formMessage");
+const formMessage =
+    document.getElementById("formMessage");
 
-const submit=
-  document.getElementById("submit");
+const submitButton =
+    document.getElementById("submitButton");
 
-const profile=
-  document.getElementById("clientProfile");
+const clientProfile =
+    document.getElementById("clientProfile");
 
-let statusType="";
+let currentStatus = "";
 
 
-function updateStatusMessage(){
+function updateMessage(){
 
-  if(!statusType){
-    return;
-  }
+    if(!currentStatus){
+        return;
+    }
 
-  const t=
-    translations[currentLanguage];
+    const t =
+        translations[currentLanguage];
 
-  if(statusType==="sending"){
-    message.textContent=t.sending;
-  }
+    if(currentStatus === "sending"){
+        formMessage.textContent = t.sending;
+    }
 
-  if(statusType==="success"){
-    message.textContent=t.success;
-  }
+    if(currentStatus === "success"){
+        formMessage.textContent = t.success;
+    }
 
-  if(statusType==="error"){
-    message.textContent=t.error;
-  }
+    if(currentStatus === "error"){
+        formMessage.textContent = t.error;
+    }
+}
 
+
+function showProfile(client){
+
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        client.Full_name || "—";
+
+    document.getElementById(
+        "profilePhone"
+    ).textContent =
+        client.phone || "—";
+
+    document.getElementById(
+        "profileEmail"
+    ).textContent =
+        client.email || "—";
+
+    document.getElementById(
+        "profileStatus"
+    ).textContent =
+        translations[currentLanguage].newClient;
+
+    clientProfile.classList.add("show");
 }
 
 
 form.addEventListener(
-  "submit",
-  function(event){
+    "submit",
+    async function(event){
 
-    event.preventDefault();
+        event.preventDefault();
 
-    statusType="success";
+        currentStatus = "sending";
+        updateMessage();
 
-    updateStatusMessage();
-
-
-    const formData=
-      new FormData(form);
+        submitButton.disabled = true;
 
 
-    const name=
-      formData.get("name") || "";
+        const fullName =
+            document.getElementById("name").value.trim();
 
-    const phone=
-      formData.get("phone") || "";
+        const phone =
+            document.getElementById("phone").value.trim();
 
-    const email=
-      formData.get("email") || "";
-
-    const service=
-      document.getElementById("service");
-
-    const serviceText=
-      service.options[
-        service.selectedIndex
-      ]?.text || "";
-
-    const date=
-      formData.get("date") || "";
+        const email =
+            document.getElementById("email").value.trim();
 
 
-    /*
-      Поки основний сайт доводимо до готового вигляду,
-      дані тимчасово зберігаються локально.
-      
-      Наступним етапом підключимо цю форму
-      до тієї самої Supabase-бази, яку буде
-      використовувати адмінка.
-    */
+        if(!fullName || !phone){
 
-    const client={
-      name,
-      phone,
-      email,
-      service:serviceText,
-      date,
-      createdAt:new Date().toISOString()
-    };
+            currentStatus = "error";
+            updateMessage();
+
+            submitButton.disabled = false;
+
+            return;
+        }
 
 
-    localStorage.setItem(
-      "nelli-last-client",
-      JSON.stringify(client)
-    );
+        try{
+
+            const response =
+                await fetch(
+                    SUPABASE_URL +
+                    "/rest/v1/clients",
+                    {
+                        method:"POST",
+
+                        headers:{
+                            "apikey":SUPABASE_KEY,
+                            "Authorization":
+                                "Bearer " + SUPABASE_KEY,
+                            "Content-Type":
+                                "application/json",
+                            "Prefer":
+                                "return=representation"
+                        },
+
+                        body:JSON.stringify({
+
+                            Full_name:fullName,
+
+                            phone:phone,
+
+                            email:email
+
+                        })
+                    }
+                );
 
 
-    document.getElementById(
-      "profileName"
-    ).textContent=name || "—";
-
-    document.getElementById(
-      "profilePhone"
-    ).textContent=phone || "—";
-
-    document.getElementById(
-      "profileEmail"
-    ).textContent=email || "—";
-
-    document.getElementById(
-      "profileService"
-    ).textContent=serviceText || "—";
-
-    document.getElementById(
-      "profileDate"
-    ).textContent=date || "—";
-
-    document.getElementById(
-      "profileStatus"
-    ).textContent=
-      translations[currentLanguage].newStatus;
+            const data =
+                await response.json();
 
 
-    profile.classList.add("show");
+            if(!response.ok){
 
-    form.reset();
+                console.error(
+                    "Supabase error:",
+                    data
+                );
 
-    profile.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
+                throw new Error(
+                    data.message ||
+                    data.error ||
+                    "Supabase error"
+                );
+            }
 
-  }
+
+            currentStatus = "success";
+            updateMessage();
+
+
+            const client =
+                Array.isArray(data)
+                    ? data[0]
+                    : data;
+
+
+            showProfile(client);
+
+
+            form.reset();
+
+
+            localStorage.setItem(
+                "nelli-last-client",
+                JSON.stringify(client)
+            );
+
+
+        }catch(error){
+
+            console.error(error);
+
+            currentStatus = "error";
+            updateMessage();
+
+        }
+
+
+        submitButton.disabled = false;
+
+    }
 );
 
 
-/* =========================
-   RESTORE LAST PROFILE
-========================= */
-
-const savedClient=
-  localStorage.getItem(
-    "nelli-last-client"
-  );
-
-
-if(savedClient){
-
-  try{
-
-    const client=
-      JSON.parse(savedClient);
-
-    document.getElementById(
-      "profileName"
-    ).textContent=
-      client.name || "—";
-
-    document.getElementById(
-      "profilePhone"
-    ).textContent=
-      client.phone || "—";
-
-    document.getElementById(
-      "profileEmail"
-    ).textContent=
-      client.email || "—";
-
-    document.getElementById(
-      "profileService"
-    ).textContent=
-      client.service || "—";
-
-    document.getElementById(
-      "profileDate"
-    ).textContent=
-      client.date || "—";
-
-  }catch(error){
-
-    console.log(
-      "Saved client data unavailable."
-    );
-
-  }
-
-}
-
-
-/* =========================
+/* =========================================================
    START
-========================= */
+========================================================= */
 
-translatePage(
-  currentLanguage
-);
+setLanguage(currentLanguage);
 
 </script>
 
 </body>
 </html>
-```
