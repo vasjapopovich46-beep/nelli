@@ -1,39 +1,34 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>NELLI — Photographer Prague</title>
+    <title>Неллі — фотограф у Празі</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 
 <style>
 
 /* =========================================================
-   VARIABLES
+   ОСНОВА
 ========================================================= */
 
 :root {
-    --black: #0d0d0c;
-    --dark: #141412;
-    --cream: #eee9e1;
-    --cream2: #f5f1ea;
-    --gold: #b99b78;
-    --muted: #817b72;
-    --line: rgba(255,255,255,.12);
+    --темний: #0d0d0c;
+    --темний2: #151513;
+    --світлий: #f1ede6;
+    --світлий2: #e4ddd2;
+    --золотий: #b79b7a;
+    --сірий: #888178;
 
-    --serif: "Cormorant Garamond", serif;
-    --sans: "DM Sans", sans-serif;
+    --шрифт-заголовків: "Cormorant Garamond", serif;
+    --шрифт-тексту: "DM Sans", sans-serif;
 }
-
-
-/* =========================================================
-   RESET
-========================================================= */
 
 * {
     margin: 0;
@@ -46,9 +41,9 @@ html {
 }
 
 body {
-    background: var(--black);
-    color: var(--cream);
-    font-family: var(--sans);
+    background: var(--темний);
+    color: var(--світлий);
+    font-family: var(--шрифт-тексту);
     font-weight: 300;
     overflow-x: hidden;
 }
@@ -64,7 +59,7 @@ button {
 
 
 /* =========================================================
-   FILM GRAIN
+   ЗЕРНИСТІСТЬ
 ========================================================= */
 
 body::after {
@@ -85,14 +80,14 @@ body::after {
 
 
 /* =========================================================
-   CUSTOM CURSOR
+   КУРСОР
 ========================================================= */
 
 .cursor {
     position: fixed;
 
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
 
     border: 1px solid rgba(255,255,255,.8);
 
@@ -107,22 +102,19 @@ body::after {
     transition:
         width .35s ease,
         height .35s ease,
-        background .35s ease,
-        border-color .35s ease;
+        background .35s ease;
 }
 
 .cursor.active {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
 
     background: rgba(255,255,255,.08);
-
-    border-color: rgba(255,255,255,.4);
 }
 
 
 /* =========================================================
-   NAVIGATION
+   НАВІГАЦІЯ
 ========================================================= */
 
 .nav {
@@ -142,36 +134,38 @@ body::after {
 
     z-index: 1000;
 
-    background: linear-gradient(
-        to bottom,
-        rgba(13,13,12,.85),
-        transparent
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(13,13,12,.9),
+            transparent
+        );
 
     backdrop-filter: blur(8px);
 }
 
 .nav-logo {
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
-    font-size: 25px;
+    font-size: 26px;
 
     letter-spacing: -.04em;
 }
 
-.nav-logo em {
+.nav-logo span {
     font-style: italic;
 }
 
 .nav-links {
     display: flex;
-    gap: 35px;
+
+    gap: 34px;
 
     font-size: 10px;
 
     text-transform: uppercase;
 
-    letter-spacing: .16em;
+    letter-spacing: .14em;
 }
 
 .nav-links a {
@@ -184,8 +178,8 @@ body::after {
     color: white;
 }
 
-.nav-book {
-    padding: 11px 17px;
+.nav-button {
+    padding: 11px 18px;
 
     border: 1px solid rgba(255,255,255,.25);
 
@@ -195,19 +189,19 @@ body::after {
 
     text-transform: uppercase;
 
-    letter-spacing: .14em;
+    letter-spacing: .12em;
 
     transition: .35s;
 }
 
-.nav-book:hover {
+.nav-button:hover {
     background: white;
-    color: var(--black);
+    color: #111;
 }
 
 
 /* =========================================================
-   HERO
+   ПЕРШИЙ ЕКРАН
 ========================================================= */
 
 .hero {
@@ -216,6 +210,7 @@ body::after {
     position: relative;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -226,14 +221,11 @@ body::after {
     background:
         radial-gradient(
             ellipse at center,
-            #3d3932 0%,
-            #201f1b 30%,
-            #0d0d0c 72%
+            #403a32 0%,
+            #211f1b 32%,
+            #0d0d0c 75%
         );
 }
-
-
-/* glowing background */
 
 .hero-light {
     position: absolute;
@@ -258,23 +250,21 @@ body::after {
     transition: transform 1s ease;
 }
 
-
-/* subtle rings */
-
 .hero-ring {
     position: absolute;
 
     width: 55vw;
     height: 55vw;
 
-    max-width: 700px;
-    max-height: 700px;
+    max-width: 750px;
+    max-height: 750px;
 
     border: 1px solid rgba(255,255,255,.06);
 
     border-radius: 50%;
 
-    animation: rotateRing 30s linear infinite;
+    animation:
+        obrut-kola 35s linear infinite;
 }
 
 .hero-ring::before {
@@ -289,8 +279,7 @@ body::after {
     border-radius: 50%;
 }
 
-@keyframes rotateRing {
-
+@keyframes obrut-kola {
     from {
         transform: rotate(0deg);
     }
@@ -298,39 +287,37 @@ body::after {
     to {
         transform: rotate(360deg);
     }
-
 }
-
-
-/* hero content */
 
 .hero-content {
     position: relative;
 
-    z-index: 3;
+    z-index: 5;
 
     width: 100%;
 
-    padding: 130px 20px 100px;
+    padding: 120px 20px 100px;
 }
 
 
-/* logo */
+/* =========================================================
+   ЛОГОТИП
+========================================================= */
 
 .hero-logo {
-    width: min(520px, 78vw);
+    width: min(520px, 80vw);
 
-    margin: 0 auto 42px;
+    margin: 0 auto 38px;
 
     opacity: 0;
 
     transform:
         translateY(35px)
-        scale(.94);
+        scale(.93);
 
     animation:
-        logoReveal 1.5s
-        .15s
+        поява-логотипу 1.5s
+        .1s
         cubic-bezier(.2,.8,.2,1)
         forwards;
 }
@@ -359,24 +346,24 @@ body::after {
 
     filter:
         drop-shadow(
-            0 30px 70px
+            0 30px 65px
             rgba(190,155,115,.22)
         );
 }
 
-@keyframes logoReveal {
+@keyframes поява-логотипу {
 
     0% {
         opacity: 0;
 
         transform:
-            translateY(50px)
+            translateY(45px)
             scale(.9);
 
         filter: blur(12px);
     }
 
-    60% {
+    65% {
         opacity: 1;
 
         filter: blur(0);
@@ -392,19 +379,27 @@ body::after {
 }
 
 
-/* hero caption */
+/* =========================================================
+   ТЕКСТ ПЕРШОГО ЕКРАНУ
+========================================================= */
 
 .hero-caption {
     opacity: 0;
 
     animation:
-        fadeUp 1s
-        1s
+        поява 1s
+        .9s
         forwards;
 }
 
-.hero-caption-top {
-    color: var(--gold);
+@keyframes поява {
+    to {
+        opacity: 1;
+    }
+}
+
+.hero-small {
+    color: var(--золотий);
 
     font-size: 9px;
 
@@ -415,24 +410,24 @@ body::after {
     margin-bottom: 18px;
 }
 
-.hero-caption h1 {
-    font-family: var(--serif);
+.hero-title {
+    font-family: var(--шрифт-заголовків);
 
     font-weight: 300;
 
-    font-size: clamp(35px, 5vw, 65px);
+    font-size: clamp(42px, 6vw, 75px);
 
     line-height: .9;
 
-    letter-spacing: -.04em;
+    letter-spacing: -.05em;
 }
 
-.hero-caption h1 em {
+.hero-title em {
     font-style: italic;
 }
 
 .hero-description {
-    max-width: 470px;
+    max-width: 550px;
 
     margin: 25px auto 0;
 
@@ -443,19 +438,16 @@ body::after {
     line-height: 1.7;
 }
 
-
-/* CTA */
-
 .hero-button {
     display: inline-flex;
 
     align-items: center;
 
-    gap: 13px;
+    gap: 14px;
 
     margin-top: 30px;
 
-    padding: 14px 19px;
+    padding: 14px 21px;
 
     border: 1px solid rgba(255,255,255,.25);
 
@@ -473,11 +465,10 @@ body::after {
 .hero-button:hover {
     background: white;
 
-    color: var(--black);
+    color: #111;
 
-    padding-left: 25px;
-
-    padding-right: 25px;
+    padding-left: 27px;
+    padding-right: 27px;
 }
 
 .hero-button span {
@@ -485,13 +476,14 @@ body::after {
 }
 
 
-/* scroll */
+/* =========================================================
+   ПРОКРУТКА
+========================================================= */
 
 .hero-scroll {
     position: absolute;
 
     bottom: 25px;
-
     left: 50%;
 
     transform: translateX(-50%);
@@ -502,7 +494,7 @@ body::after {
 
     align-items: center;
 
-    gap: 10px;
+    gap: 9px;
 
     color: #66615a;
 
@@ -515,42 +507,50 @@ body::after {
 
 .scroll-line {
     width: 1px;
-
     height: 45px;
 
-    background: linear-gradient(
-        to bottom,
-        #777,
-        transparent
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            #777,
+            transparent
+        );
 
-    animation: scrollAnim 2s infinite;
+    animation:
+        рух-скролу 2s infinite;
 }
 
-@keyframes scrollAnim {
+@keyframes рух-скролу {
 
     0% {
         opacity: 0;
-        transform: scaleY(0);
+
+        transform:
+            scaleY(0);
+
         transform-origin: top;
     }
 
     50% {
         opacity: 1;
-        transform: scaleY(1);
+
+        transform:
+            scaleY(1);
     }
 
     100% {
         opacity: 0;
-        transform: scaleY(1);
+
+        transform:
+            scaleY(1);
+
         transform-origin: bottom;
     }
-
 }
 
 
 /* =========================================================
-   INTRO
+   ВСТУП
 ========================================================= */
 
 .intro {
@@ -560,18 +560,18 @@ body::after {
 
     display: grid;
 
-    grid-template-columns: .65fr 1.35fr;
+    grid-template-columns: .6fr 1.4fr;
 
     gap: 10vw;
 
     align-items: center;
 
-    background: var(--cream2);
+    background: var(--світлий);
 
     color: #171614;
 }
 
-.eyebrow {
+.номер-секції {
     font-size: 9px;
 
     text-transform: uppercase;
@@ -582,13 +582,13 @@ body::after {
 }
 
 .intro-title {
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
     font-weight: 300;
 
-    font-size: clamp(48px, 6vw, 85px);
+    font-size: clamp(50px, 6vw, 85px);
 
-    line-height: .9;
+    line-height: .88;
 
     letter-spacing: -.055em;
 }
@@ -602,22 +602,22 @@ body::after {
 
     margin-top: 35px;
 
-    font-size: 18px;
+    font-size: 17px;
 
-    line-height: 1.8;
+    line-height: 1.85;
 
     color: #676159;
 }
 
 
 /* =========================================================
-   CHOOSE
+   ВИБІР ФОТОСЕСІЇ
 ========================================================= */
 
 .choose {
     padding: 145px 5vw;
 
-    background: var(--dark);
+    background: var(--темний2);
 }
 
 .choose-header {
@@ -629,7 +629,7 @@ body::after {
 .choose-title {
     margin-top: 18px;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
     font-weight: 300;
 
@@ -645,7 +645,7 @@ body::after {
 }
 
 .choose-subtitle {
-    max-width: 500px;
+    max-width: 570px;
 
     margin-top: 35px;
 
@@ -657,7 +657,9 @@ body::after {
 }
 
 
-/* cards */
+/* =========================================================
+   КАРТКИ
+========================================================= */
 
 .session-grid {
     display: grid;
@@ -669,7 +671,7 @@ body::after {
 }
 
 .session {
-    min-height: 340px;
+    min-height: 330px;
 
     position: relative;
 
@@ -706,6 +708,14 @@ body::after {
             #302c25,
             #1b1a18
         );
+}
+
+.session.selected {
+    border-color: var(--золотий);
+
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.25);
 }
 
 .session::after {
@@ -748,11 +758,11 @@ body::after {
 }
 
 .session-symbol {
-    margin-top: 48px;
+    margin-top: 45px;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
-    font-size: 48px;
+    font-size: 50px;
 
     color: #aaa399;
 
@@ -771,13 +781,16 @@ body::after {
     position: absolute;
 
     left: 24px;
-    bottom: 50px;
+    right: 20px;
+    bottom: 52px;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
-    font-size: 30px;
+    font-size: 29px;
 
     font-weight: 300;
+
+    line-height: 1;
 }
 
 .session small {
@@ -792,18 +805,21 @@ body::after {
 
     text-transform: uppercase;
 
-    letter-spacing: .16em;
+    letter-spacing: .12em;
 }
 
 
-/* selected */
+/* =========================================================
+   ОБРАНА ЗЙОМКА
+========================================================= */
 
-.selected {
+.selected-box {
     margin-top: 60px;
 
     padding: 25px 0;
 
     border-top: 1px solid #33312d;
+
     border-bottom: 1px solid #33312d;
 
     display: flex;
@@ -826,19 +842,21 @@ body::after {
 .selected-name {
     margin-top: 5px;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
-    font-size: 26px;
+    font-size: 27px;
 
     font-style: italic;
 
     color: #eee9e1;
+
+    transition: opacity .2s;
 }
 
 .selected-button {
-    padding: 13px 19px;
+    padding: 13px 20px;
 
-    background: var(--cream);
+    background: var(--світлий);
 
     color: #111;
 
@@ -859,7 +877,7 @@ body::after {
 
 
 /* =========================================================
-   MARQUEE
+   РУХОМИЙ РЯДОК
 ========================================================= */
 
 .marquee {
@@ -880,28 +898,28 @@ body::after {
     gap: 35px;
 
     animation:
-        marquee 25s
+        біг-рядка 27s
         linear
         infinite;
 }
 
 .marquee span {
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
-    font-size: 28px;
+    font-size: 29px;
 
     font-style: italic;
 }
 
 .marquee-dot {
-    font-family: var(--sans);
+    font-family: var(--шрифт-тексту);
 
     font-style: normal;
 
     opacity: .5;
 }
 
-@keyframes marquee {
+@keyframes біг-рядка {
 
     from {
         transform: translateX(0);
@@ -910,18 +928,17 @@ body::after {
     to {
         transform: translateX(-50%);
     }
-
 }
 
 
 /* =========================================================
-   PORTFOLIO
+   ПОРТФОЛІО
 ========================================================= */
 
 .portfolio {
     padding: 145px 5vw;
 
-    background: var(--cream2);
+    background: var(--світлий);
 
     color: #171614;
 }
@@ -941,7 +958,7 @@ body::after {
 .portfolio-title {
     margin-top: 18px;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
     font-size: clamp(55px, 7vw, 100px);
 
@@ -957,7 +974,7 @@ body::after {
 }
 
 .portfolio-description {
-    max-width: 280px;
+    max-width: 310px;
 
     color: #777169;
 
@@ -967,7 +984,9 @@ body::after {
 }
 
 
-/* portfolio placeholders */
+/* =========================================================
+   МІСЦЯ ДЛЯ ФОТО
+========================================================= */
 
 .gallery {
     display: grid;
@@ -988,10 +1007,9 @@ body::after {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
     font-size: 36px;
 
@@ -1104,7 +1122,7 @@ body::after {
 
     color: white;
 
-    font-family: var(--sans);
+    font-family: var(--шрифт-тексту);
 
     font-size: 8px;
 
@@ -1117,7 +1135,7 @@ body::after {
 
 
 /* =========================================================
-   ABOUT
+   ПРО НЕЛЛІ
 ========================================================= */
 
 .about {
@@ -1143,6 +1161,11 @@ body::after {
 
     overflow: hidden;
 
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
     background:
         radial-gradient(
             circle at 40% 35%,
@@ -1150,18 +1173,22 @@ body::after {
             #61594e 45%,
             #282621 85%
         );
+}
 
-    display: flex;
+.about-photo::before {
+    content: "";
 
-    align-items: center;
+    position: absolute;
 
-    justify-content: center;
+    inset: 20px;
+
+    border: 1px solid rgba(255,255,255,.25);
 }
 
 .about-photo span {
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
-    font-size: 80px;
+    font-size: 90px;
 
     font-style: italic;
 
@@ -1171,7 +1198,7 @@ body::after {
 .about-title {
     margin-top: 20px;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
     font-size: clamp(55px, 7vw, 105px);
 
@@ -1207,16 +1234,16 @@ body::after {
 
     border-top: 1px solid #35332e;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
-    font-size: 26px;
+    font-size: 27px;
 
     line-height: 1.35;
 }
 
 
 /* =========================================================
-   CONTACT
+   КОНТАКТ
 ========================================================= */
 
 .contact {
@@ -1240,7 +1267,7 @@ body::after {
 .contact-title {
     margin-top: 20px;
 
-    font-family: var(--serif);
+    font-family: var(--шрифт-заголовків);
 
     font-size: clamp(60px, 8vw, 115px);
 
@@ -1256,9 +1283,7 @@ body::after {
 }
 
 .contact-text {
-    align-self: end;
-
-    max-width: 470px;
+    max-width: 500px;
 
     color: #514a42;
 
@@ -1278,7 +1303,7 @@ body::after {
 }
 
 .contact-link {
-    padding: 14px 18px;
+    padding: 14px 19px;
 
     border: 1px solid rgba(24,23,21,.3);
 
@@ -1301,11 +1326,11 @@ body::after {
 
 
 /* =========================================================
-   FOOTER
+   НИЗ САЙТУ
 ========================================================= */
 
 .footer {
-    padding: 24px 5vw;
+    padding: 25px 5vw;
 
     display: flex;
 
@@ -1324,7 +1349,7 @@ body::after {
 
 
 /* =========================================================
-   REVEAL
+   АНІМАЦІЯ ПОЯВИ
 ========================================================= */
 
 .reveal {
@@ -1345,7 +1370,7 @@ body::after {
 
 
 /* =========================================================
-   MOBILE
+   ТЕЛЕФОН
 ========================================================= */
 
 @media(max-width: 900px) {
@@ -1354,7 +1379,7 @@ body::after {
         display: none;
     }
 
-    .nav-book {
+    .nav-button {
         display: none;
     }
 
@@ -1374,7 +1399,8 @@ body::after {
     }
 
     .session-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns:
+            repeat(2, 1fr);
     }
 
     .portfolio-head {
@@ -1394,17 +1420,17 @@ body::after {
     }
 
     .hero-content {
-        padding-top: 120px;
+        padding-top: 115px;
     }
 
     .hero-logo {
         width: 88vw;
 
-        margin-bottom: 30px;
+        margin-bottom: 28px;
     }
 
-    .hero-caption h1 {
-        font-size: 38px;
+    .hero-title {
+        font-size: 39px;
     }
 
     .session-grid {
@@ -1412,10 +1438,10 @@ body::after {
     }
 
     .session {
-        min-height: 280px;
+        min-height: 275px;
     }
 
-    .selected {
+    .selected-box {
         display: block;
     }
 
@@ -1459,28 +1485,26 @@ body::after {
 
 
 <!-- =========================================================
-     CURSOR
+     КУРСОР
 ========================================================= -->
 
 <div class="cursor"></div>
 
 
-
 <!-- =========================================================
-     NAVIGATION
+     МЕНЮ
 ========================================================= -->
 
 <header class="nav">
 
     <a href="#" class="nav-logo">
-        nelli <em>photo</em>
+        Неллі <span>фото</span>
     </a>
-
 
     <nav class="nav-links">
 
         <a href="#choose">
-            Зйомки
+            Види зйомок
         </a>
 
         <a href="#portfolio">
@@ -1493,17 +1517,15 @@ body::after {
 
     </nav>
 
-
-    <a href="#contact" class="nav-book">
-        Забронювати
+    <a href="#contact" class="nav-button">
+        Замовити зйомку
     </a>
 
 </header>
 
 
-
 <!-- =========================================================
-     HERO
+     ПЕРШИЙ ЕКРАН
 ========================================================= -->
 
 <section class="hero">
@@ -1522,7 +1544,7 @@ body::after {
 
             <img
                 src="logo.png"
-                alt="Nelli Photographer Prague"
+                alt="Логотип Неллі"
             >
 
         </div>
@@ -1530,32 +1552,37 @@ body::after {
 
         <div class="hero-caption">
 
-            <div class="hero-caption-top">
-                Photographer · Prague
+            <div class="hero-small">
+                Фотограф у Празі
             </div>
 
 
-            <h1>
-                Your story.
-                <em>My vision.</em>
+            <h1 class="hero-title">
+
+                Ваші моменти.
+                <br>
+
+                <em>Моя історія в кадрі.</em>
+
             </h1>
 
 
             <p class="hero-description">
 
-                Весілля · Хрестини · Студія · Portrait ·
-                Love Story · Family
+                Весілля · Хрестини · Обрядові події ·
+                Студійні фотосесії · Портрети · Сімейні зйомки
 
             </p>
 
 
-            <a href="#choose" class="hero-button">
+            <a
+                href="#choose"
+                class="hero-button"
+            >
 
-                Обрати свою зйомку
+                Обрати зйомку
 
-                <span>
-                    ↓
-                </span>
+                <span>↓</span>
 
             </a>
 
@@ -1566,7 +1593,7 @@ body::after {
 
     <div class="hero-scroll">
 
-        Scroll
+        Гортайте
 
         <div class="scroll-line"></div>
 
@@ -1575,17 +1602,16 @@ body::after {
 </section>
 
 
-
 <!-- =========================================================
-     INTRO
+     ВСТУП
 ========================================================= -->
 
 <section class="intro reveal">
 
     <div>
 
-        <div class="eyebrow">
-            01 — Philosophy
+        <div class="номер-секції">
+            01 — Про фотографію
         </div>
 
     </div>
@@ -1612,8 +1638,9 @@ body::after {
             <br><br>
 
             Просто будьте собою —
-            я подбаю про те, щоб ваша історія
-            залишилася у кадрі.
+            я подбаю про те, щоб ваші емоції,
+            людей поруч і важливі моменти
+            залишити у кадрі.
 
         </p>
 
@@ -1622,50 +1649,53 @@ body::after {
 </section>
 
 
-
 <!-- =========================================================
-     SESSION CHOICE
+     ВИБІР ЗЙОМКИ
 ========================================================= -->
 
-<section class="choose" id="choose">
-
+<section
+    class="choose"
+    id="choose"
+>
 
     <div class="choose-header reveal">
 
-        <div class="eyebrow">
-            02 — Your story
+        <div class="номер-секції">
+            02 — Оберіть зйомку
         </div>
 
 
         <h2 class="choose-title">
 
-            Яку історію
+            Яку зйомку
             <br>
 
-            створимо
-            <em>разом?</em>
+            ви
+            <em>шукаєте?</em>
 
         </h2>
 
 
         <p class="choose-subtitle">
 
-            Оберіть те, що найближче саме вам.
-            Якщо не знаєте, що підійде —
-            просто оберіть «Інше».
+            Оберіть варіант, який вам підходить.
+            Якщо ви ще не визначилися —
+            нічого страшного, я допоможу підібрати
+            формат саме для вас.
 
         </p>
 
     </div>
 
 
-
     <div class="session-grid">
 
 
+        <!-- 01 -->
+
         <article
             class="session reveal"
-            data-name="Wedding"
+            data-name="Весільна фотосесія"
         >
 
             <div class="session-number">
@@ -1673,24 +1703,25 @@ body::after {
             </div>
 
             <div class="session-symbol">
-                W
+                В
             </div>
 
             <h3>
-                Wedding
+                Весільна фотосесія
             </h3>
 
             <small>
-                Весільна зйомка
+                Ваш особливий день
             </small>
 
         </article>
 
 
+        <!-- 02 -->
 
         <article
             class="session reveal"
-            data-name="Хрестини"
+            data-name="Фотосесія хрестин"
         >
 
             <div class="session-number">
@@ -1698,7 +1729,7 @@ body::after {
             </div>
 
             <div class="session-symbol">
-                B
+                Х
             </div>
 
             <h3>
@@ -1706,12 +1737,13 @@ body::after {
             </h3>
 
             <small>
-                Baptism
+                Важливий день для родини
             </small>
 
         </article>
 
 
+        <!-- 03 -->
 
         <article
             class="session reveal"
@@ -1723,24 +1755,25 @@ body::after {
             </div>
 
             <div class="session-symbol">
-                C
+                О
             </div>
 
             <h3>
-                Обряди
+                Обрядова фотосесія
             </h3>
 
             <small>
-                Особливі моменти
+                Традиції та особливі моменти
             </small>
 
         </article>
 
 
+        <!-- 04 -->
 
         <article
             class="session reveal"
-            data-name="Studio"
+            data-name="Студійна фотосесія"
         >
 
             <div class="session-number">
@@ -1748,24 +1781,25 @@ body::after {
             </div>
 
             <div class="session-symbol">
-                S
+                С
             </div>
 
             <h3>
-                Studio
+                Студійна фотосесія
             </h3>
 
             <small>
-                Студійна фотосесія
+                Зйомка у студії
             </small>
 
         </article>
 
 
+        <!-- 05 -->
 
         <article
             class="session reveal"
-            data-name="Portrait"
+            data-name="Індивідуальна фотосесія"
         >
 
             <div class="session-number">
@@ -1773,24 +1807,25 @@ body::after {
             </div>
 
             <div class="session-symbol">
-                P
+                І
             </div>
 
             <h3>
-                Portrait
+                Індивідуальна фотосесія
             </h3>
 
             <small>
-                Індивідуальна
+                Фотосесія саме для вас
             </small>
 
         </article>
 
 
+        <!-- 06 -->
 
         <article
             class="session reveal"
-            data-name="Family"
+            data-name="Сімейна фотосесія"
         >
 
             <div class="session-number">
@@ -1798,24 +1833,25 @@ body::after {
             </div>
 
             <div class="session-symbol">
-                F
+                С
             </div>
 
             <h3>
-                Family
+                Сімейна фотосесія
             </h3>
 
             <small>
-                Сімейна
+                Теплі моменти родини
             </small>
 
         </article>
 
 
+        <!-- 07 -->
 
         <article
             class="session reveal"
-            data-name="Love Story"
+            data-name="Фотосесія для двох"
         >
 
             <div class="session-number">
@@ -1823,24 +1859,25 @@ body::after {
             </div>
 
             <div class="session-symbol">
-                L
+                ♥
             </div>
 
             <h3>
-                Love Story
+                Фотосесія для двох
             </h3>
 
             <small>
-                Для двох
+                Для закоханих
             </small>
 
         </article>
 
 
+        <!-- 08 -->
 
         <article
             class="session reveal"
-            data-name="Інше"
+            data-name="Інша фотосесія"
         >
 
             <div class="session-number">
@@ -1852,35 +1889,33 @@ body::after {
             </div>
 
             <h3>
-                Інше
+                Інша фотосесія
             </h3>
 
             <small>
-                Ваша ідея
+                Розкажіть про свою ідею
             </small>
 
         </article>
 
-
     </div>
 
 
+    <!-- ОБРАНИЙ ВАРІАНТ -->
 
-    <!-- SELECTED SESSION -->
-
-    <div class="selected">
+    <div class="selected-box">
 
         <div>
 
             <div class="selected-label">
-                Обраний формат
+                Ви обрали
             </div>
 
             <div
                 class="selected-name"
                 id="selectedName"
             >
-                Оберіть зйомку
+                Оберіть вид зйомки
             </div>
 
         </div>
@@ -1890,7 +1925,7 @@ body::after {
             href="#contact"
             class="selected-button"
         >
-            Продовжити →
+            Розповісти про зйомку →
         </a>
 
     </div>
@@ -1898,99 +1933,68 @@ body::after {
 </section>
 
 
-
 <!-- =========================================================
-     MARQUEE
+     РУХОМИЙ РЯДОК
 ========================================================= -->
 
 <div class="marquee">
 
     <div class="marquee-track">
 
-        <span>
-            Wedding
-        </span>
+        <span>Весілля</span>
+        <span class="marquee-dot">✦</span>
 
-        <span class="marquee-dot">
-            ✦
-        </span>
+        <span>Хрестини</span>
+        <span class="marquee-dot">✦</span>
 
-        <span>
-            Love Story
-        </span>
+        <span>Студійні фотосесії</span>
+        <span class="marquee-dot">✦</span>
 
-        <span class="marquee-dot">
-            ✦
-        </span>
+        <span>Сімейні фотосесії</span>
+        <span class="marquee-dot">✦</span>
 
-        <span>
-            Studio
-        </span>
+        <span>Портрети</span>
+        <span class="marquee-dot">✦</span>
 
-        <span class="marquee-dot">
-            ✦
-        </span>
+        <span>Фотосесії для двох</span>
+        <span class="marquee-dot">✦</span>
 
-        <span>
-            Family
-        </span>
+        <span>Весілля</span>
+        <span class="marquee-dot">✦</span>
 
-        <span class="marquee-dot">
-            ✦
-        </span>
-
-        <span>
-            Portrait
-        </span>
-
-        <span class="marquee-dot">
-            ✦
-        </span>
-
-        <span>
-            Wedding
-        </span>
-
-        <span class="marquee-dot">
-            ✦
-        </span>
-
-        <span>
-            Love Story
-        </span>
-
-        <span class="marquee-dot">
-            ✦
-        </span>
+        <span>Хрестини</span>
+        <span class="marquee-dot">✦</span>
 
     </div>
 
 </div>
 
 
-
 <!-- =========================================================
-     PORTFOLIO
+     ПОРТФОЛІО
 ========================================================= -->
 
-<section class="portfolio" id="portfolio">
-
+<section
+    class="portfolio"
+    id="portfolio"
+>
 
     <div class="portfolio-head reveal">
 
         <div>
 
-            <div class="eyebrow">
-                03 — Selected work
+            <div class="номер-секції">
+                03 — Портфоліо
             </div>
+
 
             <h2 class="portfolio-title">
 
-                Ваші моменти.
+                Моменти,
                 <br>
 
-                Наші
-                <em>кадри.</em>
+                які хочеться
+                <em>зберегти.</em>
 
             </h2>
 
@@ -2004,13 +2008,12 @@ body::after {
 
             <br><br>
 
-            Великі кадри, мінімум тексту,
-            максимум атмосфери.
+            Весілля, хрестини, студійні,
+            сімейні та індивідуальні зйомки.
 
         </p>
 
     </div>
-
 
 
     <div class="gallery reveal">
@@ -2018,10 +2021,10 @@ body::after {
 
         <div class="gallery-item">
 
-            PHOTO
+            ФОТО
 
             <span class="gallery-tag">
-                Wedding
+                Весілля
             </span>
 
         </div>
@@ -2029,10 +2032,10 @@ body::after {
 
         <div class="gallery-item">
 
-            PHOTO
+            ФОТО
 
             <span class="gallery-tag">
-                Studio
+                Студія
             </span>
 
         </div>
@@ -2040,10 +2043,10 @@ body::after {
 
         <div class="gallery-item">
 
-            PHOTO
+            ФОТО
 
             <span class="gallery-tag">
-                Baptism
+                Хрестини
             </span>
 
         </div>
@@ -2051,10 +2054,10 @@ body::after {
 
         <div class="gallery-item">
 
-            PHOTO
+            ФОТО
 
             <span class="gallery-tag">
-                Portrait
+                Портрет
             </span>
 
         </div>
@@ -2062,10 +2065,10 @@ body::after {
 
         <div class="gallery-item">
 
-            PHOTO
+            ФОТО
 
             <span class="gallery-tag">
-                Love Story
+                Для двох
             </span>
 
         </div>
@@ -2076,18 +2079,20 @@ body::after {
 </section>
 
 
-
 <!-- =========================================================
-     ABOUT
+     ПРО НЕЛЛІ
 ========================================================= -->
 
-<section class="about" id="about">
+<section
+    class="about"
+    id="about"
+>
 
 
     <div class="about-photo reveal">
 
         <span>
-            N.
+            Н.
         </span>
 
     </div>
@@ -2095,8 +2100,8 @@ body::after {
 
     <div class="reveal">
 
-        <div class="eyebrow">
-            04 — About Nelli
+        <div class="номер-секції">
+            04 — Про фотографа
         </div>
 
 
@@ -2113,19 +2118,22 @@ body::after {
 
         <p class="about-text">
 
-            Фотограф у Празі.
+            Я фотограф у Празі.
 
             <br><br>
 
-            Весілля, хрестини, обрядові події,
-            студійні, сімейні та індивідуальні
+            Знімаю весілля, хрестини,
+            обрядові події, студійні,
+            сімейні та індивідуальні
             фотосесії.
 
             <br><br>
 
-            Мені подобається ловити не просто
-            красивий кадр, а справжню емоцію
-            всередині нього.
+            Для мене важливо не просто
+            зробити красиву фотографію,
+            а зберегти справжні емоції,
+            атмосферу та людей,
+            які були поруч.
 
         </p>
 
@@ -2143,18 +2151,20 @@ body::after {
 </section>
 
 
-
 <!-- =========================================================
-     CONTACT
+     КОНТАКТ
 ========================================================= -->
 
-<section class="contact" id="contact">
+<section
+    class="contact"
+    id="contact"
+>
 
 
     <div class="reveal">
 
-        <div class="eyebrow">
-            05 — Let's create
+        <div class="номер-секції">
+            05 — Замовити зйомку
         </div>
 
 
@@ -2166,7 +2176,7 @@ body::after {
             про свою
             <br>
 
-            <em>історію.</em>
+            <em>зйомку.</em>
 
         </h2>
 
@@ -2175,23 +2185,26 @@ body::after {
 
     <div class="contact-text reveal">
 
-        Напишіть, яку зйомку ви хочете,
+        Розкажіть, яку фотосесію ви хочете,
         бажану дату та кілька слів
         про вашу ідею.
 
         <br><br>
 
-        Навіть якщо ви ще не знаєте,
-        як саме все має виглядати —
-        це нормально.
+        Якщо ви ще не знаєте, як саме
+        має виглядати зйомка —
+        нічого страшного.
+
+        Разом підберемо найкращий варіант.
 
         <div class="contact-links">
+
 
             <a
                 href="#"
                 class="contact-link"
             >
-                Instagram ↗
+                Перейти в Instagram ↗
             </a>
 
 
@@ -2199,25 +2212,25 @@ body::after {
                 href="mailto:hello@example.com"
                 class="contact-link"
             >
-                Написати ↗
+                Написати Неллі ↗
             </a>
+
 
         </div>
 
     </div>
-
+ 
 </section>
 
 
-
 <!-- =========================================================
-     FOOTER
+     НИЗ
 ========================================================= -->
 
 <footer class="footer">
 
     <span>
-        NELLI PHOTO · PRAGUE
+        НЕЛЛІ · ФОТОГРАФ · ПРАГА
     </span>
 
     <span>
@@ -2227,11 +2240,10 @@ body::after {
 </footer>
 
 
-
 <script>
 
 /* =========================================================
-   CUSTOM CURSOR
+   КУРСОР
 ========================================================= */
 
 const cursor =
@@ -2240,7 +2252,7 @@ const cursor =
 
 document.addEventListener(
     "mousemove",
-    (event) => {
+    function(event) {
 
         cursor.style.left =
             event.clientX + "px";
@@ -2254,13 +2266,13 @@ document.addEventListener(
 
 document
     .querySelectorAll(
-        "a, button, .session, .gallery-item"
+        "a, .session, .gallery-item"
     )
-    .forEach(element => {
+    .forEach(function(element) {
 
         element.addEventListener(
             "mouseenter",
-            () => {
+            function() {
 
                 cursor.classList.add("active");
 
@@ -2269,7 +2281,7 @@ document
 
         element.addEventListener(
             "mouseleave",
-            () => {
+            function() {
 
                 cursor.classList.remove("active");
 
@@ -2280,7 +2292,7 @@ document
 
 
 /* =========================================================
-   HERO PARALLAX
+   РУХ СВІТЛА ЗА МИШКОЮ
 ========================================================= */
 
 const light =
@@ -2289,15 +2301,21 @@ const light =
 
 document.addEventListener(
     "mousemove",
-    (event) => {
+    function(event) {
 
         const x =
-            (event.clientX /
-                window.innerWidth - .5) * 35;
+            (
+                event.clientX /
+                window.innerWidth -
+                .5
+            ) * 35;
 
         const y =
-            (event.clientY /
-                window.innerHeight - .5) * 35;
+            (
+                event.clientY /
+                window.innerHeight -
+                .5
+            ) * 35;
 
 
         light.style.transform =
@@ -2308,7 +2326,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   SESSION SELECT
+   ВИБІР ФОТОСЕСІЇ
 ========================================================= */
 
 const sessions =
@@ -2318,22 +2336,21 @@ const selectedName =
     document.getElementById("selectedName");
 
 
-sessions.forEach(session => {
+sessions.forEach(function(session) {
 
     session.addEventListener(
         "click",
-        () => {
+        function() {
 
-            sessions.forEach(item => {
 
-                item.style.borderColor =
-                    "#33312d";
+            sessions.forEach(function(item) {
+
+                item.classList.remove("selected");
 
             });
 
 
-            session.style.borderColor =
-                "#b99b78";
+            session.classList.add("selected");
 
 
             const name =
@@ -2343,7 +2360,7 @@ sessions.forEach(session => {
             selectedName.style.opacity = "0";
 
 
-            setTimeout(() => {
+            setTimeout(function() {
 
                 selectedName.textContent =
                     name;
@@ -2360,27 +2377,33 @@ sessions.forEach(session => {
 
 
 /* =========================================================
-   SCROLL REVEAL
+   ПОЯВА БЛОКІВ ПРИ ПРОКРУТЦІ
 ========================================================= */
 
 const observer =
     new IntersectionObserver(
-        (entries) => {
+        function(entries) {
 
-            entries.forEach(entry => {
+            entries.forEach(
+                function(entry) {
 
-                if(entry.isIntersecting) {
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-                    entry.target
-                        .classList
-                        .add("visible");
+                        entry.target
+                            .classList
+                            .add("visible");
 
-                    observer
-                        .unobserve(entry.target);
+                        observer
+                            .unobserve(
+                                entry.target
+                            );
+
+                    }
 
                 }
-
-            });
+            );
 
         },
         {
@@ -2391,7 +2414,7 @@ const observer =
 
 document
     .querySelectorAll(".reveal")
-    .forEach(element => {
+    .forEach(function(element) {
 
         observer.observe(element);
 
@@ -2399,12 +2422,12 @@ document
 
 
 /* =========================================================
-   SMOOTH CONTACT BUTTON
+   ПЛАВИЙ ПЕРЕХІД ДО РОЗДІЛІВ
 ========================================================= */
 
 document
     .querySelectorAll('a[href^="#"]')
-    .forEach(link => {
+    .forEach(function(link) {
 
         link.addEventListener(
             "click",
@@ -2415,9 +2438,11 @@ document
                         this.getAttribute("href")
                     );
 
-                if(target) {
+
+                if (target) {
 
                     event.preventDefault();
+
 
                     target.scrollIntoView({
                         behavior: "smooth"
