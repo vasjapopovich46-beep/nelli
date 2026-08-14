@@ -1,949 +1,1296 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Nelli — Photographer Prague</title>
-
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
-
-        :root {
-            --bg: #f4f1eb;
-            --text: #191817;
-            --muted: #77736d;
-            --line: #d9d4cc;
-            --dark: #20201e;
-            --white: #faf9f6;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: "DM Sans", sans-serif;
-            font-weight: 300;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        button {
-            font-family: inherit;
-        }
+<title>NELLI — Photographer Prague</title>
 
-        /* =========================
-           NAVIGATION
-        ========================= */
+<style>
 
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 82px;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
 
-            padding: 0 5vw;
+/* =========================================================
+   RESET
+========================================================= */
 
-            z-index: 100;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-            background: rgba(244, 241, 235, 0.82);
-            backdrop-filter: blur(15px);
+html{
+    scroll-behavior:smooth;
+}
 
-            border-bottom: 1px solid rgba(217, 212, 204, .7);
-        }
+body{
+    background:#11110f;
+    color:#f3f0ea;
+    font-family:"DM Sans",sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+}
 
-        .logo {
-            font-family: "Playfair Display", serif;
-            font-size: 25px;
-            letter-spacing: -0.03em;
-        }
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:999;
 
-        .logo span {
-            font-style: italic;
-        }
+    opacity:.035;
 
-        nav {
-            display: flex;
-            gap: 35px;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+}
 
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: .15em;
-        }
+a{
+    color:inherit;
+    text-decoration:none;
+}
 
-        nav a {
-            position: relative;
-            opacity: .7;
-            transition: .3s;
-        }
+button{
+    font-family:inherit;
+}
 
-        nav a:hover {
-            opacity: 1;
-        }
 
-        nav a::after {
-            content: "";
+/* =========================================================
+   CURSOR
+========================================================= */
 
-            position: absolute;
-            left: 0;
-            bottom: -7px;
+.cursor{
+    position:fixed;
 
-            width: 0;
-            height: 1px;
+    width:14px;
+    height:14px;
 
-            background: var(--text);
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:50%;
 
-            transition: .3s;
-        }
+    pointer-events:none;
 
-        nav a:hover::after {
-            width: 100%;
-        }
+    transform:translate(-50%,-50%);
 
-        .menu {
-            display: none;
+    z-index:9999;
 
-            border: 0;
-            background: none;
+    transition:
+        width .3s ease,
+        height .3s ease,
+        background .3s ease;
+}
 
-            font-size: 24px;
-            cursor: pointer;
-        }
+.cursor.big{
+    width:55px;
+    height:55px;
 
+    background:rgba(255,255,255,.08);
+}
 
-        /* =========================
-           HERO
-        ========================= */
 
-        .hero {
-            min-height: 100vh;
+/* =========================================================
+   NAV
+========================================================= */
 
-            padding: 150px 5vw 80px;
+.nav{
+    position:fixed;
 
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+    top:0;
+    left:0;
 
-            gap: 8vw;
+    width:100%;
+    height:85px;
 
-            align-items: center;
-        }
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-        .hero-label {
-            margin-bottom: 28px;
+    padding:0 5vw;
 
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: .22em;
+    z-index:100;
 
-            color: var(--muted);
-        }
+    background:linear-gradient(
+        to bottom,
+        rgba(17,17,15,.8),
+        transparent
+    );
 
-        .hero h1 {
-            font-family: "Playfair Display", serif;
+    backdrop-filter:blur(5px);
+}
 
-            font-weight: 400;
+.logo{
+    font-family:"Playfair Display",serif;
 
-            font-size: clamp(60px, 8vw, 120px);
+    font-size:25px;
 
-            line-height: .88;
+    letter-spacing:-.04em;
+}
 
-            letter-spacing: -.065em;
-        }
+.logo em{
+    font-style:italic;
+}
 
-        .hero h1 em {
-            font-style: italic;
-        }
+.nav-links{
+    display:flex;
+    gap:35px;
 
-        .hero-description {
-            margin-top: 40px;
+    font-size:10px;
 
-            max-width: 480px;
+    text-transform:uppercase;
 
-            font-size: 17px;
-            line-height: 1.7;
+    letter-spacing:.16em;
+}
 
-            color: #5d5953;
-        }
+.nav-links a{
+    opacity:.65;
 
-        .hero-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 18px;
+    transition:.3s;
+}
 
-            margin-top: 35px;
+.nav-links a:hover{
+    opacity:1;
+}
 
-            padding: 15px 20px;
+.nav-contact{
+    padding:11px 17px;
 
-            border-radius: 100px;
+    border:1px solid rgba(255,255,255,.25);
 
-            background: var(--dark);
-            color: white;
+    border-radius:100px;
 
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: .12em;
+    font-size:10px;
 
-            transition: .3s;
-        }
+    text-transform:uppercase;
 
-        .hero-button:hover {
-            transform: translateY(-3px);
-            padding-right: 25px;
-        }
+    letter-spacing:.12em;
 
-        .arrow {
-            width: 28px;
-            height: 28px;
+    transition:.35s;
+}
 
-            border: 1px solid #777;
+.nav-contact:hover{
+    background:white;
+    color:#111;
+}
 
-            border-radius: 50%;
 
-            display: grid;
-            place-items: center;
-        }
+/* =========================================================
+   HERO
+========================================================= */
 
+.hero{
+    min-height:100vh;
 
-        /* =========================
-           HERO VISUAL PLACEHOLDER
-        ========================= */
+    position:relative;
 
-        .hero-visual {
-            height: 650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-            position: relative;
+    text-align:center;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #d7d0c5,
-                    #bcb4a8
-                );
+    padding:130px 5vw 80px;
 
-            overflow: hidden;
-        }
+    overflow:hidden;
 
-        .hero-visual::before {
-            content: "PHOTO";
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #403d36 0%,
+            #1e1e1b 35%,
+            #11110f 70%
+        );
+}
 
-            position: absolute;
+.hero-orb{
+    position:absolute;
 
-            inset: 0;
+    width:55vw;
+    height:55vw;
 
-            display: grid;
-            place-items: center;
+    max-width:800px;
+    max-height:800px;
 
-            font-family: "Playfair Display", serif;
+    border-radius:50%;
 
-            font-size: 55px;
-            font-style: italic;
+    background:
+        radial-gradient(
+            circle,
+            rgba(213,190,157,.18),
+            transparent 65%
+        );
 
-            color: rgba(255,255,255,.6);
+    filter:blur(40px);
 
-            letter-spacing: .1em;
-        }
+    animation:orb 8s ease-in-out infinite alternate;
+}
 
-        .visual-caption {
-            position: absolute;
+@keyframes orb{
 
-            left: 20px;
-            bottom: 20px;
+    from{
+        transform:scale(.9) translate(-2%, -1%);
+    }
 
-            padding: 12px 15px;
+    to{
+        transform:scale(1.08) translate(2%, 2%);
+    }
 
-            background: rgba(250,249,246,.9);
+}
 
-            font-size: 10px;
+.hero-content{
+    position:relative;
 
-            text-transform: uppercase;
-            letter-spacing: .14em;
-        }
+    z-index:2;
 
+    max-width:1000px;
+}
 
-        /* =========================
-           INTRO
-        ========================= */
+.hero-small{
+    font-size:10px;
 
-        .intro {
-            padding: 130px 5vw;
+    text-transform:uppercase;
 
-            background: var(--white);
+    letter-spacing:.28em;
 
-            display: grid;
-            grid-template-columns: .7fr 1.3fr;
+    color:#aaa49a;
 
-            gap: 8vw;
-        }
+    margin-bottom:30px;
 
-        .section-number {
-            font-size: 11px;
+    opacity:0;
 
-            text-transform: uppercase;
-            letter-spacing: .18em;
+    animation:fadeUp 1s .2s forwards;
+}
 
-            color: var(--muted);
-        }
+.hero h1{
+    font-family:"Playfair Display",serif;
 
-        .intro h2 {
-            font-family: "Playfair Display", serif;
+    font-size:clamp(65px,11vw,155px);
 
-            font-size: clamp(40px, 5vw, 70px);
+    line-height:.78;
 
-            font-weight: 400;
+    font-weight:400;
 
-            line-height: .98;
+    letter-spacing:-.075em;
 
-            letter-spacing: -.045em;
-        }
+    opacity:0;
 
-        .intro h2 em {
-            font-style: italic;
-        }
+    animation:heroIn 1.2s .35s cubic-bezier(.2,.8,.2,1) forwards;
+}
 
-        .intro p {
-            margin-top: 30px;
+.hero h1 span{
+    display:block;
 
-            max-width: 650px;
+    font-style:italic;
 
-            font-size: 18px;
+    margin-left:12vw;
+}
 
-            line-height: 1.75;
+.hero-text{
+    max-width:510px;
 
-            color: #65615b;
-        }
+    margin:45px auto 0;
 
+    color:#aaa69e;
 
-        /* =========================
-           SERVICES
-        ========================= */
+    font-size:16px;
 
-        .services {
-            padding: 120px 5vw;
-        }
+    line-height:1.7;
 
-        .services-title {
-            font-family: "Playfair Display", serif;
+    opacity:0;
 
-            font-size: clamp(45px, 6vw, 80px);
+    animation:fadeUp 1s .8s forwards;
+}
 
-            font-weight: 400;
+.hero-cta{
+    display:inline-flex;
 
-            letter-spacing: -.05em;
+    align-items:center;
+    gap:14px;
 
-            margin-top: 15px;
-        }
+    margin-top:35px;
 
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+    padding:15px 20px;
 
-            margin-top: 65px;
+    border:1px solid rgba(255,255,255,.2);
 
-            border-top: 1px solid var(--line);
-        }
+    border-radius:100px;
 
-        .service {
-            padding: 30px 30px 40px 0;
+    text-transform:uppercase;
 
-            border-bottom: 1px solid var(--line);
-        }
+    letter-spacing:.13em;
 
-        .service + .service {
-            padding-left: 30px;
+    font-size:10px;
 
-            border-left: 1px solid var(--line);
-        }
+    opacity:0;
 
-        .service-number {
-            font-size: 11px;
+    animation:fadeUp 1s 1s forwards;
 
-            color: var(--muted);
-        }
+    transition:.4s;
+}
 
-        .service h3 {
-            margin-top: 60px;
+.hero-cta:hover{
+    background:#f4f0e8;
+    color:#111;
+    padding-left:27px;
+    padding-right:27px;
+}
 
-            font-family: "Playfair Display", serif;
+.hero-cta span{
+    font-size:16px;
+}
 
-            font-size: 32px;
+.scroll{
+    position:absolute;
 
-            font-weight: 400;
-        }
+    bottom:30px;
 
-        .service p {
-            margin-top: 17px;
+    left:50%;
 
-            max-width: 300px;
+    transform:translateX(-50%);
 
-            color: var(--muted);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 
-            line-height: 1.6;
-        }
+    gap:10px;
 
+    color:#77736c;
 
-        /* =========================
-           PORTFOLIO
-        ========================= */
+    font-size:9px;
 
-        .portfolio {
-            padding: 120px 5vw;
+    text-transform:uppercase;
 
-            background: var(--dark);
+    letter-spacing:.2em;
+}
 
-            color: white;
-        }
+.scroll-line{
+    width:1px;
+    height:45px;
 
-        .portfolio-top {
-            display: flex;
+    background:linear-gradient(
+        to bottom,
+        #777,
+        transparent
+    );
 
-            justify-content: space-between;
-            align-items: end;
+    animation:scrollLine 2s infinite;
+}
 
-            gap: 30px;
-        }
+@keyframes scrollLine{
 
-        .portfolio-title {
-            font-family: "Playfair Display", serif;
+    0%{
+        opacity:0;
+        transform:scaleY(0);
+        transform-origin:top;
+    }
 
-            font-size: clamp(50px, 7vw, 90px);
+    50%{
+        opacity:1;
+        transform:scaleY(1);
+    }
 
-            font-weight: 400;
+    100%{
+        opacity:0;
+        transform:scaleY(1);
+        transform-origin:bottom;
+    }
 
-            line-height: .9;
+}
 
-            letter-spacing: -.06em;
-        }
 
-        .portfolio-title em {
-            font-style: italic;
-        }
+/* =========================================================
+   INTRO
+========================================================= */
 
-        .filters {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
+.intro{
+    min-height:75vh;
 
-        .filter {
-            padding: 10px 15px;
+    display:grid;
 
-            border: 1px solid #4b4a46;
+    grid-template-columns:.7fr 1.3fr;
 
-            border-radius: 100px;
+    gap:10vw;
 
-            background: transparent;
+    align-items:center;
 
-            color: #d8d4cd;
+    padding:130px 7vw;
 
-            cursor: pointer;
+    background:#f0ece5;
 
-            font-size: 10px;
+    color:#1a1917;
+}
 
-            text-transform: uppercase;
+.label{
+    font-size:10px;
 
-            letter-spacing: .12em;
+    text-transform:uppercase;
 
-            transition: .25s;
-        }
+    letter-spacing:.2em;
 
-        .filter:hover,
-        .filter.active {
-            background: white;
-            color: var(--dark);
-        }
+    color:#827c73;
+}
 
-        .gallery {
-            margin-top: 55px;
+.intro h2{
+    margin-top:20px;
 
-            display: grid;
+    font-family:"Playfair Display",serif;
 
-            grid-template-columns: repeat(12, 1fr);
+    font-size:clamp(42px,6vw,80px);
 
-            grid-auto-rows: 110px;
+    line-height:.95;
 
-            gap: 15px;
-        }
+    font-weight:400;
 
-        .gallery-item {
-            position: relative;
+    letter-spacing:-.055em;
+}
 
-            background: #363532;
+.intro h2 em{
+    font-style:italic;
+}
 
-            overflow: hidden;
+.intro-text{
+    max-width:650px;
 
-            display: grid;
-            place-items: center;
+    font-size:20px;
 
-            color: #77746e;
+    line-height:1.7;
 
-            font-family: "Playfair Display", serif;
+    color:#65615a;
+}
 
-            font-size: 25px;
+.intro-text strong{
+    color:#1a1917;
 
-            font-style: italic;
+    font-weight:400;
+}
 
-            transition: .5s;
-        }
 
-        .gallery-item:hover {
-            transform: scale(.985);
-        }
+/* =========================================================
+   CHOICE SECTION
+========================================================= */
 
-        .gallery-item:nth-child(1) {
-            grid-column: span 7;
-            grid-row: span 5;
-        }
+.choose{
+    padding:140px 5vw;
 
-        .gallery-item:nth-child(2) {
-            grid-column: span 5;
-            grid-row: span 3;
-        }
+    background:#151513;
+}
 
-        .gallery-item:nth-child(3) {
-            grid-column: span 5;
-            grid-row: span 4;
-        }
+.choose-header{
+    max-width:900px;
 
-        .gallery-item:nth-child(4) {
-            grid-column: span 4;
-            grid-row: span 3;
-        }
+    margin-bottom:70px;
+}
 
-        .gallery-item:nth-child(5) {
-            grid-column: span 3;
-            grid-row: span 3;
-        }
+.choose-title{
+    margin-top:20px;
 
-        .gallery-label {
-            position: absolute;
+    font-family:"Playfair Display",serif;
 
-            left: 15px;
-            bottom: 15px;
+    font-size:clamp(50px,7vw,100px);
 
-            padding: 8px 10px;
+    line-height:.88;
 
-            background: rgba(20,20,19,.7);
+    font-weight:400;
 
-            color: white;
+    letter-spacing:-.065em;
+}
 
-            font-family: "DM Sans", sans-serif;
+.choose-title em{
+    font-style:italic;
+}
 
-            font-size: 9px;
+.choose-description{
+    max-width:500px;
 
-            text-transform: uppercase;
-            letter-spacing: .13em;
-        }
+    margin-top:30px;
 
+    color:#858078;
 
-        /* =========================
-           ABOUT
-        ========================= */
+    line-height:1.7;
+}
 
-        .about {
-            padding: 130px 5vw;
 
-            display: grid;
+/* =========================================================
+   SERVICE CARDS
+========================================================= */
 
-            grid-template-columns: .8fr 1.2fr;
+.services{
+    display:grid;
 
-            gap: 9vw;
+    grid-template-columns:repeat(4,1fr);
 
-            align-items: center;
-        }
+    gap:12px;
+}
 
-        .about-visual {
-            aspect-ratio: 4 / 5;
+.service-card{
+    min-height:330px;
 
-            background: #d2ccc2;
+    position:relative;
 
-            display: grid;
+    padding:25px;
 
-            place-items: center;
+    overflow:hidden;
 
-            color: rgba(255,255,255,.65);
+    background:#24231f;
 
-            font-family: "Playfair Display", serif;
+    border:1px solid #34322d;
 
-            font-size: 40px;
+    cursor:pointer;
 
-            font-style: italic;
-        }
+    transition:
+        transform .6s cubic-bezier(.2,.8,.2,1),
+        border-color .4s,
+        background .5s;
+}
 
-        .about h2 {
-            font-family: "Playfair Display", serif;
+.service-card::before{
+    content:"";
 
-            font-size: clamp(45px, 6vw, 80px);
+    position:absolute;
 
-            font-weight: 400;
+    width:220px;
+    height:220px;
 
-            line-height: .92;
+    right:-80px;
+    bottom:-100px;
 
-            letter-spacing: -.055em;
+    border-radius:50%;
 
-            margin-top: 15px;
-        }
+    background:#c8a984;
 
-        .about p {
-            max-width: 620px;
+    filter:blur(70px);
 
-            margin-top: 30px;
+    opacity:0;
 
-            font-size: 18px;
+    transition:1s;
+}
 
-            line-height: 1.7;
+.service-card:hover{
+    transform:translateY(-12px);
 
-            color: #625e58;
-        }
+    border-color:#777267;
 
-        .quote {
-            margin-top: 55px;
+    background:#2a2925;
+}
 
-            padding-top: 25px;
+.service-card:hover::before{
+    opacity:.25;
+}
 
-            border-top: 1px solid var(--line);
+.service-number{
+    font-size:10px;
 
-            font-family: "Playfair Display", serif;
+    color:#77736c;
+}
 
-            font-size: 25px;
+.service-icon{
+    margin-top:50px;
 
-            line-height: 1.4;
-        }
+    font-family:"Playfair Display",serif;
 
+    font-size:45px;
 
-        /* =========================
-           CONTACT
-        ========================= */
+    color:#aaa399;
 
-        .contact {
-            padding: 130px 5vw;
+    transition:.5s;
+}
 
-            background: #d8c5b1;
+.service-card:hover .service-icon{
+    transform:translateX(8px);
+    color:#ded8cc;
+}
 
-            display: grid;
+.service-card h3{
+    position:absolute;
 
-            grid-template-columns: 1fr 1fr;
+    left:25px;
+    bottom:48px;
 
-            gap: 8vw;
-        }
+    font-family:"Playfair Display",serif;
 
-        .contact h2 {
-            font-family: "Playfair Display", serif;
+    font-size:28px;
 
-            font-size: clamp(55px, 8vw, 105px);
+    font-weight:400;
+}
 
-            font-weight: 400;
+.service-card p{
+    position:absolute;
 
-            line-height: .86;
+    left:25px;
+    bottom:20px;
 
-            letter-spacing: -.06em;
-        }
+    font-size:10px;
 
-        .contact h2 em {
-            font-style: italic;
-        }
+    color:#77736c;
 
-        .contact-text {
-            align-self: end;
-        }
+    text-transform:uppercase;
 
-        .contact-text p {
-            max-width: 480px;
+    letter-spacing:.1em;
+}
 
-            font-size: 18px;
 
-            line-height: 1.7;
+/* =========================================================
+   SELECTED SERVICE
+========================================================= */
 
-            color: #514a43;
-        }
+.selection{
+    margin-top:60px;
 
-        .contact-links {
-            margin-top: 35px;
+    padding:25px 0;
 
-            display: flex;
+    border-top:1px solid #34322d;
 
-            gap: 10px;
+    border-bottom:1px solid #34322d;
 
-            flex-wrap: wrap;
-        }
+    display:flex;
 
-        .contact-link {
-            padding: 13px 17px;
+    justify-content:space-between;
 
-            border: 1px solid rgba(25,24,23,.3);
+    align-items:center;
+}
 
-            border-radius: 100px;
+.selection-text{
+    color:#817d75;
 
-            font-size: 11px;
+    font-size:11px;
 
-            text-transform: uppercase;
+    text-transform:uppercase;
 
-            letter-spacing: .1em;
+    letter-spacing:.14em;
+}
 
-            transition: .3s;
-        }
+.selection-name{
+    color:white;
 
-        .contact-link:hover {
-            background: var(--dark);
-            color: white;
-        }
+    font-family:"Playfair Display",serif;
 
+    font-size:25px;
 
-        /* =========================
-           FOOTER
-        ========================= */
+    font-style:italic;
+}
 
-        footer {
-            padding: 25px 5vw;
+.selection-button{
+    border:0;
 
-            display: flex;
+    background:white;
 
-            justify-content: space-between;
+    color:#151513;
 
-            font-size: 10px;
+    border-radius:100px;
 
-            text-transform: uppercase;
+    padding:13px 20px;
 
-            letter-spacing: .12em;
+    cursor:pointer;
 
-            color: var(--muted);
-        }
+    font-size:10px;
 
+    text-transform:uppercase;
 
-        /* =========================
-           MOBILE
-        ========================= */
+    letter-spacing:.12em;
 
-        @media (max-width: 800px) {
+    transition:.3s;
+}
 
-            header {
-                height: 70px;
-            }
+.selection-button:hover{
+    transform:translateX(5px);
+}
 
-            nav {
-                display: none;
 
-                position: absolute;
+/* =========================================================
+   PORTFOLIO
+========================================================= */
 
-                top: 70px;
-                left: 0;
+.portfolio{
+    padding:140px 5vw;
 
-                width: 100%;
+    background:#f0ece5;
 
-                padding: 25px 5vw;
+    color:#191816;
+}
 
-                background: var(--bg);
+.portfolio-header{
+    display:flex;
 
-                flex-direction: column;
+    justify-content:space-between;
 
-                gap: 22px;
-            }
+    align-items:end;
 
-            nav.open {
-                display: flex;
-            }
+    margin-bottom:60px;
+}
 
-            .menu {
-                display: block;
-            }
+.portfolio h2{
+    margin-top:20px;
 
-            .hero {
-                padding-top: 120px;
+    font-family:"Playfair Display",serif;
 
-                grid-template-columns: 1fr;
+    font-size:clamp(50px,7vw,100px);
 
-                gap: 50px;
-            }
+    line-height:.85;
 
-            .hero-visual {
-                height: 550px;
-            }
+    font-weight:400;
 
-            .intro,
-            .about,
-            .contact {
-                grid-template-columns: 1fr;
+    letter-spacing:-.06em;
+}
 
-                gap: 50px;
+.portfolio h2 em{
+    font-style:italic;
+}
 
-                padding-top: 90px;
-                padding-bottom: 90px;
-            }
+.portfolio-note{
+    max-width:260px;
 
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
+    color:#777168;
 
-            .service + .service {
-                padding-left: 0;
+    line-height:1.6;
 
-                border-left: 0;
-            }
+    font-size:13px;
+}
 
-            .portfolio-top {
-                display: block;
-            }
+.portfolio-grid{
+    display:grid;
 
-            .filters {
-                margin-top: 30px;
-            }
+    grid-template-columns:repeat(12,1fr);
 
-            .gallery {
-                grid-template-columns: 1fr 1fr;
+    grid-auto-rows:90px;
 
-                grid-auto-rows: 150px;
-            }
+    gap:14px;
+}
 
-            .gallery-item:nth-child(1) {
-                grid-column: span 2;
-                grid-row: span 3;
-            }
+.photo-placeholder{
+    position:relative;
 
-            .gallery-item:nth-child(2),
-            .gallery-item:nth-child(3) {
-                grid-column: span 1;
-                grid-row: span 2;
-            }
+    overflow:hidden;
 
-            .gallery-item:nth-child(4),
-            .gallery-item:nth-child(5) {
-                grid-column: span 1;
-                grid-row: span 2;
-            }
+    background:
+        linear-gradient(
+            135deg,
+            #cbc3b7,
+            #9c958a
+        );
 
-            footer {
-                flex-direction: column;
+    display:flex;
 
-                gap: 10px;
-            }
-        }
+    align-items:center;
 
-        @media (max-width: 480px) {
+    justify-content:center;
 
-            .hero h1 {
-                font-size: 58px;
-            }
+    color:rgba(255,255,255,.65);
 
-            .hero-visual {
-                height: 480px;
-            }
+    font-family:"Playfair Display",serif;
 
-            .gallery {
-                grid-template-columns: 1fr;
+    font-style:italic;
 
-                grid-auto-rows: 250px;
-            }
+    font-size:35px;
 
-            .gallery-item:nth-child(n) {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
-        }
-    </style>
+    transition:.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.photo-placeholder::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255,255,255,.3),
+        transparent 80%
+    );
+
+    transform:translateX(-100%);
+
+    transition:.8s;
+}
+
+.photo-placeholder:hover{
+    transform:scale(.985);
+}
+
+.photo-placeholder:hover::after{
+    transform:translateX(100%);
+}
+
+.photo-placeholder:nth-child(1){
+    grid-column:span 7;
+    grid-row:span 5;
+}
+
+.photo-placeholder:nth-child(2){
+    grid-column:span 5;
+    grid-row:span 3;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b8aa9b,
+            #766e65
+        );
+}
+
+.photo-placeholder:nth-child(3){
+    grid-column:span 5;
+    grid-row:span 4;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d3ccc0,
+            #a39b90
+        );
+}
+
+.photo-placeholder:nth-child(4){
+    grid-column:span 4;
+    grid-row:span 3;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8f887d,
+            #57534c
+        );
+}
+
+.photo-placeholder:nth-child(5){
+    grid-column:span 3;
+    grid-row:span 3;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c6b6a4,
+            #8f7964
+        );
+}
+
+.photo-tag{
+    position:absolute;
+
+    left:15px;
+    bottom:15px;
+
+    padding:8px 10px;
+
+    background:rgba(15,15,14,.75);
+
+    color:white;
+
+    font-family:"DM Sans",sans-serif;
+
+    font-size:9px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.13em;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about{
+    min-height:90vh;
+
+    padding:140px 7vw;
+
+    display:grid;
+
+    grid-template-columns:.8fr 1.2fr;
+
+    gap:10vw;
+
+    align-items:center;
+
+    background:#191917;
+}
+
+.about-visual{
+    aspect-ratio:4/5;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 40% 35%,
+            #b9a68f,
+            #5b554c 45%,
+            #282722 80%
+        );
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.about-visual span{
+    font-family:"Playfair Display",serif;
+
+    font-size:50px;
+
+    font-style:italic;
+
+    color:rgba(255,255,255,.45);
+}
+
+.about h2{
+    margin-top:20px;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:clamp(55px,7vw,100px);
+
+    line-height:.85;
+
+    font-weight:400;
+
+    letter-spacing:-.065em;
+}
+
+.about h2 em{
+    font-style:italic;
+}
+
+.about-text{
+    max-width:600px;
+
+    margin-top:35px;
+
+    color:#969189;
+
+    font-size:17px;
+
+    line-height:1.8;
+}
+
+.quote{
+    max-width:600px;
+
+    margin-top:55px;
+
+    padding-top:25px;
+
+    border-top:1px solid #36342f;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:25px;
+
+    line-height:1.4;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact{
+    min-height:80vh;
+
+    padding:140px 7vw;
+
+    background:#d5c1aa;
+
+    color:#191816;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10vw;
+
+    align-items:center;
+}
+
+.contact h2{
+    margin-top:20px;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:clamp(55px,8vw,115px);
+
+    line-height:.82;
+
+    font-weight:400;
+
+    letter-spacing:-.07em;
+}
+
+.contact h2 em{
+    font-style:italic;
+}
+
+.contact-info{
+    align-self:end;
+}
+
+.contact-info p{
+    max-width:450px;
+
+    font-size:18px;
+
+    line-height:1.7;
+
+    color:#554d44;
+}
+
+.contact-buttons{
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:35px;
+}
+
+.contact-btn{
+    padding:14px 18px;
+
+    border:1px solid rgba(25,24,22,.35);
+
+    border-radius:100px;
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.12em;
+
+    transition:.3s;
+}
+
+.contact-btn:hover{
+    background:#191816;
+    color:white;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer{
+    padding:25px 5vw;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    background:#11110f;
+
+    color:#77736c;
+
+    font-size:9px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.15em;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.reveal.show{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .nav-contact{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:72px;
+    }
+
+    .intro,
+    .about,
+    .contact{
+        grid-template-columns:1fr;
+
+        gap:60px;
+
+        padding-top:100px;
+        padding-bottom:100px;
+    }
+
+    .services{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .portfolio-header{
+        display:block;
+    }
+
+    .portfolio-note{
+        margin-top:25px;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .nav{
+        height:70px;
+    }
+
+    .hero{
+        padding-top:120px;
+    }
+
+    .hero h1{
+        font-size:58px;
+    }
+
+    .hero h1 span{
+        margin-left:0;
+    }
+
+    .services{
+        grid-template-columns:1fr;
+    }
+
+    .service-card{
+        min-height:270px;
+    }
+
+    .selection{
+        display:block;
+    }
+
+    .selection-button{
+        margin-top:20px;
+    }
+
+    .portfolio-grid{
+        grid-template-columns:1fr;
+
+        grid-auto-rows:280px;
+    }
+
+    .photo-placeholder:nth-child(n){
+        grid-column:span 1;
+        grid-row:span 1;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:10px;
+    }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<div class="cursor"></div>
 
-<header>
+
+<!-- ========================================================
+     NAVIGATION
+========================================================= -->
+
+<header class="nav">
 
     <a href="#" class="logo">
-        nelli <span>photo</span>
+        nelli <em>photo</em>
     </a>
 
-    <nav id="nav">
+    <nav class="nav-links">
+
+        <a href="#choose">
+            Зйомки
+        </a>
 
         <a href="#portfolio">
             Портфоліо
-        </a>
-
-        <a href="#services">
-            Зйомки
         </a>
 
         <a href="#about">
             Про мене
         </a>
 
-        <a href="#contact">
-            Контакти
-        </a>
-
     </nav>
 
-    <button class="menu" id="menu">
-        ☰
-    </button>
+    <a href="#contact" class="nav-contact">
+        Забронювати
+    </a>
 
 </header>
 
 
 
-<!-- =========================
+<!-- ========================================================
      HERO
-========================= -->
+========================================================= -->
 
 <section class="hero">
 
-    <div>
+    <div class="hero-orb"></div>
 
-        <div class="hero-label">
-            Photographer · Prague · CZ
+    <div class="hero-content">
+
+        <div class="hero-small">
+            Photographer · Prague · Czech Republic
         </div>
 
         <h1>
-            Історії,<br>
-            які хочеться<br>
-            <em>переглядати.</em>
+            Your story.
+            <span>My vision.</span>
         </h1>
 
-        <p class="hero-description">
-            Весільний та lifestyle-фотограф у Празі.
-            Живі емоції, красиве світло і фотографії,
-            в яких ви впізнаєте себе.
+        <p class="hero-text">
+            Фотографую моменти, які хочеться
+            не просто зберегти, а прожити ще раз.
         </p>
 
-        <a href="#contact" class="hero-button">
-
-            Запитати про зйомку
-
-            <span class="arrow">
-                ↗
-            </span>
-
+        <a href="#choose" class="hero-cta">
+            Обрати свою зйомку
+            <span>↓</span>
         </a>
 
     </div>
 
 
-    <!-- ПОТІМ ТУТ БУДЕ ФОТО -->
+    <div class="scroll">
 
-    <div class="hero-visual">
+        Scroll
 
-        <div class="visual-caption">
-            Prague · Love stories
-        </div>
+        <div class="scroll-line"></div>
 
     </div>
 
@@ -951,29 +1298,38 @@
 
 
 
-<!-- =========================
+<!-- ========================================================
      INTRO
-========================= -->
+========================================================= -->
 
-<section class="intro">
+<section class="intro reveal">
 
-    <div class="section-number">
-        01 — Підхід
+    <div>
+
+        <div class="label">
+            01 — Philosophy
+        </div>
+
     </div>
+
 
     <div>
 
         <h2>
-            Не просто позувати.<br>
-            А прожити <em>момент.</em>
+            Не потрібно<br>
+            вміти <em>позувати.</em>
         </h2>
 
-        <p>
-            Моя задача — не перетворити вашу зйомку
-            на набір однакових поз.
-            Я допомагаю розслабитися, підказую,
-            коли це потрібно, і ловлю те,
-            що відбувається між кадрами.
+        <p class="intro-text">
+
+            Вам не потрібно знати, куди ставити руки
+            або як правильно дивитися в камеру.
+
+            <br><br>
+
+            Я підкажу, допоможу розслабитися
+            і просто <strong>зловлю ваш момент.</strong>
+
         </p>
 
     </div>
@@ -982,77 +1338,214 @@
 
 
 
-<!-- =========================
-     SERVICES
-========================= -->
+<!-- ========================================================
+     CHOOSE SESSION
+========================================================= -->
 
-<section class="services" id="services">
+<section class="choose" id="choose">
 
-    <div class="section-number">
-        02 — Зйомки
+    <div class="choose-header reveal">
+
+        <div class="label">
+            02 — Find your story
+        </div>
+
+        <h2 class="choose-title">
+            Яку історію<br>
+            ми створимо <em>разом?</em>
+        </h2>
+
+        <p class="choose-description">
+            Оберіть формат зйомки, який вам близький.
+            А далі я допоможу перетворити вашу ідею
+            на красиву фотосесію.
+        </p>
+
     </div>
 
-    <h2 class="services-title">
-        Що ми можемо<br>
-        <em>створити разом.</em>
-    </h2>
+
+    <div class="services">
 
 
-    <div class="service-grid">
+        <!-- WEDDING -->
 
-
-        <article class="service">
+        <article class="service-card reveal" data-name="Wedding">
 
             <div class="service-number">
                 01
             </div>
 
+            <div class="service-icon">
+                W
+            </div>
+
             <h3>
                 Wedding
             </h3>
 
             <p>
-                День, який минає швидко.
-                Фотографії, які залишаються
-                назавжди.
+                Весілля
             </p>
 
         </article>
 
 
-        <article class="service">
+        <!-- BAPTISM -->
+
+        <article class="service-card reveal" data-name="Хрестини">
 
             <div class="service-number">
                 02
             </div>
 
+            <div class="service-icon">
+                B
+            </div>
+
             <h3>
-                Love story
+                Хрестини
             </h3>
 
             <p>
-                Прогулянка, побачення або
-                просто ви двоє.
-                Без зайвої постановки.
+                Baptism
             </p>
 
         </article>
 
 
-        <article class="service">
+        <!-- CEREMONY -->
+
+        <article class="service-card reveal" data-name="Обрядова фотосесія">
 
             <div class="service-number">
                 03
             </div>
 
+            <div class="service-icon">
+                C
+            </div>
+
             <h3>
-                Individual
+                Обряди
             </h3>
 
             <p>
-                Портрети, lifestyle та
-                персональні зйомки
-                у Празі й за її межами.
+                Особливі моменти
+            </p>
+
+        </article>
+
+
+        <!-- STUDIO -->
+
+        <article class="service-card reveal" data-name="Studio">
+
+            <div class="service-number">
+                04
+            </div>
+
+            <div class="service-icon">
+                S
+            </div>
+
+            <h3>
+                Studio
+            </h3>
+
+            <p>
+                Студійна зйомка
+            </p>
+
+        </article>
+
+
+        <!-- PORTRAIT -->
+
+        <article class="service-card reveal" data-name="Portrait">
+
+            <div class="service-number">
+                05
+            </div>
+
+            <div class="service-icon">
+                P
+            </div>
+
+            <h3>
+                Portrait
+            </h3>
+
+            <p>
+                Індивідуальна
+            </p>
+
+        </article>
+
+
+        <!-- FAMILY -->
+
+        <article class="service-card reveal" data-name="Family">
+
+            <div class="service-number">
+                06
+            </div>
+
+            <div class="service-icon">
+                F
+            </div>
+
+            <h3>
+                Family
+            </h3>
+
+            <p>
+                Сімейна
+            </p>
+
+        </article>
+
+
+        <!-- LOVE -->
+
+        <article class="service-card reveal" data-name="Love Story">
+
+            <div class="service-number">
+                07
+            </div>
+
+            <div class="service-icon">
+                L
+            </div>
+
+            <h3>
+                Love Story
+            </h3>
+
+            <p>
+                Для двох
+            </p>
+
+        </article>
+
+
+        <!-- OTHER -->
+
+        <article class="service-card reveal" data-name="Інше">
+
+            <div class="service-number">
+                08
+            </div>
+
+            <div class="service-icon">
+                +
+            </div>
+
+            <h3>
+                Інше
+            </h3>
+
+            <p>
+                Ваша ідея
             </p>
 
         </article>
@@ -1060,91 +1553,102 @@
 
     </div>
 
+
+    <!-- SELECTED -->
+
+    <div class="selection">
+
+        <div>
+
+            <div class="selection-text">
+                Ви обрали
+            </div>
+
+            <div class="selection-name" id="selectedName">
+                Оберіть формат вище
+            </div>
+
+        </div>
+
+        <a href="#contact" class="selection-button">
+            Продовжити →
+        </a>
+
+    </div>
+
 </section>
 
 
 
-<!-- =========================
+<!-- ========================================================
      PORTFOLIO
-========================= -->
+========================================================= -->
 
 <section class="portfolio" id="portfolio">
 
-    <div class="portfolio-top">
+    <div class="portfolio-header reveal">
 
         <div>
 
-            <div class="section-number">
+            <div class="label">
                 03 — Selected work
             </div>
 
-            <h2 class="portfolio-title">
-                Обрані<br>
-                <em>історії.</em>
+            <h2>
+                Кадри, які<br>
+                говорять <em>самі.</em>
             </h2>
 
         </div>
 
-
-        <div class="filters">
-
-            <button class="filter active">
-                Усі
-            </button>
-
-            <button class="filter">
-                Wedding
-            </button>
-
-            <button class="filter">
-                Love story
-            </button>
-
-            <button class="filter">
-                Family
-            </button>
-
-        </div>
+        <p class="portfolio-note">
+            Тут згодом з'являться справжні
+            фотографії Неллі — великі,
+            атмосферні та без зайвого тексту.
+        </p>
 
     </div>
 
 
-    <!-- ЗАРАЗ ЦЕ ПРОСТО ПЛЕЙСХОЛДЕРИ -->
+    <div class="portfolio-grid reveal">
 
-    <div class="gallery">
-
-        <div class="gallery-item">
+        <div class="photo-placeholder">
             PHOTO
-            <span class="gallery-label">
+
+            <span class="photo-tag">
                 Wedding
             </span>
         </div>
 
-        <div class="gallery-item">
+        <div class="photo-placeholder">
             PHOTO
-            <span class="gallery-label">
-                Love story
+
+            <span class="photo-tag">
+                Studio
             </span>
         </div>
 
-        <div class="gallery-item">
+        <div class="photo-placeholder">
             PHOTO
-            <span class="gallery-label">
-                Wedding
+
+            <span class="photo-tag">
+                Baptism
             </span>
         </div>
 
-        <div class="gallery-item">
+        <div class="photo-placeholder">
             PHOTO
-            <span class="gallery-label">
-                Family
-            </span>
-        </div>
 
-        <div class="gallery-item">
-            PHOTO
-            <span class="gallery-label">
+            <span class="photo-tag">
                 Portrait
+            </span>
+        </div>
+
+        <div class="photo-placeholder">
+            PHOTO
+
+            <span class="photo-tag">
+                Love story
             </span>
         </div>
 
@@ -1154,23 +1658,25 @@
 
 
 
-<!-- =========================
+<!-- ========================================================
      ABOUT
-========================= -->
+========================================================= -->
 
 <section class="about" id="about">
 
-    <!-- ПОТІМ ТУТ БУДЕ ФОТО НЕЛЛІ -->
+    <div class="about-visual reveal">
 
-    <div class="about-visual">
-        PHOTO
+        <span>
+            N.
+        </span>
+
     </div>
 
 
-    <div>
+    <div class="reveal">
 
-        <div class="section-number">
-            04 — Про мене
+        <div class="label">
+            04 — About
         </div>
 
         <h2>
@@ -1178,25 +1684,25 @@
             я <em>Неллі.</em>
         </h2>
 
-        <p>
-            Фотограф у Празі, яка любить красиві
-            історії, справжні емоції та моменти,
-            які не потрібно вигадувати.
-        </p>
+        <p class="about-text">
 
-        <p>
-            Я знімаю весілля, love story,
-            індивідуальні та сімейні історії.
-            Мені важливо, щоб під час зйомки
-            вам було комфортно — навіть якщо
-            ви ніколи раніше не фотографувалися.
-        </p>
+            Фотограф у Празі.
+            Люблю красиве світло, живі емоції
+            та моменти, які не потрібно вигадувати.
 
+            <br><br>
+
+            Весілля, хрестини, обрядові події,
+            студійні та індивідуальні фотосесії —
+            кожна історія для мене особлива.
+
+        </p>
 
         <div class="quote">
 
-            «Вам не потрібно вміти позувати.
-            Просто приходьте собою.»
+            «Найкращі фотографії —
+            це ті, де ви бачите не позу,
+            а себе.»
 
         </div>
 
@@ -1206,51 +1712,51 @@
 
 
 
-<!-- =========================
+<!-- ========================================================
      CONTACT
-========================= -->
+========================================================= -->
 
 <section class="contact" id="contact">
 
-    <div>
+    <div class="reveal">
 
-        <div class="section-number">
+        <div class="label">
             05 — Let's create
         </div>
 
         <h2>
-            Розкажіть<br>
-            про свою<br>
-            <em>історію.</em>
+            Давайте<br>
+            створимо<br>
+            <em>вашу історію.</em>
         </h2>
 
     </div>
 
 
-    <div class="contact-text">
+    <div class="contact-info reveal">
 
         <p>
-            Напишіть мені дату, формат зйомки
-            та кілька слів про вашу ідею.
-            Я відповім і допоможу з наступними
-            кроками.
+
+            Розкажіть мені, що ви задумали.
+            Весілля, хрестини, студійна зйомка
+            або щось зовсім інше.
+
+            <br><br>
+
+            Напишіть кілька слів —
+            і разом придумаємо формат.
+
         </p>
 
 
-        <div class="contact-links">
+        <div class="contact-buttons">
 
-            <a
-                href="#"
-                class="contact-link"
-            >
+            <a href="#" class="contact-btn">
                 Instagram ↗
             </a>
 
-            <a
-                href="mailto:hello@example.com"
-                class="contact-link"
-            >
-                Email ↗
+            <a href="mailto:hello@example.com" class="contact-btn">
+                Написати email ↗
             </a>
 
         </div>
@@ -1261,18 +1767,18 @@
 
 
 
-<!-- =========================
+<!-- ========================================================
      FOOTER
-========================= -->
+========================================================= -->
 
 <footer>
 
     <span>
-        © Nelli Photo Prague
+        NELLI PHOTO · PRAGUE
     </span>
 
     <span>
-        Prague · Czech Republic
+        © 2026
     </span>
 
 </footer>
@@ -1281,46 +1787,126 @@
 
 <script>
 
-    const menu = document.getElementById("menu");
-    const nav = document.getElementById("nav");
+/* =========================================================
+   CURSOR
+========================================================= */
 
-    menu.addEventListener("click", () => {
+const cursor = document.querySelector(".cursor");
 
-        nav.classList.toggle("open");
+document.addEventListener("mousemove", e => {
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+});
+
+
+document.querySelectorAll("a, button, .service-card").forEach(el => {
+
+    el.addEventListener("mouseenter", () => {
+        cursor.classList.add("big");
+    });
+
+    el.addEventListener("mouseleave", () => {
+        cursor.classList.remove("big");
+    });
+
+});
+
+
+/* =========================================================
+   SERVICE SELECTION
+========================================================= */
+
+const cards = document.querySelectorAll(".service-card");
+
+const selectedName =
+    document.getElementById("selectedName");
+
+
+cards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        cards.forEach(item => {
+            item.style.borderColor = "#34322d";
+        });
+
+        card.style.borderColor = "#c8a984";
+
+        const name = card.dataset.name;
+
+        selectedName.textContent = name;
+
+        selectedName.style.opacity = "0";
+
+        setTimeout(() => {
+
+            selectedName.style.transition = ".5s";
+
+            selectedName.style.opacity = "1";
+
+        }, 50);
 
     });
 
+});
 
-    // Закриваємо меню після натискання
 
-    document.querySelectorAll("nav a").forEach(link => {
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
 
-        link.addEventListener("click", () => {
+const observer = new IntersectionObserver(
 
-            nav.classList.remove("open");
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
+
+            }
 
         });
 
-    });
+    },
+
+    {
+        threshold:.12
+    }
+
+);
 
 
-    // Фільтри портфоліо — поки просто візуальна взаємодія
+document.querySelectorAll(".reveal").forEach(el => {
 
-    const filters = document.querySelectorAll(".filter");
+    observer.observe(el);
 
-    filters.forEach(button => {
+});
 
-        button.addEventListener("click", () => {
 
-            filters.forEach(item => {
-                item.classList.remove("active");
-            });
+/* =========================================================
+   PARALLAX HERO
+========================================================= */
 
-            button.classList.add("active");
+const orb = document.querySelector(".hero-orb");
 
-        });
+window.addEventListener("mousemove", e => {
 
-    });
+    const x =
+        (e.clientX / window.innerWidth - .5) * 20;
+
+    const y =
+        (e.clientY / window.innerHeight - .5) * 20;
+
+    orb.style.transform =
+        `translate(${x}px, ${y}px)`;
+
+});
 
 </script>
 
