@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NELLI — Photography</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 :root{
-    --bg:#0c0c0c;
-    --bg2:#131313;
-    --text:#f4f1ec;
-    --muted:#aaa49d;
-    --line:rgba(255,255,255,.12);
-    --accent:#d7c5a4;
+    --bg:#0b0b0b;
+    --bg2:#111111;
+    --card:#151515;
+    --text:#f2eee8;
+    --muted:#99948d;
+    --line:rgba(255,255,255,.11);
+    --accent:#d6c4a3;
 }
 
 *{
@@ -39,15 +41,15 @@ body:before{
     position:fixed;
     inset:0;
     pointer-events:none;
-    background:
-      radial-gradient(circle at 20% 20%,rgba(215,197,164,.06),transparent 30%),
-      radial-gradient(circle at 80% 70%,rgba(255,255,255,.035),transparent 30%);
     z-index:-1;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(214,196,163,.055),transparent 30%),
+        radial-gradient(circle at 85% 75%,rgba(255,255,255,.035),transparent 30%);
 }
 
 a{
-    color:inherit;
     text-decoration:none;
+    color:inherit;
 }
 
 button{
@@ -62,37 +64,42 @@ header{
     left:0;
     width:100%;
     height:82px;
+    padding:0 6%;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 6%;
     z-index:1000;
-    transition:.4s;
+    transition:.4s ease;
 }
 
 header.scrolled{
     background:rgba(10,10,10,.88);
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(20px);
     border-bottom:1px solid var(--line);
 }
 
 .logo{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:13px;
 }
 
-.logo img{
-    width:45px;
-    height:45px;
-    object-fit:contain;
+.logo-mark{
+    width:43px;
+    height:43px;
+    border:1px solid rgba(255,255,255,.3);
     border-radius:50%;
-    mix-blend-mode:screen;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Cormorant Garamond",serif;
+    font-size:20px;
+    letter-spacing:-1px;
 }
 
 .logo-text{
     font-family:"Cormorant Garamond",serif;
-    font-size:28px;
+    font-size:27px;
     letter-spacing:5px;
 }
 
@@ -102,10 +109,10 @@ nav{
 }
 
 nav a{
-    font-size:12px;
+    font-size:11px;
     text-transform:uppercase;
     letter-spacing:2px;
-    color:#d4d0ca;
+    color:#c8c3bc;
     transition:.3s;
 }
 
@@ -113,34 +120,42 @@ nav a:hover{
     color:white;
 }
 
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+/* LANGUAGE */
+
 .lang-wrap{
     position:relative;
 }
 
 .lang-btn{
     border:1px solid var(--line);
-    background:rgba(255,255,255,.04);
+    background:rgba(255,255,255,.035);
     color:white;
-    padding:10px 15px;
-    border-radius:30px;
+    padding:9px 14px;
+    border-radius:50px;
     cursor:pointer;
     display:flex;
     align-items:center;
-    gap:8px;
+    gap:7px;
 }
 
 .lang-menu{
     position:absolute;
     right:0;
     top:50px;
-    width:170px;
-    padding:8px;
-    background:#171717;
+    width:175px;
+    background:#161616;
     border:1px solid var(--line);
     border-radius:15px;
+    padding:8px;
     opacity:0;
     visibility:hidden;
-    transform:translateY(-10px);
+    transform:translateY(-8px);
     transition:.3s;
 }
 
@@ -151,14 +166,15 @@ nav a:hover{
 }
 
 .lang-option{
+    display:block;
     width:100%;
-    padding:11px;
     border:0;
-    background:none;
-    color:white;
-    cursor:pointer;
+    background:transparent;
+    color:#eee;
     text-align:left;
+    padding:11px;
     border-radius:9px;
+    cursor:pointer;
 }
 
 .lang-option:hover{
@@ -170,7 +186,7 @@ nav a:hover{
     border:0;
     background:none;
     color:white;
-    font-size:25px;
+    font-size:24px;
     cursor:pointer;
 }
 
@@ -178,61 +194,62 @@ nav a:hover{
 
 .hero{
     min-height:100vh;
+    padding:130px 7% 80px;
     display:grid;
-    grid-template-columns:1.05fr .95fr;
+    grid-template-columns:1fr 1fr;
     align-items:center;
-    padding:120px 7% 70px;
     gap:70px;
 }
 
-.hero-left{
-    animation:fadeUp 1.2s ease both;
+.hero-content{
+    animation:fadeUp 1.1s ease both;
 }
 
-.kicker{
+.eyebrow{
     color:var(--accent);
     text-transform:uppercase;
     letter-spacing:5px;
-    font-size:11px;
+    font-size:10px;
     margin-bottom:25px;
 }
 
 .hero h1{
     font-family:"Cormorant Garamond",serif;
-    font-size:clamp(70px,10vw,150px);
-    line-height:.75;
     font-weight:500;
-    letter-spacing:-5px;
+    font-size:clamp(75px,10vw,145px);
+    line-height:.72;
+    letter-spacing:-6px;
 }
 
 .hero h1 span{
     display:block;
     margin-left:70px;
     font-style:italic;
-    color:#cfc8bd;
+    color:#c9c2b8;
 }
 
 .hero-description{
-    max-width:480px;
     color:var(--muted);
     line-height:1.8;
+    max-width:500px;
     margin:45px 0 30px;
 }
 
-.hero-buttons{
+.buttons{
     display:flex;
-    gap:15px;
     flex-wrap:wrap;
+    gap:12px;
 }
 
 .btn{
-    padding:15px 24px;
-    border-radius:100px;
+    padding:15px 23px;
+    border-radius:50px;
     border:1px solid var(--line);
     transition:.35s;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
 }
 
 .btn.primary{
@@ -240,38 +257,9 @@ nav a:hover{
     color:#111;
 }
 
-.btn:hover{
-    transform:translateY(-4px);
-}
-
-.btn.primary:hover{
-    background:white;
-}
-
-.hero-right{
-    position:relative;
+.hero-visual{
     height:650px;
-}
-
-.hero-photo{
-    position:absolute;
-    width:75%;
-    height:90%;
-    right:0;
-    top:5%;
-    overflow:hidden;
-    border-radius:2px;
-}
-
-.hero-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:transform 1.2s;
-}
-
-.hero-photo:hover img{
-    transform:scale(1.05);
+    position:relative;
 }
 
 .hero-frame{
@@ -280,63 +268,104 @@ nav a:hover{
     height:80%;
     left:0;
     bottom:0;
-    border:1px solid rgba(215,197,164,.4);
+    border:1px solid rgba(214,196,163,.4);
+}
+
+.hero-placeholder{
+    position:absolute;
+    right:0;
+    top:4%;
+    width:76%;
+    height:91%;
+    overflow:hidden;
+    background:
+        linear-gradient(145deg,#24221f,#111);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.placeholder-content{
+    position:relative;
+    z-index:2;
+    padding:30px;
+}
+
+.placeholder-icon{
+    font-size:50px;
+    opacity:.65;
+    margin-bottom:20px;
+}
+
+.placeholder-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:36px;
+}
+
+.placeholder-small{
+    color:#888;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-top:10px;
 }
 
 /* ================= MARQUEE ================= */
 
 .marquee{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
     overflow:hidden;
     white-space:nowrap;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
     padding:20px 0;
 }
 
-.marquee-inner{
+.marquee-track{
     display:inline-block;
-    animation:marquee 25s linear infinite;
+    animation:marquee 30s linear infinite;
 }
 
 .marquee span{
     margin:0 35px;
     font-family:"Cormorant Garamond",serif;
-    font-size:25px;
     font-style:italic;
-    color:#c8c0b5;
+    font-size:25px;
+    color:#c8c0b6;
 }
 
-/* ================= GENERAL ================= */
+/* ================= SECTIONS ================= */
 
 section{
     padding:120px 7%;
 }
 
-.section-top{
+.section-header{
     display:flex;
     justify-content:space-between;
     align-items:end;
+    gap:40px;
     margin-bottom:55px;
-    gap:30px;
 }
 
 .section-number{
-    font-size:11px;
-    letter-spacing:3px;
     color:var(--accent);
+    font-size:10px;
+    letter-spacing:3px;
+    margin-bottom:20px;
 }
 
 .section-title{
     font-family:"Cormorant Garamond",serif;
-    font-size:clamp(50px,7vw,90px);
     font-weight:500;
-    line-height:.85;
+    font-size:clamp(55px,7vw,95px);
+    line-height:.82;
 }
 
 .section-description{
-    max-width:370px;
+    max-width:390px;
     color:var(--muted);
-    line-height:1.7;
+    line-height:1.8;
 }
 
 /* ================= SERVICES ================= */
@@ -345,61 +374,49 @@ section{
     background:#101010;
 }
 
-.service-grid{
+.services-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:2px;
 }
 
 .service{
-    min-height:300px;
+    min-height:310px;
     padding:35px;
     background:#151515;
-    border:1px solid rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.04);
     position:relative;
     overflow:hidden;
     transition:.5s;
 }
 
-.service:before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(135deg,rgba(215,197,164,.08),transparent 50%);
-    opacity:0;
-    transition:.5s;
-}
-
 .service:hover{
     transform:translateY(-8px);
+    background:#191919;
 }
 
-.service:hover:before{
-    opacity:1;
+.service-number{
+    color:#666;
+    font-size:11px;
 }
 
-.service-num{
-    color:#777;
-    font-size:12px;
-}
-
-.service-icon{
-    font-size:35px;
-    margin:40px 0 25px;
-    filter:grayscale(1);
+.service-symbol{
+    font-size:38px;
+    margin:45px 0 25px;
+    color:#cfc6b9;
 }
 
 .service h3{
     font-family:"Cormorant Garamond",serif;
-    font-size:32px;
+    font-size:34px;
     font-weight:500;
 }
 
 .service p{
     color:var(--muted);
-    margin-top:12px;
-    line-height:1.6;
-    font-size:14px;
+    font-size:13px;
+    line-height:1.7;
+    margin-top:10px;
 }
 
 /* ================= PORTFOLIO ================= */
@@ -407,98 +424,98 @@ section{
 .portfolio-grid{
     display:grid;
     grid-template-columns:repeat(12,1fr);
-    grid-auto-rows:250px;
+    grid-auto-rows:240px;
     gap:12px;
 }
 
-.photo{
+.portfolio-card{
     position:relative;
     overflow:hidden;
-    background:#1b1b1b;
+    background:#181818;
+    border:1px solid rgba(255,255,255,.05);
 }
 
-.photo:nth-child(1){grid-column:span 5;grid-row:span 2}
-.photo:nth-child(2){grid-column:span 7}
-.photo:nth-child(3){grid-column:span 4}
-.photo:nth-child(4){grid-column:span 3}
-.photo:nth-child(5){grid-column:span 5}
-.photo:nth-child(6){grid-column:span 4}
-.photo:nth-child(7){grid-column:span 8}
-.photo:nth-child(8){grid-column:span 4}
+.portfolio-card:nth-child(1){
+    grid-column:span 5;
+    grid-row:span 2;
+}
 
-.photo img{
+.portfolio-card:nth-child(2){
+    grid-column:span 7;
+}
+
+.portfolio-card:nth-child(3){
+    grid-column:span 4;
+}
+
+.portfolio-card:nth-child(4){
+    grid-column:span 3;
+}
+
+.portfolio-card:nth-child(5){
+    grid-column:span 5;
+}
+
+.portfolio-card:nth-child(6){
+    grid-column:span 4;
+}
+
+.portfolio-card:nth-child(7){
+    grid-column:span 8;
+}
+
+.portfolio-card:nth-child(8){
+    grid-column:span 4;
+}
+
+.photo-placeholder{
     width:100%;
     height:100%;
-    object-fit:cover;
-    transition:1s;
-    filter:saturate(.8);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:20px;
+    position:relative;
+    transition:.6s;
 }
 
-.photo:hover img{
-    transform:scale(1.08);
-    filter:saturate(1);
-}
-
-.photo-label{
+.photo-placeholder:before{
+    content:"";
     position:absolute;
-    left:20px;
-    bottom:20px;
-    background:rgba(0,0,0,.55);
-    backdrop-filter:blur(10px);
-    padding:8px 14px;
-    border-radius:30px;
-    font-size:11px;
+    inset:0;
+    background:
+        radial-gradient(circle at 30% 30%,rgba(214,196,163,.12),transparent 35%),
+        linear-gradient(135deg,#1d1d1d,#101010);
 }
 
-/* ================= PACKAGES ================= */
-
-.packages{
-    background:#101010;
+.portfolio-card:hover .photo-placeholder{
+    transform:scale(1.04);
 }
 
-.package-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
+.photo-placeholder-content{
+    position:relative;
+    z-index:2;
 }
 
-.package{
-    padding:40px 32px;
-    border:1px solid var(--line);
-    background:#141414;
-    transition:.4s;
+.photo-number{
+    font-size:10px;
+    letter-spacing:4px;
+    color:#777;
+    margin-bottom:13px;
 }
 
-.package:hover{
-    transform:translateY(-10px);
-    border-color:rgba(215,197,164,.5);
-}
-
-.package.featured{
-    background:#e8e2d8;
-    color:#151515;
-}
-
-.package-name{
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:3px;
-}
-
-.package-price{
+.photo-title{
     font-family:"Cormorant Garamond",serif;
-    font-size:55px;
-    margin:25px 0;
+    font-size:32px;
 }
 
-.package ul{
-    list-style:none;
-}
-
-.package li{
-    padding:12px 0;
-    border-bottom:1px solid rgba(255,255,255,.1);
-    font-size:14px;
+.photo-note{
+    font-size:9px;
+    color:#777;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-top:8px;
 }
 
 /* ================= ABOUT ================= */
@@ -508,75 +525,97 @@ section{
     grid-template-columns:.8fr 1.2fr;
     gap:100px;
     align-items:center;
+    background:#101010;
 }
 
-.about-photo{
-    height:650px;
-    overflow:hidden;
+.about-placeholder{
+    height:620px;
+    background:
+        radial-gradient(circle at 60% 30%,rgba(214,196,163,.12),transparent 35%),
+        linear-gradient(150deg,#202020,#101010);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
 }
 
-.about-photo img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.about-placeholder-inner{
+    padding:30px;
+}
+
+.about-placeholder-icon{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.about-placeholder-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:36px;
+}
+
+.about-placeholder-small{
+    color:#777;
+    font-size:10px;
+    letter-spacing:2px;
+    margin-top:10px;
 }
 
 .about-text h2{
     font-family:"Cormorant Garamond",serif;
-    font-size:75px;
     font-weight:500;
-    line-height:.9;
+    font-size:80px;
+    line-height:.82;
     margin-bottom:35px;
 }
 
 .about-text p{
+    max-width:600px;
     color:var(--muted);
     line-height:1.9;
-    max-width:600px;
 }
 
 /* ================= CONTACT ================= */
 
 .contact{
-    text-align:center;
-    min-height:70vh;
+    min-height:75vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    text-align:center;
     background:
-      radial-gradient(circle at center,rgba(215,197,164,.07),transparent 45%);
+        radial-gradient(circle at center,rgba(214,196,163,.065),transparent 45%);
 }
 
 .contact h2{
     font-family:"Cormorant Garamond",serif;
     font-size:clamp(70px,11vw,150px);
+    line-height:.78;
     font-weight:500;
-    line-height:.8;
 }
 
 .contact p{
+    max-width:480px;
     color:var(--muted);
-    margin:35px auto;
-    max-width:450px;
-    line-height:1.7;
+    line-height:1.8;
+    margin:35px 0;
 }
 
-.contact-links{
+.contact-buttons{
     display:flex;
-    gap:12px;
     flex-wrap:wrap;
     justify-content:center;
+    gap:12px;
 }
 
-.contact-link{
+.contact-button{
     padding:14px 22px;
     border:1px solid var(--line);
-    border-radius:100px;
+    border-radius:50px;
     transition:.3s;
 }
 
-.contact-link:hover{
+.contact-button:hover{
     background:#eee9e1;
     color:#111;
 }
@@ -584,19 +623,19 @@ section{
 /* ================= FOOTER ================= */
 
 footer{
-    padding:35px 7%;
     border-top:1px solid var(--line);
+    padding:35px 7%;
     display:flex;
     justify-content:space-between;
-    color:#777;
-    font-size:12px;
+    color:#666;
+    font-size:11px;
 }
 
-/* ================= ANIMATION ================= */
+/* ================= REVEAL ================= */
 
 .reveal{
     opacity:0;
-    transform:translateY(50px);
+    transform:translateY(45px);
     transition:1s ease;
 }
 
@@ -617,8 +656,12 @@ footer{
 }
 
 @keyframes marquee{
-    from{transform:translateX(0)}
-    to{transform:translateX(-50%)}
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-50%);
+    }
 }
 
 /* ================= MOBILE ================= */
@@ -630,14 +673,16 @@ footer{
     }
 
     nav{
+        display:none;
         position:absolute;
         top:82px;
         left:0;
         width:100%;
         background:#101010;
-        flex-direction:column;
         padding:25px;
-        display:none;
+        flex-direction:column;
+        gap:22px;
+        border-bottom:1px solid var(--line);
     }
 
     nav.open{
@@ -650,38 +695,32 @@ footer{
 
     .hero{
         grid-template-columns:1fr;
-        padding-top:140px;
-    }
-
-    .hero-right{
-        height:500px;
+        padding-top:135px;
     }
 
     .hero h1{
         font-size:85px;
     }
 
-    .hero h1 span{
-        margin-left:35px;
+    .hero-visual{
+        height:500px;
     }
 
-    .service-grid,
-    .package-grid{
+    .services-grid{
         grid-template-columns:1fr;
     }
 
     .portfolio-grid{
-        display:grid;
         grid-template-columns:1fr 1fr;
         grid-auto-rows:220px;
     }
 
-    .photo:nth-child(n){
+    .portfolio-card:nth-child(n){
         grid-column:span 1;
         grid-row:span 1;
     }
 
-    .photo:first-child{
+    .portfolio-card:first-child{
         grid-column:span 2;
         grid-row:span 2;
     }
@@ -691,17 +730,12 @@ footer{
         gap:50px;
     }
 
-    .about-photo{
+    .about-placeholder{
         height:500px;
     }
 
     .about-text h2{
-        font-size:60px;
-    }
-
-    footer{
-        flex-direction:column;
-        gap:15px;
+        font-size:65px;
     }
 }
 
@@ -712,15 +746,24 @@ footer{
     }
 
     .logo-text{
-        font-size:22px;
+        font-size:21px;
         letter-spacing:3px;
     }
 
-    .hero h1{
-        font-size:67px;
+    .logo-mark{
+        width:38px;
+        height:38px;
     }
 
-    .hero-right{
+    .hero h1{
+        font-size:68px;
+    }
+
+    .hero h1 span{
+        margin-left:35px;
+    }
+
+    .hero-visual{
         height:420px;
     }
 
@@ -728,13 +771,18 @@ footer{
         grid-template-columns:1fr;
     }
 
-    .photo:first-child{
+    .portfolio-card:first-child{
         grid-column:span 1;
     }
 
-    .section-top{
+    .section-header{
         flex-direction:column;
         align-items:flex-start;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:12px;
     }
 }
 </style>
@@ -742,25 +790,43 @@ footer{
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header id="header">
 
     <a href="#home" class="logo">
 
-        <!-- ЗАМІНИ ЦЕ ПОСИЛАННЯ НА ЛОГОТИП -->
-        <img src="logo.png" alt="Nelli Photography">
+        <div class="logo-mark">
+            N
+        </div>
 
-        <span class="logo-text">NELLI</span>
+        <div class="logo-text">
+            NELLI
+        </div>
+
     </a>
 
     <nav id="nav">
-        <a href="#services" data-i18n="nav_services">Послуги</a>
-        <a href="#portfolio" data-i18n="nav_portfolio">Портфоліо</a>
-        <a href="#packages" data-i18n="nav_packages">Пакети</a>
-        <a href="#about" data-i18n="nav_about">Про мене</a>
-        <a href="#contact" data-i18n="nav_contact">Контакти</a>
+
+        <a href="#services" data-i18n="nav_services">
+            Послуги
+        </a>
+
+        <a href="#portfolio" data-i18n="nav_portfolio">
+            Портфоліо
+        </a>
+
+        <a href="#about" data-i18n="nav_about">
+            Про мене
+        </a>
+
+        <a href="#contact" data-i18n="nav_contact">
+            Контакти
+        </a>
+
     </nav>
 
-    <div style="display:flex;align-items:center;gap:15px">
+    <div class="header-right">
 
         <div class="lang-wrap">
 
@@ -792,12 +858,16 @@ footer{
 
         </div>
 
-        <button class="menu-btn" id="menuBtn">☰</button>
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
 
     </div>
 
 </header>
 
+
+<!-- ================= MAIN ================= -->
 
 <main>
 
@@ -805,9 +875,9 @@ footer{
 
 <section class="hero" id="home">
 
-    <div class="hero-left">
+    <div class="hero-content">
 
-        <div class="kicker" data-i18n="hero_kicker">
+        <div class="eyebrow" data-i18n="hero_eyebrow">
             Photography · Prague
         </div>
 
@@ -816,33 +886,47 @@ footer{
             <span>stories.</span>
         </h1>
 
-        <p class="hero-description" data-i18n="hero_text">
-            Фотографую справжні моменти, емоції та людей такими,
-            якими вони є. Весілля, сімейні історії, хрестини,
-            дні народження та красиві портрети.
+        <p class="hero-description" data-i18n="hero_description">
+            Фотографую справжні моменти, емоції та історії,
+            які хочеться пам'ятати.
         </p>
 
-        <div class="hero-buttons">
-            <a href="#portfolio" class="btn primary" data-i18n="hero_btn1">
-                Дивитися роботи
+        <div class="buttons">
+
+            <a href="#portfolio" class="btn primary" data-i18n="hero_portfolio">
+                Переглянути портфоліо
             </a>
 
-            <a href="#contact" class="btn" data-i18n="hero_btn2">
-                Забронювати дату
+            <a href="#contact" class="btn" data-i18n="hero_contact">
+                Зв'язатися
             </a>
+
         </div>
 
     </div>
 
 
-    <div class="hero-right">
+    <div class="hero-visual">
 
         <div class="hero-frame"></div>
 
-        <div class="hero-photo">
+        <div class="hero-placeholder">
 
-            <!-- ГОЛОВНЕ ФОТО -->
-            <img src="hero.jpg" alt="Nelli Photography">
+            <div class="placeholder-content">
+
+                <div class="placeholder-icon">
+                    ◇
+                </div>
+
+                <div class="placeholder-title" data-i18n="hero_photo">
+                    Головне фото
+                </div>
+
+                <div class="placeholder-small" data-i18n="photo_replace">
+                    тут буде фотографія Nelli
+                </div>
+
+            </div>
 
         </div>
 
@@ -854,23 +938,27 @@ footer{
 <!-- MARQUEE -->
 
 <div class="marquee">
-    <div class="marquee-inner">
+
+    <div class="marquee-track">
+
         <span>Weddings</span>
         <span>Family</span>
         <span>Christenings</span>
-        <span>Portraits</span>
         <span>Birthday</span>
         <span>Studio</span>
+        <span>Portraits</span>
         <span>Love Story</span>
 
         <span>Weddings</span>
         <span>Family</span>
         <span>Christenings</span>
-        <span>Portraits</span>
         <span>Birthday</span>
         <span>Studio</span>
+        <span>Portraits</span>
         <span>Love Story</span>
+
     </div>
+
 </div>
 
 
@@ -878,78 +966,129 @@ footer{
 
 <section class="services reveal" id="services">
 
-    <div class="section-top">
+    <div class="section-header">
 
         <div>
-            <div class="section-number">01 / SERVICES</div>
+
+            <div class="section-number">
+                01 / SERVICES
+            </div>
+
             <h2 class="section-title" data-i18n="services_title">
                 Що я<br>знімаю
             </h2>
+
         </div>
 
-        <p class="section-description" data-i18n="services_desc">
-            Кожна подія має свою атмосферу. Моє завдання —
-            зберегти її так, щоб через роки ви могли знову
-            відчути цей момент.
+        <p class="section-description" data-i18n="services_description">
+            Від великих свят до маленьких сімейних моментів.
+            Кожна зйомка має свою атмосферу.
         </p>
 
     </div>
 
 
-    <div class="service-grid">
+    <div class="services-grid">
 
         <div class="service">
-            <span class="service-num">01</span>
-            <div class="service-icon">♡</div>
-            <h3 data-i18n="wedding">Весілля</h3>
+
+            <div class="service-number">01</div>
+
+            <div class="service-symbol">♡</div>
+
+            <h3 data-i18n="wedding">
+                Весілля
+            </h3>
+
             <p data-i18n="wedding_desc">
-                Від ранкових зборів до останнього танцю.
+                День, який хочеться пам'ятати назавжди.
             </p>
+
         </div>
 
+
         <div class="service">
-            <span class="service-num">02</span>
-            <div class="service-icon">✦</div>
-            <h3 data-i18n="christening">Хрестини</h3>
+
+            <div class="service-number">02</div>
+
+            <div class="service-symbol">✦</div>
+
+            <h3 data-i18n="christening">
+                Хрестини
+            </h3>
+
             <p data-i18n="christening_desc">
-                Ніжні та щирі фотографії особливого дня.
+                Ніжні моменти особливого дня.
             </p>
+
         </div>
 
+
         <div class="service">
-            <span class="service-num">03</span>
-            <div class="service-icon">○</div>
-            <h3 data-i18n="birthday">День народження</h3>
+
+            <div class="service-number">03</div>
+
+            <div class="service-symbol">○</div>
+
+            <h3 data-i18n="birthday">
+                День народження
+            </h3>
+
             <p data-i18n="birthday_desc">
-                Емоції, гості, деталі та атмосфера свята.
+                Емоції, люди та атмосфера свята.
             </p>
+
         </div>
 
+
         <div class="service">
-            <span class="service-num">04</span>
-            <div class="service-icon">⌁</div>
-            <h3 data-i18n="studio">Студія</h3>
+
+            <div class="service-number">04</div>
+
+            <div class="service-symbol">⌁</div>
+
+            <h3 data-i18n="studio">
+                Студія
+            </h3>
+
             <p data-i18n="studio_desc">
                 Стильні портрети та творчі фотосесії.
             </p>
+
         </div>
 
+
         <div class="service">
-            <span class="service-num">05</span>
-            <div class="service-icon">∞</div>
-            <h3 data-i18n="family">Сімейні</h3>
+
+            <div class="service-number">05</div>
+
+            <div class="service-symbol">∞</div>
+
+            <h3 data-i18n="family">
+                Сімейні
+            </h3>
+
             <p data-i18n="family_desc">
-                Живі кадри без штучних поз.
+                Живі кадри без зайвої постановки.
             </p>
+
         </div>
 
+
         <div class="service">
-            <span class="service-num">06</span>
-            <div class="service-icon">♡</div>
-            <h3 data-i18n="lovestory">Love Story</h3>
+
+            <div class="service-number">06</div>
+
+            <div class="service-symbol">♡</div>
+
+            <h3 data-i18n="lovestory">
+                Love Story
+            </h3>
+
             <p data-i18n="lovestory_desc">
-                Історія двох людей у красивих кадрах.
+                Історія двох людей.
             </p>
+
         </div>
 
     </div>
@@ -961,18 +1100,23 @@ footer{
 
 <section class="reveal" id="portfolio">
 
-    <div class="section-top">
+    <div class="section-header">
 
         <div>
-            <div class="section-number">02 / PORTFOLIO</div>
+
+            <div class="section-number">
+                02 / PORTFOLIO
+            </div>
+
             <h2 class="section-title" data-i18n="portfolio_title">
                 Обрані<br>історії
             </h2>
+
         </div>
 
-        <p class="section-description" data-i18n="portfolio_desc">
-            Тут з'являтимуться найкращі моменти з ваших
-            фотосесій.
+        <p class="section-description" data-i18n="portfolio_description">
+            Тут будуть справжні фотографії Nelli.
+            Поки що це стильні демонстраційні блоки.
         </p>
 
     </div>
@@ -980,134 +1124,206 @@ footer{
 
     <div class="portfolio-grid">
 
-        <div class="photo">
-            <img src="photo1.jpg" alt="Wedding">
-            <div class="photo-label" data-i18n="wedding">Весілля</div>
-        </div>
 
-        <div class="photo">
-            <img src="photo2.jpg" alt="Portrait">
-            <div class="photo-label" data-i18n="portrait">Портрет</div>
-        </div>
+        <div class="portfolio-card">
 
-        <div class="photo">
-            <img src="photo3.jpg" alt="Family">
-            <div class="photo-label" data-i18n="family">Сімейна</div>
-        </div>
+            <div class="photo-placeholder">
 
-        <div class="photo">
-            <img src="photo4.jpg" alt="Studio">
-            <div class="photo-label" data-i18n="studio">Студія</div>
-        </div>
+                <div class="photo-placeholder-content">
 
-        <div class="photo">
-            <img src="photo5.jpg" alt="Christening">
-            <div class="photo-label" data-i18n="christening">Хрестини</div>
-        </div>
+                    <div class="photo-number">
+                        01
+                    </div>
 
-        <div class="photo">
-            <img src="photo6.jpg" alt="Birthday">
-            <div class="photo-label" data-i18n="birthday">День народження</div>
-        </div>
+                    <div class="photo-title" data-i18n="photo_wedding">
+                        Фото весілля
+                    </div>
 
-        <div class="photo">
-            <img src="photo7.jpg" alt="Love Story">
-            <div class="photo-label">Love Story</div>
-        </div>
+                    <div class="photo-note" data-i18n="replace_later">
+                        замінити на фото
+                    </div>
 
-        <div class="photo">
-            <img src="photo8.jpg" alt="Family">
-            <div class="photo-label" data-i18n="family">Сімейна</div>
-        </div>
+                </div>
 
-    </div>
-
-</section>
-
-
-<!-- PACKAGES -->
-
-<section class="packages reveal" id="packages">
-
-    <div class="section-top">
-
-        <div>
-            <div class="section-number">03 / PACKAGES</div>
-
-            <h2 class="section-title" data-i18n="packages_title">
-                Формати<br>зйомки
-            </h2>
-
-        </div>
-
-        <p class="section-description" data-i18n="packages_desc">
-            Пакети можна легко змінити під ваші реальні
-            ціни та умови.
-        </p>
-
-    </div>
-
-
-    <div class="package-grid">
-
-        <div class="package">
-
-            <div class="package-name" data-i18n="package1">
-                MINI
             </div>
 
-            <div class="package-price">
-                €120
-            </div>
+        </div>
 
-            <ul>
-                <li data-i18n="p1_1">1 година зйомки</li>
-                <li data-i18n="p1_2">20 оброблених фото</li>
-                <li data-i18n="p1_3">Онлайн-галерея</li>
-                <li data-i18n="p1_4">Термін 7–10 днів</li>
-            </ul>
+
+        <div class="portfolio-card">
+
+            <div class="photo-placeholder">
+
+                <div class="photo-placeholder-content">
+
+                    <div class="photo-number">
+                        02
+                    </div>
+
+                    <div class="photo-title" data-i18n="photo_christening">
+                        Фото хрестин
+                    </div>
+
+                    <div class="photo-note" data-i18n="replace_later">
+                        замінити на фото
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
 
-        <div class="package featured">
+        <div class="portfolio-card">
 
-            <div class="package-name" data-i18n="package2">
-                STORY
+            <div class="photo-placeholder">
+
+                <div class="photo-placeholder-content">
+
+                    <div class="photo-number">
+                        03
+                    </div>
+
+                    <div class="photo-title" data-i18n="photo_birthday">
+                        Фото дня народження
+                    </div>
+
+                    <div class="photo-note" data-i18n="replace_later">
+                        замінити на фото
+                    </div>
+
+                </div>
+
             </div>
-
-            <div class="package-price">
-                €250
-            </div>
-
-            <ul>
-                <li data-i18n="p2_1">2–3 години зйомки</li>
-                <li data-i18n="p2_2">50+ оброблених фото</li>
-                <li data-i18n="p2_3">Онлайн-галерея</li>
-                <li data-i18n="p2_4">Допомога з локацією</li>
-            </ul>
 
         </div>
 
 
-        <div class="package">
+        <div class="portfolio-card">
 
-            <div class="package-name" data-i18n="package3">
-                EVENT
+            <div class="photo-placeholder">
+
+                <div class="photo-placeholder-content">
+
+                    <div class="photo-number">
+                        04
+                    </div>
+
+                    <div class="photo-title" data-i18n="photo_studio">
+                        Фото студії
+                    </div>
+
+                    <div class="photo-note" data-i18n="replace_later">
+                        замінити на фото
+                    </div>
+
+                </div>
+
             </div>
-
-            <div class="package-price">
-                €450+
-            </div>
-
-            <ul>
-                <li data-i18n="p3_1">Події та свята</li>
-                <li data-i18n="p3_2">Велика кількість фото</li>
-                <li data-i18n="p3_3">Авторська обробка</li>
-                <li data-i18n="p3_4">Індивідуальний пакет</li>
-            </ul>
 
         </div>
+
+
+        <div class="portfolio-card">
+
+            <div class="photo-placeholder">
+
+                <div class="photo-placeholder-content">
+
+                    <div class="photo-number">
+                        05
+                    </div>
+
+                    <div class="photo-title" data-i18n="photo_family">
+                        Фото сімейної зйомки
+                    </div>
+
+                    <div class="photo-note" data-i18n="replace_later">
+                        замінити на фото
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-card">
+
+            <div class="photo-placeholder">
+
+                <div class="photo-placeholder-content">
+
+                    <div class="photo-number">
+                        06
+                    </div>
+
+                    <div class="photo-title" data-i18n="photo_portrait">
+                        Фото портретів
+                    </div>
+
+                    <div class="photo-note" data-i18n="replace_later">
+                        замінити на фото
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-card">
+
+            <div class="photo-placeholder">
+
+                <div class="photo-placeholder-content">
+
+                    <div class="photo-number">
+                        07
+                    </div>
+
+                    <div class="photo-title">
+                        Love Story
+                    </div>
+
+                    <div class="photo-note" data-i18n="replace_later">
+                        замінити на фото
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="portfolio-card">
+
+            <div class="photo-placeholder">
+
+                <div class="photo-placeholder-content">
+
+                    <div class="photo-number">
+                        08
+                    </div>
+
+                    <div class="photo-title" data-i18n="photo_event">
+                        Фото події
+                    </div>
+
+                    <div class="photo-note" data-i18n="replace_later">
+                        замінити на фото
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -1118,13 +1334,32 @@ footer{
 
 <section class="about reveal" id="about">
 
-    <div class="about-photo">
-        <img src="about.jpg" alt="Nelli">
+    <div class="about-placeholder">
+
+        <div class="about-placeholder-inner">
+
+            <div class="about-placeholder-icon">
+                ◇
+            </div>
+
+            <div class="about-placeholder-title" data-i18n="about_photo">
+                Фото Nelli
+            </div>
+
+            <div class="about-placeholder-small" data-i18n="replace_later">
+                замінити на фото
+            </div>
+
+        </div>
+
     </div>
+
 
     <div class="about-text">
 
-        <div class="section-number">04 / ABOUT</div>
+        <div class="section-number">
+            03 / ABOUT
+        </div>
 
         <h2 data-i18n="about_title">
             Люди.<br>
@@ -1135,9 +1370,8 @@ footer{
         <p data-i18n="about_text">
             Я Nelli — фотограф, яка любить справжні моменти.
             Без зайвої постановки та награних емоцій.
-            Мені важливо, щоб після фотосесії ви отримали
-            не просто красиві фотографії, а спогади,
-            до яких захочеться повертатися.
+            Мені важливо зберігати не просто красиві кадри,
+            а спогади, до яких хочеться повертатися.
         </p>
 
     </div>
@@ -1149,7 +1383,9 @@ footer{
 
 <section class="contact reveal" id="contact">
 
-    <div class="section-number">05 / CONTACT</div>
+    <div class="section-number">
+        04 / CONTACT
+    </div>
 
     <h2 data-i18n="contact_title">
         Створимо<br>
@@ -1157,22 +1393,22 @@ footer{
     </h2>
 
     <p data-i18n="contact_text">
-        Розкажіть мені про вашу подію або ідею —
-        і ми разом придумаємо найкращий формат зйомки.
+        Розкажіть про вашу подію або ідею —
+        і разом створимо красиву історію.
     </p>
 
-    <div class="contact-links">
+    <div class="contact-buttons">
 
-        <a class="contact-link" href="https://instagram.com/" target="_blank">
+        <a href="#" class="contact-button">
             Instagram
         </a>
 
-        <a class="contact-link" href="mailto:example@email.com">
+        <a href="#" class="contact-button">
             Email
         </a>
 
-        <a class="contact-link" href="tel:+420000000000">
-            Phone
+        <a href="#" class="contact-button">
+            Telegram
         </a>
 
     </div>
@@ -1182,9 +1418,13 @@ footer{
 </main>
 
 
+<!-- FOOTER -->
+
 <footer>
 
-    <span>© 2026 NELLI PHOTOGRAPHY</span>
+    <span>
+        © 2026 NELLI PHOTOGRAPHY
+    </span>
 
     <span data-i18n="footer">
         Prague · Czech Republic
@@ -1195,279 +1435,331 @@ footer{
 
 <script>
 
-/* ================= LANGUAGES ================= */
+/* ================= TRANSLATIONS ================= */
 
 const translations = {
 
 uk:{
+
 nav_services:"Послуги",
 nav_portfolio:"Портфоліо",
-nav_packages:"Пакети",
 nav_about:"Про мене",
 nav_contact:"Контакти",
 
-hero_kicker:"Photography · Prague",
-hero_text:"Фотографую справжні моменти, емоції та людей такими, якими вони є. Весілля, сімейні історії, хрестини, дні народження та красиві портрети.",
-hero_btn1:"Дивитися роботи",
-hero_btn2:"Забронювати дату",
+hero_eyebrow:"Photography · Prague",
+
+hero_description:
+"Фотографую справжні моменти, емоції та історії, які хочеться пам'ятати.",
+
+hero_portfolio:"Переглянути портфоліо",
+hero_contact:"Зв'язатися",
+
+hero_photo:"Головне фото",
+photo_replace:"тут буде фотографія Nelli",
 
 services_title:"Що я<br>знімаю",
-services_desc:"Кожна подія має свою атмосферу. Моє завдання — зберегти її так, щоб через роки ви могли знову відчути цей момент.",
+
+services_description:
+"Від великих свят до маленьких сімейних моментів. Кожна зйомка має свою атмосферу.",
 
 wedding:"Весілля",
-wedding_desc:"Від ранкових зборів до останнього танцю.",
+wedding_desc:"День, який хочеться пам'ятати назавжди.",
+
 christening:"Хрестини",
-christening_desc:"Ніжні та щирі фотографії особливого дня.",
+christening_desc:"Ніжні моменти особливого дня.",
+
 birthday:"День народження",
-birthday_desc:"Емоції, гості, деталі та атмосфера свята.",
+birthday_desc:"Емоції, люди та атмосфера свята.",
+
 studio:"Студія",
 studio_desc:"Стильні портрети та творчі фотосесії.",
+
 family:"Сімейні",
-family_desc:"Живі кадри без штучних поз.",
+family_desc:"Живі кадри без зайвої постановки.",
+
 lovestory:"Love Story",
-lovestory_desc:"Історія двох людей у красивих кадрах.",
+lovestory_desc:"Історія двох людей.",
 
 portfolio_title:"Обрані<br>історії",
-portfolio_desc:"Тут з'являтимуться найкращі моменти з ваших фотосесій.",
-portrait:"Портрет",
 
-packages_title:"Формати<br>зйомки",
-packages_desc:"Пакети можна легко змінити під ваші реальні ціни та умови.",
+portfolio_description:
+"Тут будуть справжні фотографії Nelli. Поки що це стильні демонстраційні блоки.",
 
-package1:"MINI",
-package2:"STORY",
-package3:"EVENT",
+photo_wedding:"Фото весілля",
+photo_christening:"Фото хрестин",
+photo_birthday:"Фото дня народження",
+photo_studio:"Фото студії",
+photo_family:"Фото сімейної зйомки",
+photo_portrait:"Фото портретів",
+photo_event:"Фото події",
 
-p1_1:"1 година зйомки",
-p1_2:"20 оброблених фото",
-p1_3:"Онлайн-галерея",
-p1_4:"Термін 7–10 днів",
+replace_later:"замінити на фото",
 
-p2_1:"2–3 години зйомки",
-p2_2:"50+ оброблених фото",
-p2_3:"Онлайн-галерея",
-p2_4:"Допомога з локацією",
-
-p3_1:"Події та свята",
-p3_2:"Велика кількість фото",
-p3_3:"Авторська обробка",
-p3_4:"Індивідуальний пакет",
+about_photo:"Фото Nelli",
 
 about_title:"Люди.<br>Емоції.<br>Історії.",
-about_text:"Я Nelli — фотограф, яка любить справжні моменти. Без зайвої постановки та награних емоцій. Мені важливо, щоб після фотосесії ви отримали не просто красиві фотографії, а спогади, до яких захочеться повертатися.",
+
+about_text:
+"Я Nelli — фотограф, яка любить справжні моменти. Без зайвої постановки та награних емоцій. Мені важливо зберігати не просто красиві кадри, а спогади, до яких хочеться повертатися.",
 
 contact_title:"Створимо<br>щось справжнє.",
-contact_text:"Розкажіть мені про вашу подію або ідею — і ми разом придумаємо найкращий формат зйомки.",
+
+contact_text:
+"Розкажіть про вашу подію або ідею — і разом створимо красиву історію.",
 
 footer:"Prague · Czech Republic"
+
 },
 
+
 ru:{
+
 nav_services:"Услуги",
 nav_portfolio:"Портфолио",
-nav_packages:"Пакеты",
 nav_about:"Обо мне",
 nav_contact:"Контакты",
 
-hero_kicker:"Photography · Prague",
-hero_text:"Фотографирую настоящие моменты, эмоции и людей такими, какие они есть. Свадьбы, семейные истории, крестины, дни рождения и красивые портреты.",
-hero_btn1:"Смотреть работы",
-hero_btn2:"Забронировать дату",
+hero_eyebrow:"Photography · Prague",
+
+hero_description:
+"Фотографирую настоящие моменты, эмоции и истории, которые хочется помнить.",
+
+hero_portfolio:"Посмотреть портфолио",
+hero_contact:"Связаться",
+
+hero_photo:"Главное фото",
+photo_replace:"здесь будет фотография Nelli",
 
 services_title:"Что я<br>снимаю",
-services_desc:"Каждое событие имеет свою атмосферу. Моя задача — сохранить её так, чтобы спустя годы вы снова могли почувствовать этот момент.",
+
+services_description:
+"От больших праздников до маленьких семейных моментов. Каждая съёмка имеет свою атмосферу.",
 
 wedding:"Свадьбы",
-wedding_desc:"От утренних сборов до последнего танца.",
+wedding_desc:"День, который хочется помнить всегда.",
+
 christening:"Крестины",
-christening_desc:"Нежные и искренние фотографии особенного дня.",
+christening_desc:"Нежные моменты особенного дня.",
+
 birthday:"День рождения",
-birthday_desc:"Эмоции, гости, детали и атмосфера праздника.",
+birthday_desc:"Эмоции, люди и атмосфера праздника.",
+
 studio:"Студия",
 studio_desc:"Стильные портреты и творческие фотосессии.",
+
 family:"Семейные",
-family_desc:"Живые кадры без искусственных поз.",
+family_desc:"Живые кадры без лишней постановки.",
+
 lovestory:"Love Story",
-lovestory_desc:"История двух людей в красивых кадрах.",
+lovestory_desc:"История двух людей.",
 
 portfolio_title:"Избранные<br>истории",
-portfolio_desc:"Здесь будут лучшие моменты ваших фотосессий.",
-portrait:"Портрет",
 
-packages_title:"Форматы<br>съёмки",
-packages_desc:"Пакеты можно легко изменить под ваши реальные цены и условия.",
+portfolio_description:
+"Здесь будут настоящие фотографии Nelli. Пока это стильные демонстрационные блоки.",
 
-package1:"MINI",
-package2:"STORY",
-package3:"EVENT",
+photo_wedding:"Фото свадьбы",
+photo_christening:"Фото крестин",
+photo_birthday:"Фото дня рождения",
+photo_studio:"Фото студии",
+photo_family:"Фото семейной съёмки",
+photo_portrait:"Фото портретов",
+photo_event:"Фото события",
 
-p1_1:"1 час съёмки",
-p1_2:"20 обработанных фото",
-p1_3:"Онлайн-галерея",
-p1_4:"Срок 7–10 дней",
+replace_later:"заменить на фото",
 
-p2_1:"2–3 часа съёмки",
-p2_2:"50+ обработанных фото",
-p2_3:"Онлайн-галерея",
-p2_4:"Помощь с локацией",
-
-p3_1:"События и праздники",
-p3_2:"Большое количество фото",
-p3_3:"Авторская обработка",
-p3_4:"Индивидуальный пакет",
+about_photo:"Фото Nelli",
 
 about_title:"Люди.<br>Эмоции.<br>Истории.",
-about_text:"Я Nelli — фотограф, которая любит настоящие моменты. Без лишней постановки и наигранных эмоций. Мне важно, чтобы после фотосессии вы получили не просто красивые фотографии, а воспоминания, к которым захочется возвращаться.",
+
+about_text:
+"Я Nelli — фотограф, которая любит настоящие моменты. Без лишней постановки и наигранных эмоций. Мне важно сохранять не просто красивые кадры, а воспоминания, к которым хочется возвращаться.",
 
 contact_title:"Создадим<br>что-то настоящее.",
-contact_text:"Расскажите мне о вашем событии или идее — и мы вместе придумаем лучший формат съёмки.",
+
+contact_text:
+"Расскажите о вашем событии или идее — и вместе создадим красивую историю.",
 
 footer:"Prague · Czech Republic"
+
 },
 
+
 en:{
+
 nav_services:"Services",
 nav_portfolio:"Portfolio",
-nav_packages:"Packages",
 nav_about:"About",
 nav_contact:"Contact",
 
-hero_kicker:"Photography · Prague",
-hero_text:"I capture real moments, emotions and people exactly as they are. Weddings, family stories, christenings, birthdays and beautiful portraits.",
-hero_btn1:"View portfolio",
-hero_btn2:"Book a date",
+hero_eyebrow:"Photography · Prague",
+
+hero_description:
+"I capture real moments, emotions and stories worth remembering.",
+
+hero_portfolio:"View portfolio",
+hero_contact:"Get in touch",
+
+hero_photo:"Main photo",
+photo_replace:"Nelli's photograph will be here",
 
 services_title:"What I<br>shoot",
-services_desc:"Every event has its own atmosphere. My job is to preserve it so you can feel that moment again years later.",
+
+services_description:
+"From big celebrations to small family moments. Every photoshoot has its own atmosphere.",
 
 wedding:"Weddings",
-wedding_desc:"From getting ready to the last dance.",
+wedding_desc:"A day worth remembering forever.",
+
 christening:"Christenings",
-christening_desc:"Tender and honest photographs of a special day.",
+christening_desc:"Tender moments from a special day.",
+
 birthday:"Birthdays",
-birthday_desc:"Emotions, guests, details and the atmosphere of the celebration.",
+birthday_desc:"Emotions, people and celebration.",
+
 studio:"Studio",
 studio_desc:"Stylish portraits and creative photoshoots.",
+
 family:"Family",
-family_desc:"Natural photographs without forced poses.",
+family_desc:"Natural photographs without unnecessary posing.",
+
 lovestory:"Love Story",
-lovestory_desc:"The story of two people in beautiful frames.",
+lovestory_desc:"The story of two people.",
 
 portfolio_title:"Selected<br>stories",
-portfolio_desc:"The best moments from your photoshoots will appear here.",
-portrait:"Portrait",
 
-packages_title:"Photography<br>packages",
-packages_desc:"Packages can easily be changed according to your real prices and conditions.",
+portfolio_description:
+"Real Nelli photographs will appear here. For now these are stylish demonstration blocks.",
 
-package1:"MINI",
-package2:"STORY",
-package3:"EVENT",
+photo_wedding:"Wedding photos",
+photo_christening:"Christening photos",
+photo_birthday:"Birthday photos",
+photo_studio:"Studio photos",
+photo_family:"Family photos",
+photo_portrait:"Portrait photos",
+photo_event:"Event photos",
 
-p1_1:"1 hour shoot",
-p1_2:"20 edited photos",
-p1_3:"Online gallery",
-p1_4:"7–10 day delivery",
+replace_later:"replace with photo",
 
-p2_1:"2–3 hour shoot",
-p2_2:"50+ edited photos",
-p2_3:"Online gallery",
-p2_4:"Location assistance",
-
-p3_1:"Events & celebrations",
-p3_2:"Large number of photos",
-p3_3:"Professional editing",
-p3_4:"Custom package",
+about_photo:"Nelli's photo",
 
 about_title:"People.<br>Emotions.<br>Stories.",
-about_text:"I’m Nelli — a photographer who loves real moments. No unnecessary posing or fake emotions. I want you to leave every photoshoot with more than beautiful images — I want you to have memories you will want to return to.",
+
+about_text:
+"I'm Nelli — a photographer who loves real moments. No unnecessary posing or fake emotions. I want to preserve not just beautiful images, but memories you will want to return to.",
 
 contact_title:"Let's create<br>something real.",
-contact_text:"Tell me about your event or idea and together we will create the perfect photography experience.",
+
+contact_text:
+"Tell me about your event or idea — and together we'll create a beautiful story.",
 
 footer:"Prague · Czech Republic"
+
 },
 
+
 cs:{
+
 nav_services:"Služby",
 nav_portfolio:"Portfolio",
-nav_packages:"Balíčky",
 nav_about:"O mně",
 nav_contact:"Kontakt",
 
-hero_kicker:"Photography · Prague",
-hero_text:"Fotografuji skutečné okamžiky, emoce a lidi takové, jací opravdu jsou. Svatby, rodinné příběhy, křtiny, narozeniny a krásné portréty.",
-hero_btn1:"Prohlédnout portfolio",
-hero_btn2:"Rezervovat termín",
+hero_eyebrow:"Photography · Prague",
+
+hero_description:
+"Fotografuji skutečné okamžiky, emoce a příběhy, na které chcete vzpomínat.",
+
+hero_portfolio:"Prohlédnout portfolio",
+hero_contact:"Kontaktovat",
+
+hero_photo:"Hlavní fotografie",
+photo_replace:"zde bude fotografie Nelli",
 
 services_title:"Co<br>fotím",
-services_desc:"Každá událost má svou atmosféru. Mým úkolem je zachytit ji tak, abyste tento okamžik mohli znovu prožít i za několik let.",
+
+services_description:
+"Od velkých oslav až po malé rodinné okamžiky. Každé focení má svou vlastní atmosféru.",
 
 wedding:"Svatby",
-wedding_desc:"Od ranních příprav až po poslední tanec.",
+wedding_desc:"Den, na který chcete vzpomínat navždy.",
+
 christening:"Křtiny",
-christening_desc:"Jemné a upřímné fotografie výjimečného dne.",
+christening_desc:"Jemné okamžiky výjimečného dne.",
+
 birthday:"Narozeniny",
-birthday_desc:"Emoce, hosté, detaily a atmosféra oslavy.",
+birthday_desc:"Emoce, lidé a atmosféra oslavy.",
+
 studio:"Studio",
 studio_desc:"Stylové portréty a kreativní focení.",
+
 family:"Rodinné",
-family_desc:"Přirozené fotografie bez nucených póz.",
+family_desc:"Přirozené fotografie bez zbytečného aranžování.",
+
 lovestory:"Love Story",
-lovestory_desc:"Příběh dvou lidí v krásných fotografiích.",
+lovestory_desc:"Příběh dvou lidí.",
 
 portfolio_title:"Vybrané<br>příběhy",
-portfolio_desc:"Zde se objeví nejlepší okamžiky z vašich focení.",
-portrait:"Portrét",
 
-packages_title:"Formáty<br>focení",
-packages_desc:"Balíčky lze snadno upravit podle vašich skutečných cen a podmínek.",
+portfolio_description:
+"Zde budou skutečné fotografie Nelli. Zatím jsou zde stylové demonstrační bloky.",
 
-package1:"MINI",
-package2:"STORY",
-package3:"EVENT",
+photo_wedding:"Fotografie svatby",
+photo_christening:"Fotografie křtin",
+photo_birthday:"Fotografie narozenin",
+photo_studio:"Fotografie ze studia",
+photo_family:"Rodinné fotografie",
+photo_portrait:"Portrétní fotografie",
+photo_event:"Fotografie události",
 
-p1_1:"1 hodina focení",
-p1_2:"20 upravených fotografií",
-p1_3:"Online galerie",
-p1_4:"Dodání 7–10 dní",
+replace_later:"nahradit fotografií",
 
-p2_1:"2–3 hodiny focení",
-p2_2:"50+ upravených fotografií",
-p2_3:"Online galerie",
-p2_4:"Pomoc s výběrem lokace",
-
-p3_1:"Akce a oslavy",
-p3_2:"Velké množství fotografií",
-p3_3:"Profesionální úprava",
-p3_4:"Individuální balíček",
+about_photo:"Fotografie Nelli",
 
 about_title:"Lidé.<br>Emoce.<br>Příběhy.",
-about_text:"Jsem Nelli — fotografka, která miluje opravdové okamžiky. Bez zbytečného aranžování a hraných emocí. Chci, abyste si z focení odnesli nejen krásné fotografie, ale také vzpomínky, ke kterým se budete chtít vracet.",
 
-contact_title:"Vytvořme<br>něco opravdového.",
-contact_text:"Napište mi o vaší události nebo nápadu a společně vytvoříme ideální formát focení.",
+about_text:
+"Jsem Nelli — fotografka, která miluje skutečné okamžiky. Bez zbytečného aranžování a hraných emocí. Chci zachovat nejen krásné fotografie, ale také vzpomínky, ke kterým se budete chtít vracet.",
+
+contact_title:"Vytvořme<br>něco skutečného.",
+
+contact_text:
+"Napište mi o vaší události nebo nápadu — společně vytvoříme krásný příběh.",
 
 footer:"Praha · Česká republika"
+
 }
 
 };
 
 
-/* LANGUAGE SWITCH */
+/* ================= LANGUAGE SYSTEM ================= */
 
-const langBtn = document.getElementById("langBtn");
-const langMenu = document.getElementById("langMenu");
+const langBtn =
+document.getElementById("langBtn");
 
-langBtn.addEventListener("click",()=>{
+const langMenu =
+document.getElementById("langMenu");
+
+const currentFlag =
+document.getElementById("currentFlag");
+
+const currentLang =
+document.getElementById("currentLang");
+
+
+langBtn.addEventListener("click",function(){
+
     langMenu.classList.toggle("open");
+
 });
 
-document.querySelectorAll(".lang-option").forEach(option=>{
 
-    option.addEventListener("click",()=>{
+document.querySelectorAll(".lang-option").forEach(function(option){
 
-        const lang = option.dataset.lang;
+    option.addEventListener("click",function(){
+
+        const lang = this.dataset.lang;
 
         changeLanguage(lang);
 
@@ -1482,9 +1774,11 @@ function changeLanguage(lang){
 
     const data = translations[lang];
 
+    if(!data) return;
+
     document.documentElement.lang = lang;
 
-    document.querySelectorAll("[data-i18n]").forEach(element=>{
+    document.querySelectorAll("[data-i18n]").forEach(function(element){
 
         const key = element.dataset.i18n;
 
@@ -1495,7 +1789,7 @@ function changeLanguage(lang){
     });
 
 
-    const info = {
+    const languageInfo = {
 
         uk:["🇺🇦","UA"],
         ru:["🇷🇺","RU"],
@@ -1504,76 +1798,120 @@ function changeLanguage(lang){
 
     };
 
-    document.getElementById("currentFlag").textContent = info[lang][0];
 
-    document.getElementById("currentLang").textContent = info[lang][1];
+    currentFlag.textContent =
+        languageInfo[lang][0];
 
-    localStorage.setItem("nelliLanguage",lang);
+    currentLang.textContent =
+        languageInfo[lang][1];
+
+
+    localStorage.setItem(
+        "nelli-language",
+        lang
+    );
+
 }
 
 
-/* LOAD SAVED LANGUAGE */
+/* ================= LOAD LANGUAGE ================= */
 
-const savedLanguage = localStorage.getItem("nelliLanguage") || "uk";
+const savedLanguage =
+localStorage.getItem("nelli-language") || "uk";
 
 changeLanguage(savedLanguage);
 
 
 /* ================= MOBILE MENU ================= */
 
-const menuBtn = document.getElementById("menuBtn");
-const nav = document.getElementById("nav");
+const menuBtn =
+document.getElementById("menuBtn");
 
-menuBtn.addEventListener("click",()=>{
+const nav =
+document.getElementById("nav");
+
+
+menuBtn.addEventListener("click",function(){
+
     nav.classList.toggle("open");
+
 });
 
-document.querySelectorAll("nav a").forEach(link=>{
-    link.addEventListener("click",()=>{
+
+document.querySelectorAll("nav a").forEach(function(link){
+
+    link.addEventListener("click",function(){
+
         nav.classList.remove("open");
+
     });
+
 });
 
 
 /* ================= HEADER ================= */
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll",function(){
 
-    const header = document.getElementById("header");
+    const header =
+    document.getElementById("header");
 
-    if(window.scrollY > 50){
+    if(window.scrollY > 40){
+
         header.classList.add("scrolled");
+
     }else{
+
         header.classList.remove("scrolled");
+
     }
 
 });
 
 
-/* ================= REVEAL ANIMATION ================= */
+/* ================= SCROLL ANIMATION ================= */
 
-const observer = new IntersectionObserver(
-    entries=>{
-        entries.forEach(entry=>{
+const observer =
+new IntersectionObserver(
+
+    function(entries){
+
+        entries.forEach(function(entry){
+
             if(entry.isIntersecting){
+
                 entry.target.classList.add("visible");
+
             }
+
         });
+
     },
-    {threshold:.12}
+
+    {
+        threshold:.12
+    }
+
 );
 
-document.querySelectorAll(".reveal").forEach(el=>{
-    observer.observe(el);
+
+document
+.querySelectorAll(".reveal")
+.forEach(function(element){
+
+    observer.observe(element);
+
 });
 
 
-/* CLOSE LANGUAGE MENU */
+/* ================= CLOSE LANGUAGE ================= */
 
-document.addEventListener("click",(e)=>{
+document.addEventListener("click",function(event){
 
-    if(!e.target.closest(".lang-wrap")){
+    if(!event.target.closest(".lang-wrap")){
+
         langMenu.classList.remove("open");
+
     }
 
 });
