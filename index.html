@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NELLI — Photography</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+
+:root{
+    --bg:#090909;
+    --surface:#111;
+    --surface2:#171717;
+    --text:#eeeae4;
+    --muted:#89857f;
+    --line:rgba(255,255,255,.10);
+    --gold:#c8b69a;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font:inherit;
+}
+
+::selection{
+    background:#d5c6ae;
+    color:#111;
+}
+
+/* HEADER */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:82px;
+    padding:0 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    z-index:100;
+    transition:.4s;
+}
+
+header.scrolled{
+    background:rgba(9,9,9,.86);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo-symbol{
+    font-family:"Cormorant Garamond",serif;
+    font-size:24px;
+    width:40px;
+    height:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:50%;
+}
+
+.logo-name{
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    letter-spacing:5px;
+}
+
+nav{
+    display:flex;
+    gap:28px;
+}
+
+nav a{
+    color:#aaa6a0;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:white;
+}
+
+.header-tools{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.language{
+    position:relative;
+}
+
+.language-button{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.03);
+    color:white;
+    border-radius:30px;
+    padding:9px 13px;
+    cursor:pointer;
+    display:flex;
+    gap:7px;
+    align-items:center;
+}
+
+.language-menu{
+    position:absolute;
+    right:0;
+    top:48px;
+    width:180px;
+    padding:7px;
+    border:1px solid var(--line);
+    background:#141414;
+    border-radius:14px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-8px);
+    transition:.25s;
+}
+
+.language-menu.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.language-menu button{
+    width:100%;
+    background:none;
+    border:0;
+    color:#ddd;
+    padding:11px;
+    text-align:left;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.language-menu button:hover{
+    background:#222;
+}
+
+.mobile-menu{
+    display:none;
+    border:0;
+    background:none;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    padding:130px 7% 70px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:70px;
+}
+
+.hero-text{
+    animation:heroIn 1.1s ease both;
+}
+
+.eyebrow{
+    color:var(--gold);
+    font-size:10px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    margin-bottom:27px;
+}
+
+.hero h1{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:400;
+    font-size:clamp(80px,11vw,155px);
+    line-height:.68;
+    letter-spacing:-7px;
+}
+
+.hero h1 span{
+    display:block;
+    margin-left:70px;
+    font-style:italic;
+    color:#c5c0b9;
+}
+
+.hero-description{
+    max-width:500px;
+    color:var(--muted);
+    line-height:1.8;
+    margin:45px 0 30px;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.button{
+    padding:14px 22px;
+    border:1px solid var(--line);
+    border-radius:50px;
+    transition:.35s;
+}
+
+.button:hover{
+    transform:translateY(-4px);
+}
+
+.button.primary{
+    background:#eee9e1;
+    color:#111;
+}
+
+.hero-photo{
+    height:650px;
+    position:relative;
+}
+
+.hero-photo::before{
+    content:"";
+    position:absolute;
+    width:70%;
+    height:82%;
+    left:0;
+    bottom:0;
+    border:1px solid rgba(200,182,154,.45);
+}
+
+.hero-placeholder{
+    position:absolute;
+    right:0;
+    top:5%;
+    width:78%;
+    height:90%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:
+        radial-gradient(circle at 30% 25%,rgba(200,182,154,.13),transparent 35%),
+        linear-gradient(145deg,#242321,#111);
+    overflow:hidden;
+}
+
+.hero-placeholder::after{
+    content:"";
+    position:absolute;
+    inset:20px;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.placeholder-content{
+    position:relative;
+    z-index:2;
+}
+
+.placeholder-icon{
+    font-size:48px;
+    color:#aaa;
+    margin-bottom:18px;
+}
+
+.placeholder-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:36px;
+}
+
+.placeholder-note{
+    color:#777;
+    font-size:9px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-top:10px;
+}
+
+/* MARQUEE */
+
+.marquee{
+    overflow:hidden;
+    white-space:nowrap;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+}
+
+.marquee-track{
+    display:inline-block;
+    animation:marquee 35s linear infinite;
+}
+
+.marquee span{
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    font-style:italic;
+    color:#aaa49c;
+    margin:0 35px;
+}
+
+/* SECTIONS */
+
+section{
+    padding:120px 7%;
+}
+
+.section-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:40px;
+    margin-bottom:55px;
+}
+
+.section-number{
+    font-size:10px;
+    color:var(--gold);
+    letter-spacing:4px;
+    margin-bottom:18px;
+}
+
+.section-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(58px,7vw,95px);
+    font-weight:400;
+    line-height:.8;
+}
+
+.section-description{
+    max-width:390px;
+    color:var(--muted);
+    line-height:1.8;
+}
+
+/* SERVICES */
+
+.services{
+    background:#0e0e0e;
+}
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+}
+
+.service{
+    min-height:300px;
+    padding:32px;
+    background:#141414;
+    border:1px solid rgba(255,255,255,.035);
+    transition:.5s;
+    position:relative;
+    overflow:hidden;
+}
+
+.service::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    right:-80px;
+    bottom:-80px;
+    border-radius:50%;
+    border:1px solid rgba(200,182,154,.13);
+    transition:.5s;
+}
+
+.service:hover{
+    background:#181818;
+    transform:translateY(-8px);
+}
+
+.service:hover::after{
+    transform:scale(2);
+}
+
+.service-number{
+    color:#5e5e5e;
+    font-size:10px;
+}
+
+.service-symbol{
+    color:#c6b69e;
+    font-size:37px;
+    margin:45px 0 20px;
+}
+
+.service h3{
+    font-family:"Cormorant Garamond",serif;
+    font-weight:400;
+    font-size:34px;
+}
+
+.service p{
+    color:#777;
+    font-size:13px;
+    line-height:1.7;
+    margin-top:9px;
+}
+
+/* PORTFOLIO */
+
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    grid-auto-rows:220px;
+    gap:10px;
+}
+
+.portfolio-item{
+    position:relative;
+    overflow:hidden;
+    background:#161616;
+}
+
+.portfolio-item:nth-child(1){
+    grid-column:span 5;
+    grid-row:span 2;
+}
+
+.portfolio-item:nth-child(2){
+    grid-column:span 7;
+}
+
+.portfolio-item:nth-child(3){
+    grid-column:span 4;
+}
+
+.portfolio-item:nth-child(4){
+    grid-column:span 3;
+}
+
+.portfolio-item:nth-child(5){
+    grid-column:span 5;
+}
+
+.portfolio-item:nth-child(6){
+    grid-column:span 4;
+}
+
+.portfolio-item:nth-child(7){
+    grid-column:span 8;
+}
+
+.portfolio-item:nth-child(8){
+    grid-column:span 4;
+}
+
+.photo-placeholder{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    transition:.7s;
+    position:relative;
+    background:
+        radial-gradient(circle at 30% 20%,rgba(200,182,154,.12),transparent 35%),
+        linear-gradient(140deg,#242321,#101010);
+}
+
+.portfolio-item:hover .photo-placeholder{
+    transform:scale(1.06);
+}
+
+.photo-placeholder::before{
+    content:"";
+    position:absolute;
+    inset:16px;
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.photo-content{
+    position:relative;
+    z-index:2;
+}
+
+.photo-number{
+    color:#666;
+    font-size:9px;
+    letter-spacing:4px;
+    margin-bottom:10px;
+}
+
+.photo-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:31px;
+}
+
+.photo-note{
+    color:#666;
+    font-size:8px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-top:8px;
+}
+
+/* ABOUT */
+
+.about{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:100px;
+    align-items:center;
+    background:#0e0e0e;
+}
+
+.about-photo{
+    height:600px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:
+        radial-gradient(circle at 60% 30%,rgba(200,182,154,.13),transparent 35%),
+        linear-gradient(145deg,#202020,#101010);
+}
+
+.about-photo-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:37px;
+}
+
+.about-photo-note{
+    color:#666;
+    font-size:9px;
+    letter-spacing:3px;
+    margin-top:10px;
+}
+
+.about-text h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:78px;
+    font-weight:400;
+    line-height:.78;
+    margin-bottom:35px;
+}
+
+.about-text p{
+    max-width:580px;
+    color:var(--muted);
+    line-height:1.9;
+}
+
+/* CONTACT */
+
+.contact{
+    min-height:75vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:
+        radial-gradient(circle at center,rgba(200,182,154,.07),transparent 45%);
+}
+
+.contact h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(72px,11vw,150px);
+    font-weight:400;
+    line-height:.75;
+}
+
+.contact p{
+    color:var(--muted);
+    max-width:480px;
+    line-height:1.8;
+    margin:35px 0;
+}
+
+.contact-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.contact-button{
+    padding:13px 21px;
+    border:1px solid var(--line);
+    border-radius:50px;
+    transition:.3s;
+}
+
+.contact-button:hover{
+    background:#eee9e1;
+    color:#111;
+}
+
+/* FOOTER */
+
+footer{
+    padding:35px 7%;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    color:#5f5f5f;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+/* ANIMATION */
+
+.reveal{
+    opacity:0;
+    transform:translateY(45px);
+    transition:1s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:none;
+}
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+@keyframes marquee{
+    from{
+        transform:translateX(0);
+    }
+    to{
+        transform:translateX(-50%);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    nav{
+        display:none;
+        position:absolute;
+        top:82px;
+        left:0;
+        width:100%;
+        padding:25px;
+        flex-direction:column;
+        background:#0d0d0d;
+        border-bottom:1px solid var(--line);
+    }
+
+    nav.open{
+        display:flex;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:130px;
+    }
+
+    .hero-photo{
+        height:500px;
+    }
+
+    .services-grid{
+        grid-template-columns:1fr;
+    }
+
+    .portfolio-grid{
+        grid-template-columns:1fr 1fr;
+        grid-auto-rows:220px;
+    }
+
+    .portfolio-item:nth-child(n){
+        grid-column:span 1;
+        grid-row:span 1;
+    }
+
+    .portfolio-item:first-child{
+        grid-column:span 2;
+        grid-row:span 2;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+}
+
+@media(max-width:550px){
+
+    header{
+        padding:0 5%;
+    }
+
+    .logo-name{
+        font-size:20px;
+        letter-spacing:3px;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        font-size:70px;
+    }
+
+    .hero h1 span{
+        margin-left:35px;
+    }
+
+    .hero-photo{
+        height:430px;
+    }
+
+    section{
+        padding:90px 5%;
+    }
+
+    .section-top{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .portfolio-grid{
+        grid-template-columns:1fr;
+    }
+
+    .portfolio-item:first-child{
+        grid-column:span 1;
+    }
+
+    .about-text h2{
+        font-size:62px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+
+<a href="#home" class="logo">
+    <div class="logo-symbol">N</div>
+    <div class="logo-name">NELLI</div>
+</a>
+
+<nav id="nav">
+    <a href="#services" data-t="services">Послуги</a>
+    <a href="#portfolio" data-t="portfolio">Портфоліо</a>
+    <a href="#about" data-t="about">Про мене</a>
+    <a href="#contact" data-t="contact">Контакти</a>
+</nav>
+
+<div class="header-tools">
+
+<div class="language">
+
+<button class="language-button" id="languageButton">
+    <span id="flag">🇺🇦</span>
+    <span id="shortLang">UA</span>
+    <span>⌄</span>
+</button>
+
+<div class="language-menu" id="languageMenu">
+
+<button data-lang="uk">🇺🇦 Українська</button>
+<button data-lang="ru">🇷🇺 Русский</button>
+<button data-lang="en">🇬🇧 English</button>
+<button data-lang="cs">🇨🇿 Čeština</button>
+
+</div>
+
+</div>
+
+<button class="mobile-menu" id="mobileMenu">☰</button>
+
+</div>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-text">
+
+<div class="eyebrow" data-t="eyebrow">
+Photography · Prague
+</div>
+
+<h1>
+Nelli
+<span>stories.</span>
+</h1>
+
+<p class="hero-description" data-t="heroDescription">
+Фотографую справжні моменти, емоції та історії,
+які хочеться пам'ятати.
+</p>
+
+<div class="buttons">
+
+<a href="#portfolio" class="button primary" data-t="portfolioButton">
+Переглянути портфоліо
+</a>
+
+<a href="#contact" class="button" data-t="contactButton">
+Зв'язатися
+</a>
+
+</div>
+
+</div>
+
+
+<div class="hero-photo">
+
+<div class="hero-placeholder">
+
+<div class="placeholder-content">
+
+<div class="placeholder-icon">◇</div>
+
+<div class="placeholder-title" data-t="mainPhoto">
+Головне фото
+</div>
+
+<div class="placeholder-note" data-t="replace">
+Місце для фотографії Nelli
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MARQUEE -->
+
+<div class="marquee">
+
+<div class="marquee-track">
+
+<span>Weddings</span>
+<span>Christenings</span>
+<span>Birthdays</span>
+<span>Studio</span>
+<span>Family</span>
+<span>Portraits</span>
+<span>Love Story</span>
+<span>Events</span>
+
+<span>Weddings</span>
+<span>Christenings</span>
+<span>Birthdays</span>
+<span>Studio</span>
+<span>Family</span>
+<span>Portraits</span>
+<span>Love Story</span>
+<span>Events</span>
+
+</div>
+
+</div>
+
+
+<!-- SERVICES -->
+
+<section class="services reveal" id="services">
+
+<div class="section-top">
+
+<div>
+
+<div class="section-number">01 / SERVICES</div>
+
+<h2 class="section-title" data-t="servicesTitle">
+Що я<br>знімаю
+</h2>
+
+</div>
+
+<p class="section-description" data-t="servicesDescription">
+Від великих свят до маленьких сімейних моментів.
+Кожна зйомка має свою атмосферу.
+</p>
+
+</div>
+
+
+<div class="services-grid">
+
+<div class="service">
+<div class="service-number">01</div>
+<div class="service-symbol">♡</div>
+<h3 data-t="wedding">Весілля</h3>
+<p data-t="weddingDesc">День, який хочеться пам'ятати назавжди.</p>
+</div>
+
+<div class="service">
+<div class="service-number">02</div>
+<div class="service-symbol">✦</div>
+<h3 data-t="christening">Хрестини</h3>
+<p data-t="christeningDesc">Ніжні моменти особливого дня.</p>
+</div>
+
+<div class="service">
+<div class="service-number">03</div>
+<div class="service-symbol">○</div>
+<h3 data-t="birthday">День народження</h3>
+<p data-t="birthdayDesc">Емоції, люди та атмосфера свята.</p>
+</div>
+
+<div class="service">
+<div class="service-number">04</div>
+<div class="service-symbol">⌁</div>
+<h3 data-t="studio">Студія</h3>
+<p data-t="studioDesc">Стильні портрети та творчі фотосесії.</p>
+</div>
+
+<div class="service">
+<div class="service-number">05</div>
+<div class="service-symbol">∞</div>
+<h3 data-t="family">Сімейні</h3>
+<p data-t="familyDesc">Живі кадри без зайвої постановки.</p>
+</div>
+
+<div class="service">
+<div class="service-number">06</div>
+<div class="service-symbol">♡</div>
+<h3>Love Story</h3>
+<p data-t="loveDesc">Історія двох людей.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PORTFOLIO -->
+
+<section class="reveal" id="portfolio">
+
+<div class="section-top">
+
+<div>
+
+<div class="section-number">02 / PORTFOLIO</div>
+
+<h2 class="section-title" data-t="stories">
+Обрані<br>історії
+</h2>
+
+</div>
+
+<p class="section-description" data-t="portfolioDescription">
+Тут будуть справжні фотографії Nelli.
+Поки що це демонстраційні блоки.
+</p>
+
+</div>
+
+
+<div class="portfolio-grid">
+
+<div class="portfolio-item">
+<div class="photo-placeholder">
+<div class="photo-content">
+<div class="photo-number">01</div>
+<div class="photo-title" data-t="weddingPhoto">Фото весілля</div>
+<div class="photo-note" data-t="replacePhoto">замінити на фото</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item">
+<div class="photo-placeholder">
+<div class="photo-content">
+<div class="photo-number">02</div>
+<div class="photo-title" data-t="christeningPhoto">Фото хрестин</div>
+<div class="photo-note" data-t="replacePhoto">замінити на фото</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item">
+<div class="photo-placeholder">
+<div class="photo-content">
+<div class="photo-number">03</div>
+<div class="photo-title" data-t="birthdayPhoto">Фото дня народження</div>
+<div class="photo-note" data-t="replacePhoto">замінити на фото</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item">
+<div class="photo-placeholder">
+<div class="photo-content">
+<div class="photo-number">04</div>
+<div class="photo-title" data-t="studioPhoto">Фото студії</div>
+<div class="photo-note" data-t="replacePhoto">замінити на фото</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item">
+<div class="photo-placeholder">
+<div class="photo-content">
+<div class="photo-number">05</div>
+<div class="photo-title" data-t="familyPhoto">Фото сімейної зйомки</div>
+<div class="photo-note" data-t="replacePhoto">замінити на фото</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item">
+<div class="photo-placeholder">
+<div class="photo-content">
+<div class="photo-number">06</div>
+<div class="photo-title" data-t="portraitPhoto">Фото портретів</div>
+<div class="photo-note" data-t="replacePhoto">замінити на фото</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item">
+<div class="photo-placeholder">
+<div class="photo-content">
+<div class="photo-number">07</div>
+<div class="photo-title">Love Story</div>
+<div class="photo-note" data-t="replacePhoto">замінити на фото</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-item">
+<div class="photo-placeholder">
+<div class="photo-content">
+<div class="photo-number">08</div>
+<div class="photo-title" data-t="eventPhoto">Фото події</div>
+<div class="photo-note" data-t="replacePhoto">замінити на фото</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about reveal" id="about">
+
+<div class="about-photo">
+
+<div>
+
+<div style="font-size:50px;margin-bottom:20px">◇</div>
+
+<div class="about-photo-title" data-t="nelliPhoto">
+Фото Nelli
+</div>
+
+<div class="about-photo-note" data-t="replacePhoto">
+замінити на фото
+</div>
+
+</div>
+
+</div>
+
+
+<div class="about-text">
+
+<div class="section-number">03 / ABOUT</div>
+
+<h2 data-t="aboutTitle">
+Люди.<br>
+Емоції.<br>
+Історії.
+</h2>
+
+<p data-t="aboutText">
+Я Nelli — фотограф, яка любить справжні моменти.
+Без зайвої постановки та награних емоцій.
+Мені важливо зберігати не просто красиві кадри,
+а спогади, до яких хочеться повертатися.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact reveal" id="contact">
+
+<div class="section-number">04 / CONTACT</div>
+
+<h2 data-t="contactTitle">
+Створимо<br>
+щось справжнє.
+</h2>
+
+<p data-t="contactText">
+Розкажіть про вашу подію або ідею —
+і разом створимо красиву історію.
+</p>
+
+<div class="contact-buttons">
+
+<a href="#" class="contact-button">Instagram</a>
+<a href="#" class="contact-button">Email</a>
+<a href="#" class="contact-button">Telegram</a>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<span>© 2026 NELLI PHOTOGRAPHY</span>
+
+<span data-t="footer">
+Prague · Czech Republic
+</span>
+
+</footer>
+
+
+<script>
+
+/* LANGUAGE DATA */
+
+const languages={
+
+uk:{
+flag:"🇺🇦",
+short:"UA",
+services:"Послуги",
+portfolio:"Портфоліо",
+about:"Про мене",
+contact:"Контакти",
+eyebrow:"Photography · Prague",
+heroDescription:"Фотографую справжні моменти, емоції та історії, які хочеться пам'ятати.",
+portfolioButton:"Переглянути портфоліо",
+contactButton:"Зв'язатися",
+mainPhoto:"Головне фото",
+replace:"Місце для фотографії Nelli",
+servicesTitle:"Що я<br>знімаю",
+servicesDescription:"Від великих свят до маленьких сімейних моментів. Кожна зйомка має свою атмосферу.",
+wedding:"Весілля",
+weddingDesc:"День, який хочеться пам'ятати назавжди.",
+christening:"Хрестини",
+christeningDesc:"Ніжні моменти особливого дня.",
+birthday:"День народження",
+birthdayDesc:"Емоції, люди та атмосфера свята.",
+studio:"Студія",
+studioDesc:"Стильні портрети та творчі фотосесії.",
+family:"Сімейні",
+familyDesc:"Живі кадри без зайвої постановки.",
+loveDesc:"Історія двох людей.",
+stories:"Обрані<br>історії",
+portfolioDescription:"Тут будуть справжні фотографії Nelli. Поки що це демонстраційні блоки.",
+weddingPhoto:"Фото весілля",
+christeningPhoto:"Фото хрестин",
+birthdayPhoto:"Фото дня народження",
+studioPhoto:"Фото студії",
+familyPhoto:"Фото сімейної зйомки",
+portraitPhoto:"Фото портретів",
+eventPhoto:"Фото події",
+replacePhoto:"замінити на фото",
+nelliPhoto:"Фото Nelli",
+aboutTitle:"Люди.<br>Емоції.<br>Історії.",
+aboutText:"Я Nelli — фотограф, яка любить справжні моменти. Без зайвої постановки та награних емоцій. Мені важливо зберігати не просто красиві кадри, а спогади, до яких хочеться повертатися.",
+contactTitle:"Створимо<br>щось справжнє.",
+contactText:"Розкажіть про вашу подію або ідею — і разом створимо красиву історію.",
+footer:"Prague · Czech Republic"
+},
+
+ru:{
+flag:"🇷🇺",
+short:"RU",
+services:"Услуги",
+portfolio:"Портфолио",
+about:"Обо мне",
+contact:"Контакты",
+eyebrow:"Photography · Prague",
+heroDescription:"Фотографирую настоящие моменты, эмоции и истории, которые хочется помнить.",
+portfolioButton:"Посмотреть портфолио",
+contactButton:"Связаться",
+mainPhoto:"Главное фото",
+replace:"Место для фотографии Nelli",
+servicesTitle:"Что я<br>снимаю",
+servicesDescription:"От больших праздников до маленьких семейных моментов. Каждая съёмка имеет свою атмосферу.",
+wedding:"Свадьбы",
+weddingDesc:"День, который хочется помнить всегда.",
+christening:"Крестины",
+christeningDesc:"Нежные моменты особенного дня.",
+birthday:"День рождения",
+birthdayDesc:"Эмоции, люди и атмосфера праздника.",
+studio:"Студия",
+studioDesc:"Стильные портреты и творческие фотосессии.",
+family:"Семейные",
+familyDesc:"Живые кадры без лишней постановки.",
+loveDesc:"История двух людей.",
+stories:"Избранные<br>истории",
+portfolioDescription:"Здесь будут настоящие фотографии Nelli. Пока это демонстрационные блоки.",
+weddingPhoto:"Фото свадьбы",
+christeningPhoto:"Фото крестин",
+birthdayPhoto:"Фото дня рождения",
+studioPhoto:"Фото студии",
+familyPhoto:"Фото семейной съёмки",
+portraitPhoto:"Фото портретов",
+eventPhoto:"Фото события",
+replacePhoto:"заменить на фото",
+nelliPhoto:"Фото Nelli",
+aboutTitle:"Люди.<br>Эмоции.<br>Истории.",
+aboutText:"Я Nelli — фотограф, которая любит настоящие моменты. Без лишней постановки и наигранных эмоций. Мне важно сохранять не просто красивые кадры, а воспоминания, к которым хочется возвращаться.",
+contactTitle:"Создадим<br>что-то настоящее.",
+contactText:"Расскажите о вашем событии или идее — и вместе создадим красивую историю.",
+footer:"Prague · Czech Republic"
+},
+
+en:{
+flag:"🇬🇧",
+short:"EN",
+services:"Services",
+portfolio:"Portfolio",
+about:"About",
+contact:"Contact",
+eyebrow:"Photography · Prague",
+heroDescription:"I capture real moments, emotions and stories worth remembering.",
+portfolioButton:"View portfolio",
+contactButton:"Get in touch",
+mainPhoto:"Main photo",
+replace:"Place for Nelli's photograph",
+servicesTitle:"What I<br>shoot",
+servicesDescription:"From big celebrations to small family moments. Every photoshoot has its own atmosphere.",
+wedding:"Weddings",
+weddingDesc:"A day worth remembering forever.",
+christening:"Christenings",
+christeningDesc:"Tender moments from a special day.",
+birthday:"Birthdays",
+birthdayDesc:"Emotions, people and celebration.",
+studio:"Studio",
+studioDesc:"Stylish portraits and creative photoshoots.",
+family:"Family",
+familyDesc:"Natural photographs without unnecessary posing.",
+loveDesc:"The story of two people.",
+stories:"Selected<br>stories",
+portfolioDescription:"Real Nelli photographs will appear here. For now these are demonstration blocks.",
+weddingPhoto:"Wedding photos",
+christeningPhoto:"Christening photos",
+birthdayPhoto:"Birthday photos",
+studioPhoto:"Studio photos",
+familyPhoto:"Family photos",
+portraitPhoto:"Portrait photos",
+eventPhoto:"Event photos",
+replacePhoto:"replace with photo",
+nelliPhoto:"Nelli's photo",
+aboutTitle:"People.<br>Emotions.<br>Stories.",
+aboutText:"I'm Nelli — a photographer who loves real moments. No unnecessary posing or fake emotions. I want to preserve not just beautiful images, but memories you will want to return to.",
+contactTitle:"Let's create<br>something real.",
+contactText:"Tell me about your event or idea — and together we'll create a beautiful story.",
+footer:"Prague · Czech Republic"
+},
+
+cs:{
+flag:"🇨🇿",
+short:"CZ",
+services:"Služby",
+portfolio:"Portfolio",
+about:"O mně",
+contact:"Kontakt",
+eyebrow:"Photography · Prague",
+heroDescription:"Fotografuji skutečné okamžiky, emoce a příběhy, na které chcete vzpomínat.",
+portfolioButton:"Prohlédnout portfolio",
+contactButton:"Kontaktovat",
+mainPhoto:"Hlavní fotografie",
+replace:"Místo pro fotografii Nelli",
+servicesTitle:"Co<br>fotím",
+servicesDescription:"Od velkých oslav až po malé rodinné okamžiky. Každé focení má svou atmosféru.",
+wedding:"Svatby",
+weddingDesc:"Den, na který chcete vzpomínat navždy.",
+christening:"Křtiny",
+christeningDesc:"Jemné okamžiky výjimečného dne.",
+birthday:"Narozeniny",
+birthdayDesc:"Emoce, lidé a atmosféra oslavy.",
+studio:"Studio",
+studioDesc:"Stylové portréty a kreativní focení.",
+family:"Rodinné",
+familyDesc:"Přirozené fotografie bez zbytečného aranžování.",
+loveDesc:"Příběh dvou lidí.",
+stories:"Vybrané<br>příběhy",
+portfolioDescription:"Zde budou skutečné fotografie Nelli. Zatím jsou zde demonstrační bloky.",
+weddingPhoto:"Fotografie svatby",
+christeningPhoto:"Fotografie křtin",
+birthdayPhoto:"Fotografie narozenin",
+studioPhoto:"Fotografie ze studia",
+familyPhoto:"Rodinné fotografie",
+portraitPhoto:"Portrétní fotografie",
+eventPhoto:"Fotografie události",
+replacePhoto:"nahradit fotografií",
+nelliPhoto:"Fotografie Nelli",
+aboutTitle:"Lidé.<br>Emoce.<br>Příběhy.",
+aboutText:"Jsem Nelli — fotografka, která miluje skutečné okamžiky. Bez zbytečného aranžování a hraných emocí. Chci zachovat nejen krásné fotografie, ale také vzpomínky, ke kterým se budete chtít vracet.",
+contactTitle:"Vytvořme<br>něco skutečného.",
+contactText:"Napište mi o vaší události nebo nápadu — společně vytvoříme krásný příběh.",
+footer:"Praha · Česká republika"
+}
+
+};
+
+
+/* LANGUAGE SWITCH */
+
+const languageButton=document.getElementById("languageButton");
+const languageMenu=document.getElementById("languageMenu");
+
+languageButton.addEventListener("click",()=>{
+    languageMenu.classList.toggle("show");
+});
+
+document.querySelectorAll("[data-lang]").forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        setLanguage(button.dataset.lang);
+
+        languageMenu.classList.remove("show");
+
+    });
+
+});
+
+
+function setLanguage(lang){
+
+    const data=languages[lang];
+
+    if(!data)return;
+
+    document.documentElement.lang=lang;
+
+    document.querySelectorAll("[data-t]").forEach(element=>{
+
+        const key=element.dataset.t;
+
+        if(data[key]){
+            element.innerHTML=data[key];
+        }
+
+    });
+
+    document.getElementById("flag").textContent=data.flag;
+    document.getElementById("shortLang").textContent=data.short;
+
+    localStorage.setItem("nelliLang",lang);
+}
+
+
+/* LOAD LANGUAGE */
+
+setLanguage(
+    localStorage.getItem("nelliLang") || "uk"
+);
+
+
+/* MOBILE MENU */
+
+const mobileMenu=document.getElementById("mobileMenu");
+const nav=document.getElementById("nav");
+
+mobileMenu.addEventListener("click",()=>{
+    nav.classList.toggle("open");
+});
+
+document.querySelectorAll("nav a").forEach(link=>{
+    link.addEventListener("click",()=>{
+        nav.classList.remove("open");
+    });
+});
+
+
+/* HEADER */
+
+window.addEventListener("scroll",()=>{
+
+    const header=document.getElementById("header");
+
+    if(window.scrollY>40){
+        header.classList.add("scrolled");
+    }else{
+        header.classList.remove("scrolled");
+    }
+
+});
+
+
+/* SCROLL ANIMATIONS */
+
+const observer=new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+        }
+
+    });
+
+},{threshold:.12});
+
+
+document.querySelectorAll(".reveal").forEach(element=>{
+    observer.observe(element);
+});
+
+
+/* CLOSE LANGUAGE */
+
+document.addEventListener("click",event=>{
+
+    if(!event.target.closest(".language")){
+        languageMenu.classList.remove("show");
+    }
+
+});
+
+</script>
+
+</body>
+</html>
