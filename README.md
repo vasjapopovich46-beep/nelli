@@ -6,170 +6,203 @@
 
 <title>NELLI — Photographer Prague</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+:root {
+    --black: #0d0d0c;
+    --dark: #141412;
+    --cream: #eee9e1;
+    --cream2: #f5f1ea;
+    --gold: #b99b78;
+    --muted: #817b72;
+    --line: rgba(255,255,255,.12);
+
+    --serif: "Cormorant Garamond", serif;
+    --sans: "DM Sans", sans-serif;
+}
 
 
 /* =========================================================
    RESET
 ========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    background:#11110f;
-    color:#f3f0ea;
-    font-family:"DM Sans",sans-serif;
-    font-weight:300;
-    overflow-x:hidden;
+body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-weight: 300;
+    overflow-x: hidden;
 }
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:999;
-
-    opacity:.035;
-
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-button{
-    font-family:inherit;
+button {
+    font-family: inherit;
 }
 
 
 /* =========================================================
-   CURSOR
+   FILM GRAIN
 ========================================================= */
 
-.cursor{
-    position:fixed;
+body::after {
+    content: "";
 
-    width:14px;
-    height:14px;
+    position: fixed;
+    inset: 0;
 
-    border:1px solid rgba(255,255,255,.7);
-    border-radius:50%;
+    pointer-events: none;
 
-    pointer-events:none;
+    z-index: 9999;
 
-    transform:translate(-50%,-50%);
+    opacity: .035;
 
-    z-index:9999;
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+}
+
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+
+.cursor {
+    position: fixed;
+
+    width: 10px;
+    height: 10px;
+
+    border: 1px solid rgba(255,255,255,.8);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    transform: translate(-50%, -50%);
 
     transition:
-        width .3s ease,
-        height .3s ease,
-        background .3s ease;
+        width .35s ease,
+        height .35s ease,
+        background .35s ease,
+        border-color .35s ease;
 }
 
-.cursor.big{
-    width:55px;
-    height:55px;
+.cursor.active {
+    width: 60px;
+    height: 60px;
 
-    background:rgba(255,255,255,.08);
+    background: rgba(255,255,255,.08);
+
+    border-color: rgba(255,255,255,.4);
 }
 
 
 /* =========================================================
-   NAV
+   NAVIGATION
 ========================================================= */
 
-.nav{
-    position:fixed;
+.nav {
+    position: fixed;
 
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
 
-    width:100%;
-    height:85px;
+    width: 100%;
+    height: 82px;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    padding: 0 5vw;
 
-    padding:0 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    z-index:100;
+    z-index: 1000;
 
-    background:linear-gradient(
+    background: linear-gradient(
         to bottom,
-        rgba(17,17,15,.8),
+        rgba(13,13,12,.85),
         transparent
     );
 
-    backdrop-filter:blur(5px);
+    backdrop-filter: blur(8px);
 }
 
-.logo{
-    font-family:"Playfair Display",serif;
+.nav-logo {
+    font-family: var(--serif);
 
-    font-size:25px;
+    font-size: 25px;
 
-    letter-spacing:-.04em;
+    letter-spacing: -.04em;
 }
 
-.logo em{
-    font-style:italic;
+.nav-logo em {
+    font-style: italic;
 }
 
-.nav-links{
-    display:flex;
-    gap:35px;
+.nav-links {
+    display: flex;
+    gap: 35px;
 
-    font-size:10px;
+    font-size: 10px;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:.16em;
+    letter-spacing: .16em;
 }
 
-.nav-links a{
-    opacity:.65;
+.nav-links a {
+    color: #aaa49b;
 
-    transition:.3s;
+    transition: .3s;
 }
 
-.nav-links a:hover{
-    opacity:1;
+.nav-links a:hover {
+    color: white;
 }
 
-.nav-contact{
-    padding:11px 17px;
+.nav-book {
+    padding: 11px 17px;
 
-    border:1px solid rgba(255,255,255,.25);
+    border: 1px solid rgba(255,255,255,.25);
 
-    border-radius:100px;
+    border-radius: 100px;
 
-    font-size:10px;
+    font-size: 9px;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:.12em;
+    letter-spacing: .14em;
 
-    transition:.35s;
+    transition: .35s;
 }
 
-.nav-contact:hover{
-    background:white;
-    color:#111;
+.nav-book:hover {
+    background: white;
+    color: var(--black);
 }
 
 
@@ -177,221 +210,340 @@ button{
    HERO
 ========================================================= */
 
-.hero{
-    min-height:100vh;
+.hero {
+    min-height: 100vh;
 
-    position:relative;
+    position: relative;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    text-align:center;
+    overflow: hidden;
 
-    padding:130px 5vw 80px;
-
-    overflow:hidden;
+    text-align: center;
 
     background:
         radial-gradient(
-            circle at 50% 35%,
-            #403d36 0%,
-            #1e1e1b 35%,
-            #11110f 70%
+            ellipse at center,
+            #3d3932 0%,
+            #201f1b 30%,
+            #0d0d0c 72%
         );
 }
 
-.hero-orb{
-    position:absolute;
 
-    width:55vw;
-    height:55vw;
+/* glowing background */
 
-    max-width:800px;
-    max-height:800px;
+.hero-light {
+    position: absolute;
 
-    border-radius:50%;
+    width: 70vw;
+    height: 70vw;
+
+    max-width: 900px;
+    max-height: 900px;
+
+    border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(213,190,157,.18),
+            rgba(190,160,125,.18),
             transparent 65%
         );
 
-    filter:blur(40px);
+    filter: blur(35px);
 
-    animation:orb 8s ease-in-out infinite alternate;
+    transition: transform 1s ease;
 }
 
-@keyframes orb{
 
-    from{
-        transform:scale(.9) translate(-2%, -1%);
+/* subtle rings */
+
+.hero-ring {
+    position: absolute;
+
+    width: 55vw;
+    height: 55vw;
+
+    max-width: 700px;
+    max-height: 700px;
+
+    border: 1px solid rgba(255,255,255,.06);
+
+    border-radius: 50%;
+
+    animation: rotateRing 30s linear infinite;
+}
+
+.hero-ring::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 12%;
+
+    border: 1px solid rgba(255,255,255,.035);
+
+    border-radius: 50%;
+}
+
+@keyframes rotateRing {
+
+    from {
+        transform: rotate(0deg);
     }
 
-    to{
-        transform:scale(1.08) translate(2%, 2%);
+    to {
+        transform: rotate(360deg);
     }
 
 }
 
-.hero-content{
-    position:relative;
 
-    z-index:2;
+/* hero content */
 
-    max-width:1000px;
+.hero-content {
+    position: relative;
+
+    z-index: 3;
+
+    width: 100%;
+
+    padding: 130px 20px 100px;
 }
 
-.hero-small{
-    font-size:10px;
 
-    text-transform:uppercase;
+/* logo */
 
-    letter-spacing:.28em;
+.hero-logo {
+    width: min(520px, 78vw);
 
-    color:#aaa49a;
+    margin: 0 auto 42px;
 
-    margin-bottom:30px;
+    opacity: 0;
 
-    opacity:0;
+    transform:
+        translateY(35px)
+        scale(.94);
 
-    animation:fadeUp 1s .2s forwards;
+    animation:
+        logoReveal 1.5s
+        .15s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
 }
 
-.hero h1{
-    font-family:"Playfair Display",serif;
+.hero-logo img {
+    display: block;
 
-    font-size:clamp(65px,11vw,155px);
+    width: 100%;
+    height: auto;
 
-    line-height:.78;
+    mix-blend-mode: screen;
 
-    font-weight:400;
+    filter:
+        drop-shadow(
+            0 25px 55px
+            rgba(0,0,0,.45)
+        );
 
-    letter-spacing:-.075em;
-
-    opacity:0;
-
-    animation:heroIn 1.2s .35s cubic-bezier(.2,.8,.2,1) forwards;
+    transition:
+        transform 1s ease,
+        filter 1s ease;
 }
 
-.hero h1 span{
-    display:block;
+.hero-logo:hover img {
+    transform: scale(1.025);
 
-    font-style:italic;
-
-    margin-left:12vw;
+    filter:
+        drop-shadow(
+            0 30px 70px
+            rgba(190,155,115,.22)
+        );
 }
 
-.hero-text{
-    max-width:510px;
+@keyframes logoReveal {
 
-    margin:45px auto 0;
+    0% {
+        opacity: 0;
 
-    color:#aaa69e;
+        transform:
+            translateY(50px)
+            scale(.9);
 
-    font-size:16px;
+        filter: blur(12px);
+    }
 
-    line-height:1.7;
+    60% {
+        opacity: 1;
 
-    opacity:0;
+        filter: blur(0);
+    }
 
-    animation:fadeUp 1s .8s forwards;
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }
 
-.hero-cta{
-    display:inline-flex;
 
-    align-items:center;
-    gap:14px;
+/* hero caption */
 
-    margin-top:35px;
+.hero-caption {
+    opacity: 0;
 
-    padding:15px 20px;
-
-    border:1px solid rgba(255,255,255,.2);
-
-    border-radius:100px;
-
-    text-transform:uppercase;
-
-    letter-spacing:.13em;
-
-    font-size:10px;
-
-    opacity:0;
-
-    animation:fadeUp 1s 1s forwards;
-
-    transition:.4s;
+    animation:
+        fadeUp 1s
+        1s
+        forwards;
 }
 
-.hero-cta:hover{
-    background:#f4f0e8;
-    color:#111;
-    padding-left:27px;
-    padding-right:27px;
+.hero-caption-top {
+    color: var(--gold);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .28em;
+
+    margin-bottom: 18px;
 }
 
-.hero-cta span{
-    font-size:16px;
+.hero-caption h1 {
+    font-family: var(--serif);
+
+    font-weight: 300;
+
+    font-size: clamp(35px, 5vw, 65px);
+
+    line-height: .9;
+
+    letter-spacing: -.04em;
 }
 
-.scroll{
-    position:absolute;
-
-    bottom:30px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-
-    gap:10px;
-
-    color:#77736c;
-
-    font-size:9px;
-
-    text-transform:uppercase;
-
-    letter-spacing:.2em;
+.hero-caption h1 em {
+    font-style: italic;
 }
 
-.scroll-line{
-    width:1px;
-    height:45px;
+.hero-description {
+    max-width: 470px;
 
-    background:linear-gradient(
+    margin: 25px auto 0;
+
+    color: #aaa49b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* CTA */
+
+.hero-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-top: 30px;
+
+    padding: 14px 19px;
+
+    border: 1px solid rgba(255,255,255,.25);
+
+    border-radius: 100px;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .15em;
+
+    transition: .4s;
+}
+
+.hero-button:hover {
+    background: white;
+
+    color: var(--black);
+
+    padding-left: 25px;
+
+    padding-right: 25px;
+}
+
+.hero-button span {
+    font-size: 16px;
+}
+
+
+/* scroll */
+
+.hero-scroll {
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #66615a;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .25em;
+}
+
+.scroll-line {
+    width: 1px;
+
+    height: 45px;
+
+    background: linear-gradient(
         to bottom,
         #777,
         transparent
     );
 
-    animation:scrollLine 2s infinite;
+    animation: scrollAnim 2s infinite;
 }
 
-@keyframes scrollLine{
+@keyframes scrollAnim {
 
-    0%{
-        opacity:0;
-        transform:scaleY(0);
-        transform-origin:top;
+    0% {
+        opacity: 0;
+        transform: scaleY(0);
+        transform-origin: top;
     }
 
-    50%{
-        opacity:1;
-        transform:scaleY(1);
+    50% {
+        opacity: 1;
+        transform: scaleY(1);
     }
 
-    100%{
-        opacity:0;
-        transform:scaleY(1);
-        transform-origin:bottom;
+    100% {
+        opacity: 0;
+        transform: scaleY(1);
+        transform-origin: bottom;
     }
 
 }
@@ -401,297 +553,364 @@ button{
    INTRO
 ========================================================= */
 
-.intro{
-    min-height:75vh;
+.intro {
+    min-height: 75vh;
 
-    display:grid;
+    padding: 130px 7vw;
 
-    grid-template-columns:.7fr 1.3fr;
+    display: grid;
 
-    gap:10vw;
+    grid-template-columns: .65fr 1.35fr;
 
-    align-items:center;
+    gap: 10vw;
 
-    padding:130px 7vw;
+    align-items: center;
 
-    background:#f0ece5;
+    background: var(--cream2);
 
-    color:#1a1917;
+    color: #171614;
 }
 
-.label{
-    font-size:10px;
+.eyebrow {
+    font-size: 9px;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:.2em;
+    letter-spacing: .22em;
 
-    color:#827c73;
+    color: #817a70;
 }
 
-.intro h2{
-    margin-top:20px;
+.intro-title {
+    font-family: var(--serif);
 
-    font-family:"Playfair Display",serif;
+    font-weight: 300;
 
-    font-size:clamp(42px,6vw,80px);
+    font-size: clamp(48px, 6vw, 85px);
 
-    line-height:.95;
+    line-height: .9;
 
-    font-weight:400;
-
-    letter-spacing:-.055em;
+    letter-spacing: -.055em;
 }
 
-.intro h2 em{
-    font-style:italic;
+.intro-title em {
+    font-style: italic;
 }
 
-.intro-text{
-    max-width:650px;
+.intro-text {
+    max-width: 650px;
 
-    font-size:20px;
+    margin-top: 35px;
 
-    line-height:1.7;
+    font-size: 18px;
 
-    color:#65615a;
-}
+    line-height: 1.8;
 
-.intro-text strong{
-    color:#1a1917;
-
-    font-weight:400;
+    color: #676159;
 }
 
 
 /* =========================================================
-   CHOICE SECTION
+   CHOOSE
 ========================================================= */
 
-.choose{
-    padding:140px 5vw;
+.choose {
+    padding: 145px 5vw;
 
-    background:#151513;
+    background: var(--dark);
 }
 
-.choose-header{
-    max-width:900px;
+.choose-header {
+    max-width: 900px;
 
-    margin-bottom:70px;
+    margin-bottom: 75px;
 }
 
-.choose-title{
-    margin-top:20px;
+.choose-title {
+    margin-top: 18px;
 
-    font-family:"Playfair Display",serif;
+    font-family: var(--serif);
 
-    font-size:clamp(50px,7vw,100px);
+    font-weight: 300;
 
-    line-height:.88;
+    font-size: clamp(55px, 8vw, 105px);
 
-    font-weight:400;
+    line-height: .82;
 
-    letter-spacing:-.065em;
+    letter-spacing: -.065em;
 }
 
-.choose-title em{
-    font-style:italic;
+.choose-title em {
+    font-style: italic;
 }
 
-.choose-description{
-    max-width:500px;
+.choose-subtitle {
+    max-width: 500px;
 
-    margin-top:30px;
+    margin-top: 35px;
 
-    color:#858078;
+    color: #858077;
 
-    line-height:1.7;
+    font-size: 14px;
+
+    line-height: 1.8;
 }
 
 
-/* =========================================================
-   SERVICE CARDS
-========================================================= */
+/* cards */
 
-.services{
-    display:grid;
+.session-grid {
+    display: grid;
 
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4, 1fr);
 
-    gap:12px;
+    gap: 10px;
 }
 
-.service-card{
-    min-height:330px;
+.session {
+    min-height: 340px;
 
-    position:relative;
+    position: relative;
 
-    padding:25px;
+    padding: 24px;
 
-    overflow:hidden;
+    overflow: hidden;
 
-    background:#24231f;
+    border: 1px solid #33312d;
 
-    border:1px solid #34322d;
+    background:
+        linear-gradient(
+            145deg,
+            #25241f,
+            #1a1917
+        );
 
-    cursor:pointer;
+    cursor: pointer;
 
     transition:
-        transform .6s cubic-bezier(.2,.8,.2,1),
-        border-color .4s,
-        background .5s;
+        transform .7s
+        cubic-bezier(.2,.8,.2,1),
+        border-color .5s,
+        background .7s;
 }
 
-.service-card::before{
-    content:"";
+.session:hover {
+    transform: translateY(-12px);
 
-    position:absolute;
+    border-color: #817665;
 
-    width:220px;
-    height:220px;
-
-    right:-80px;
-    bottom:-100px;
-
-    border-radius:50%;
-
-    background:#c8a984;
-
-    filter:blur(70px);
-
-    opacity:0;
-
-    transition:1s;
+    background:
+        linear-gradient(
+            145deg,
+            #302c25,
+            #1b1a18
+        );
 }
 
-.service-card:hover{
-    transform:translateY(-12px);
+.session::after {
+    content: "";
 
-    border-color:#777267;
+    position: absolute;
 
-    background:#2a2925;
+    width: 220px;
+    height: 220px;
+
+    right: -90px;
+    bottom: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(190,155,115,.28),
+            transparent 65%
+        );
+
+    filter: blur(20px);
+
+    opacity: 0;
+
+    transition: .7s;
 }
 
-.service-card:hover::before{
-    opacity:.25;
+.session:hover::after {
+    opacity: 1;
 }
 
-.service-number{
-    font-size:10px;
+.session-number {
+    font-size: 9px;
 
-    color:#77736c;
+    color: #66615a;
+
+    letter-spacing: .15em;
 }
 
-.service-icon{
-    margin-top:50px;
+.session-symbol {
+    margin-top: 48px;
 
-    font-family:"Playfair Display",serif;
+    font-family: var(--serif);
 
-    font-size:45px;
+    font-size: 48px;
 
-    color:#aaa399;
+    color: #aaa399;
 
-    transition:.5s;
+    transition: .5s;
 }
 
-.service-card:hover .service-icon{
-    transform:translateX(8px);
-    color:#ded8cc;
+.session:hover .session-symbol {
+    color: #ded4c7;
+
+    transform:
+        translateX(7px)
+        rotate(-3deg);
 }
 
-.service-card h3{
-    position:absolute;
+.session h3 {
+    position: absolute;
 
-    left:25px;
-    bottom:48px;
+    left: 24px;
+    bottom: 50px;
 
-    font-family:"Playfair Display",serif;
+    font-family: var(--serif);
 
-    font-size:28px;
+    font-size: 30px;
 
-    font-weight:400;
+    font-weight: 300;
 }
 
-.service-card p{
-    position:absolute;
+.session small {
+    position: absolute;
 
-    left:25px;
-    bottom:20px;
+    left: 24px;
+    bottom: 23px;
 
-    font-size:10px;
+    color: #69645c;
 
-    color:#77736c;
+    font-size: 8px;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:.1em;
+    letter-spacing: .16em;
+}
+
+
+/* selected */
+
+.selected {
+    margin-top: 60px;
+
+    padding: 25px 0;
+
+    border-top: 1px solid #33312d;
+    border-bottom: 1px solid #33312d;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.selected-label {
+    color: #6e6961;
+
+    font-size: 8px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .18em;
+}
+
+.selected-name {
+    margin-top: 5px;
+
+    font-family: var(--serif);
+
+    font-size: 26px;
+
+    font-style: italic;
+
+    color: #eee9e1;
+}
+
+.selected-button {
+    padding: 13px 19px;
+
+    background: var(--cream);
+
+    color: #111;
+
+    border-radius: 100px;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .13em;
+
+    transition: .3s;
+}
+
+.selected-button:hover {
+    transform: translateX(7px);
 }
 
 
 /* =========================================================
-   SELECTED SERVICE
+   MARQUEE
 ========================================================= */
 
-.selection{
-    margin-top:60px;
+.marquee {
+    overflow: hidden;
 
-    padding:25px 0;
+    padding: 25px 0;
 
-    border-top:1px solid #34322d;
+    background: #b69b7d;
 
-    border-bottom:1px solid #34322d;
+    color: #171614;
 
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
+    white-space: nowrap;
 }
 
-.selection-text{
-    color:#817d75;
+.marquee-track {
+    display: inline-flex;
 
-    font-size:11px;
+    gap: 35px;
 
-    text-transform:uppercase;
-
-    letter-spacing:.14em;
+    animation:
+        marquee 25s
+        linear
+        infinite;
 }
 
-.selection-name{
-    color:white;
+.marquee span {
+    font-family: var(--serif);
 
-    font-family:"Playfair Display",serif;
+    font-size: 28px;
 
-    font-size:25px;
-
-    font-style:italic;
+    font-style: italic;
 }
 
-.selection-button{
-    border:0;
+.marquee-dot {
+    font-family: var(--sans);
 
-    background:white;
+    font-style: normal;
 
-    color:#151513;
-
-    border-radius:100px;
-
-    padding:13px 20px;
-
-    cursor:pointer;
-
-    font-size:10px;
-
-    text-transform:uppercase;
-
-    letter-spacing:.12em;
-
-    transition:.3s;
+    opacity: .5;
 }
 
-.selection-button:hover{
-    transform:translateX(5px);
+@keyframes marquee {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
 }
 
 
@@ -699,190 +918,201 @@ button{
    PORTFOLIO
 ========================================================= */
 
-.portfolio{
-    padding:140px 5vw;
+.portfolio {
+    padding: 145px 5vw;
 
-    background:#f0ece5;
+    background: var(--cream2);
 
-    color:#191816;
+    color: #171614;
 }
 
-.portfolio-header{
-    display:flex;
+.portfolio-head {
+    display: flex;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    align-items:end;
+    align-items: end;
 
-    margin-bottom:60px;
+    gap: 40px;
+
+    margin-bottom: 65px;
 }
 
-.portfolio h2{
-    margin-top:20px;
+.portfolio-title {
+    margin-top: 18px;
 
-    font-family:"Playfair Display",serif;
+    font-family: var(--serif);
 
-    font-size:clamp(50px,7vw,100px);
+    font-size: clamp(55px, 7vw, 100px);
 
-    line-height:.85;
+    line-height: .82;
 
-    font-weight:400;
+    font-weight: 300;
 
-    letter-spacing:-.06em;
+    letter-spacing: -.065em;
 }
 
-.portfolio h2 em{
-    font-style:italic;
+.portfolio-title em {
+    font-style: italic;
 }
 
-.portfolio-note{
-    max-width:260px;
+.portfolio-description {
+    max-width: 280px;
 
-    color:#777168;
+    color: #777169;
 
-    line-height:1.6;
+    font-size: 12px;
 
-    font-size:13px;
+    line-height: 1.7;
 }
 
-.portfolio-grid{
-    display:grid;
 
-    grid-template-columns:repeat(12,1fr);
+/* portfolio placeholders */
 
-    grid-auto-rows:90px;
+.gallery {
+    display: grid;
 
-    gap:14px;
+    grid-template-columns:
+        repeat(12, 1fr);
+
+    grid-auto-rows: 90px;
+
+    gap: 12px;
 }
 
-.photo-placeholder{
-    position:relative;
+.gallery-item {
+    position: relative;
 
-    overflow:hidden;
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: var(--serif);
+
+    font-size: 36px;
+
+    font-style: italic;
+
+    color: rgba(255,255,255,.65);
 
     background:
         linear-gradient(
             135deg,
-            #cbc3b7,
-            #9c958a
+            #c8c0b4,
+            #928a7e
         );
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:rgba(255,255,255,.65);
-
-    font-family:"Playfair Display",serif;
-
-    font-style:italic;
-
-    font-size:35px;
-
-    transition:.7s cubic-bezier(.2,.8,.2,1);
+    transition:
+        transform .8s
+        cubic-bezier(.2,.8,.2,1);
 }
 
-.photo-placeholder::after{
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:linear-gradient(
-        120deg,
-        transparent 20%,
-        rgba(255,255,255,.3),
-        transparent 80%
-    );
-
-    transform:translateX(-100%);
-
-    transition:.8s;
+.gallery-item:hover {
+    transform: scale(.985);
 }
 
-.photo-placeholder:hover{
-    transform:scale(.985);
+.gallery-item::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 25%,
+            rgba(255,255,255,.3),
+            transparent 75%
+        );
+
+    transform: translateX(-120%);
+
+    transition: .9s;
 }
 
-.photo-placeholder:hover::after{
-    transform:translateX(100%);
+.gallery-item:hover::before {
+    transform: translateX(120%);
 }
 
-.photo-placeholder:nth-child(1){
-    grid-column:span 7;
-    grid-row:span 5;
+.gallery-item:nth-child(1) {
+    grid-column: span 7;
+    grid-row: span 5;
 }
 
-.photo-placeholder:nth-child(2){
-    grid-column:span 5;
-    grid-row:span 3;
+.gallery-item:nth-child(2) {
+    grid-column: span 5;
+    grid-row: span 3;
 
     background:
         linear-gradient(
             135deg,
-            #b8aa9b,
-            #766e65
+            #afa297,
+            #756d64
         );
 }
 
-.photo-placeholder:nth-child(3){
-    grid-column:span 5;
-    grid-row:span 4;
+.gallery-item:nth-child(3) {
+    grid-column: span 5;
+    grid-row: span 4;
 
     background:
         linear-gradient(
             135deg,
-            #d3ccc0,
-            #a39b90
+            #d0c8bc,
+            #9d9488
         );
 }
 
-.photo-placeholder:nth-child(4){
-    grid-column:span 4;
-    grid-row:span 3;
+.gallery-item:nth-child(4) {
+    grid-column: span 4;
+    grid-row: span 3;
 
     background:
         linear-gradient(
             135deg,
-            #8f887d,
-            #57534c
+            #898279,
+            #514d47
         );
 }
 
-.photo-placeholder:nth-child(5){
-    grid-column:span 3;
-    grid-row:span 3;
+.gallery-item:nth-child(5) {
+    grid-column: span 3;
+    grid-row: span 3;
 
     background:
         linear-gradient(
             135deg,
-            #c6b6a4,
-            #8f7964
+            #c4b19c,
+            #856f59
         );
 }
 
-.photo-tag{
-    position:absolute;
+.gallery-tag {
+    position: absolute;
 
-    left:15px;
-    bottom:15px;
+    left: 14px;
+    bottom: 14px;
 
-    padding:8px 10px;
+    padding: 7px 10px;
 
-    background:rgba(15,15,14,.75);
+    background: rgba(15,15,14,.75);
 
-    color:white;
+    color: white;
 
-    font-family:"DM Sans",sans-serif;
+    font-family: var(--sans);
 
-    font-size:9px;
+    font-size: 8px;
 
-    text-transform:uppercase;
+    font-style: normal;
 
-    letter-spacing:.13em;
+    text-transform: uppercase;
+
+    letter-spacing: .14em;
 }
 
 
@@ -890,97 +1120,98 @@ button{
    ABOUT
 ========================================================= */
 
-.about{
-    min-height:90vh;
+.about {
+    padding: 145px 7vw;
 
-    padding:140px 7vw;
+    min-height: 90vh;
 
-    display:grid;
+    display: grid;
 
-    grid-template-columns:.8fr 1.2fr;
+    grid-template-columns: .8fr 1.2fr;
 
-    gap:10vw;
+    gap: 10vw;
 
-    align-items:center;
+    align-items: center;
 
-    background:#191917;
+    background: #151513;
 }
 
-.about-visual{
-    aspect-ratio:4/5;
+.about-photo {
+    aspect-ratio: 4 / 5;
 
-    position:relative;
+    position: relative;
 
-    overflow:hidden;
+    overflow: hidden;
 
     background:
         radial-gradient(
             circle at 40% 35%,
-            #b9a68f,
-            #5b554c 45%,
-            #282722 80%
+            #bca991,
+            #61594e 45%,
+            #282621 85%
         );
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+
+    justify-content: center;
 }
 
-.about-visual span{
-    font-family:"Playfair Display",serif;
+.about-photo span {
+    font-family: var(--serif);
 
-    font-size:50px;
+    font-size: 80px;
 
-    font-style:italic;
+    font-style: italic;
 
-    color:rgba(255,255,255,.45);
+    color: rgba(255,255,255,.35);
 }
 
-.about h2{
-    margin-top:20px;
+.about-title {
+    margin-top: 20px;
 
-    font-family:"Playfair Display",serif;
+    font-family: var(--serif);
 
-    font-size:clamp(55px,7vw,100px);
+    font-size: clamp(55px, 7vw, 105px);
 
-    line-height:.85;
+    font-weight: 300;
 
-    font-weight:400;
+    line-height: .82;
 
-    letter-spacing:-.065em;
+    letter-spacing: -.07em;
 }
 
-.about h2 em{
-    font-style:italic;
+.about-title em {
+    font-style: italic;
 }
 
-.about-text{
-    max-width:600px;
+.about-text {
+    max-width: 600px;
 
-    margin-top:35px;
+    margin-top: 35px;
 
-    color:#969189;
+    color: #918b82;
 
-    font-size:17px;
+    font-size: 16px;
 
-    line-height:1.8;
+    line-height: 1.85;
 }
 
-.quote{
-    max-width:600px;
+.quote {
+    max-width: 600px;
 
-    margin-top:55px;
+    margin-top: 55px;
 
-    padding-top:25px;
+    padding-top: 25px;
 
-    border-top:1px solid #36342f;
+    border-top: 1px solid #35332e;
 
-    font-family:"Playfair Display",serif;
+    font-family: var(--serif);
 
-    font-size:25px;
+    font-size: 26px;
 
-    line-height:1.4;
+    line-height: 1.35;
 }
 
 
@@ -988,85 +1219,84 @@ button{
    CONTACT
 ========================================================= */
 
-.contact{
-    min-height:80vh;
+.contact {
+    min-height: 80vh;
 
-    padding:140px 7vw;
+    padding: 140px 7vw;
 
-    background:#d5c1aa;
+    display: grid;
 
-    color:#191816;
+    grid-template-columns: 1fr 1fr;
 
-    display:grid;
+    gap: 10vw;
 
-    grid-template-columns:1fr 1fr;
+    align-items: center;
 
-    gap:10vw;
+    background: #d4bda5;
 
-    align-items:center;
+    color: #181715;
 }
 
-.contact h2{
-    margin-top:20px;
+.contact-title {
+    margin-top: 20px;
 
-    font-family:"Playfair Display",serif;
+    font-family: var(--serif);
 
-    font-size:clamp(55px,8vw,115px);
+    font-size: clamp(60px, 8vw, 115px);
 
-    line-height:.82;
+    font-weight: 300;
 
-    font-weight:400;
+    line-height: .8;
 
-    letter-spacing:-.07em;
+    letter-spacing: -.07em;
 }
 
-.contact h2 em{
-    font-style:italic;
+.contact-title em {
+    font-style: italic;
 }
 
-.contact-info{
-    align-self:end;
+.contact-text {
+    align-self: end;
+
+    max-width: 470px;
+
+    color: #514a42;
+
+    font-size: 17px;
+
+    line-height: 1.8;
 }
 
-.contact-info p{
-    max-width:450px;
+.contact-links {
+    display: flex;
 
-    font-size:18px;
+    flex-wrap: wrap;
 
-    line-height:1.7;
+    gap: 10px;
 
-    color:#554d44;
+    margin-top: 35px;
 }
 
-.contact-buttons{
-    display:flex;
+.contact-link {
+    padding: 14px 18px;
 
-    gap:10px;
+    border: 1px solid rgba(24,23,21,.3);
 
-    flex-wrap:wrap;
+    border-radius: 100px;
 
-    margin-top:35px;
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .13em;
+
+    transition: .35s;
 }
 
-.contact-btn{
-    padding:14px 18px;
+.contact-link:hover {
+    background: #181715;
 
-    border:1px solid rgba(25,24,22,.35);
-
-    border-radius:100px;
-
-    font-size:10px;
-
-    text-transform:uppercase;
-
-    letter-spacing:.12em;
-
-    transition:.3s;
-}
-
-.contact-btn:hover{
-    background:#191816;
-    color:white;
+    color: white;
 }
 
 
@@ -1074,43 +1304,43 @@ button{
    FOOTER
 ========================================================= */
 
-footer{
-    padding:25px 5vw;
+.footer {
+    padding: 24px 5vw;
 
-    display:flex;
+    display: flex;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    background:#11110f;
+    background: #0d0d0c;
 
-    color:#77736c;
+    color: #66625c;
 
-    font-size:9px;
+    font-size: 8px;
 
-    text-transform:uppercase;
+    text-transform: uppercase;
 
-    letter-spacing:.15em;
+    letter-spacing: .17em;
 }
 
 
 /* =========================================================
-   SCROLL REVEAL
+   REVEAL
 ========================================================= */
 
-.reveal{
-    opacity:0;
+.reveal {
+    opacity: 0;
 
-    transform:translateY(50px);
+    transform: translateY(45px);
 
     transition:
         opacity 1s ease,
         transform 1s cubic-bezier(.2,.8,.2,1);
 }
 
-.reveal.show{
-    opacity:1;
+.reveal.visible {
+    opacity: 1;
 
-    transform:translateY(0);
+    transform: translateY(0);
 }
 
 
@@ -1118,96 +1348,107 @@ footer{
    MOBILE
 ========================================================= */
 
-@media(max-width:900px){
+@media(max-width: 900px) {
 
-    .nav-links{
-        display:none;
+    .nav-links {
+        display: none;
     }
 
-    .nav-contact{
-        display:none;
+    .nav-book {
+        display: none;
     }
 
-    .hero h1{
-        font-size:72px;
+    .hero-logo {
+        width: min(450px, 85vw);
     }
 
     .intro,
     .about,
-    .contact{
-        grid-template-columns:1fr;
+    .contact {
+        grid-template-columns: 1fr;
 
-        gap:60px;
+        gap: 60px;
 
-        padding-top:100px;
-        padding-bottom:100px;
+        padding-top: 100px;
+        padding-bottom: 100px;
     }
 
-    .services{
-        grid-template-columns:repeat(2,1fr);
+    .session-grid {
+        grid-template-columns: repeat(2,1fr);
     }
 
-    .portfolio-header{
-        display:block;
+    .portfolio-head {
+        display: block;
     }
 
-    .portfolio-note{
-        margin-top:25px;
+    .portfolio-description {
+        margin-top: 25px;
     }
-
 }
 
 
-@media(max-width:600px){
+@media(max-width: 600px) {
 
-    .nav{
-        height:70px;
+    .nav {
+        height: 70px;
     }
 
-    .hero{
-        padding-top:120px;
+    .hero-content {
+        padding-top: 120px;
     }
 
-    .hero h1{
-        font-size:58px;
+    .hero-logo {
+        width: 88vw;
+
+        margin-bottom: 30px;
     }
 
-    .hero h1 span{
-        margin-left:0;
+    .hero-caption h1 {
+        font-size: 38px;
     }
 
-    .services{
-        grid-template-columns:1fr;
+    .session-grid {
+        grid-template-columns: 1fr;
     }
 
-    .service-card{
-        min-height:270px;
+    .session {
+        min-height: 280px;
     }
 
-    .selection{
-        display:block;
+    .selected {
+        display: block;
     }
 
-    .selection-button{
-        margin-top:20px;
+    .selected-button {
+        display: inline-block;
+
+        margin-top: 20px;
     }
 
-    .portfolio-grid{
-        grid-template-columns:1fr;
+    .gallery {
+        grid-template-columns: 1fr;
 
-        grid-auto-rows:280px;
+        grid-auto-rows: 280px;
     }
 
-    .photo-placeholder:nth-child(n){
-        grid-column:span 1;
-        grid-row:span 1;
+    .gallery-item:nth-child(n) {
+        grid-column: span 1;
+        grid-row: span 1;
     }
 
-    footer{
-        flex-direction:column;
-        gap:10px;
+    .contact {
+        min-height: auto;
     }
 
+    .footer {
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .cursor {
+        display: none;
+    }
 }
 
 </style>
@@ -1217,18 +1458,24 @@ footer{
 <body>
 
 
+<!-- =========================================================
+     CURSOR
+========================================================= -->
+
 <div class="cursor"></div>
 
 
-<!-- ========================================================
+
+<!-- =========================================================
      NAVIGATION
 ========================================================= -->
 
 <header class="nav">
 
-    <a href="#" class="logo">
+    <a href="#" class="nav-logo">
         nelli <em>photo</em>
     </a>
+
 
     <nav class="nav-links">
 
@@ -1246,7 +1493,8 @@ footer{
 
     </nav>
 
-    <a href="#contact" class="nav-contact">
+
+    <a href="#contact" class="nav-book">
         Забронювати
     </a>
 
@@ -1254,39 +1502,69 @@ footer{
 
 
 
-<!-- ========================================================
+<!-- =========================================================
      HERO
 ========================================================= -->
 
 <section class="hero">
 
-    <div class="hero-orb"></div>
+    <div class="hero-light"></div>
+
+    <div class="hero-ring"></div>
+
 
     <div class="hero-content">
 
-        <div class="hero-small">
-            Photographer · Prague · Czech Republic
+
+        <!-- ЛОГОТИП -->
+
+        <div class="hero-logo">
+
+            <img
+                src="logo.png"
+                alt="Nelli Photographer Prague"
+            >
+
         </div>
 
-        <h1>
-            Your story.
-            <span>My vision.</span>
-        </h1>
 
-        <p class="hero-text">
-            Фотографую моменти, які хочеться
-            не просто зберегти, а прожити ще раз.
-        </p>
+        <div class="hero-caption">
 
-        <a href="#choose" class="hero-cta">
-            Обрати свою зйомку
-            <span>↓</span>
-        </a>
+            <div class="hero-caption-top">
+                Photographer · Prague
+            </div>
+
+
+            <h1>
+                Your story.
+                <em>My vision.</em>
+            </h1>
+
+
+            <p class="hero-description">
+
+                Весілля · Хрестини · Студія · Portrait ·
+                Love Story · Family
+
+            </p>
+
+
+            <a href="#choose" class="hero-button">
+
+                Обрати свою зйомку
+
+                <span>
+                    ↓
+                </span>
+
+            </a>
+
+        </div>
 
     </div>
 
 
-    <div class="scroll">
+    <div class="hero-scroll">
 
         Scroll
 
@@ -1298,7 +1576,7 @@ footer{
 
 
 
-<!-- ========================================================
+<!-- =========================================================
      INTRO
 ========================================================= -->
 
@@ -1306,7 +1584,7 @@ footer{
 
     <div>
 
-        <div class="label">
+        <div class="eyebrow">
             01 — Philosophy
         </div>
 
@@ -1315,20 +1593,27 @@ footer{
 
     <div>
 
-        <h2>
-            Не потрібно<br>
-            вміти <em>позувати.</em>
+        <h2 class="intro-title">
+
+            Фотографії,
+            <br>
+
+            які хочеться
+            <em>відчути.</em>
+
         </h2>
+
 
         <p class="intro-text">
 
-            Вам не потрібно знати, куди ставити руки
-            або як правильно дивитися в камеру.
+            Не потрібно вміти позувати.
+            Не потрібно знати, куди дивитися.
 
             <br><br>
 
-            Я підкажу, допоможу розслабитися
-            і просто <strong>зловлю ваш момент.</strong>
+            Просто будьте собою —
+            я подбаю про те, щоб ваша історія
+            залишилася у кадрі.
 
         </p>
 
@@ -1338,44 +1623,56 @@ footer{
 
 
 
-<!-- ========================================================
-     CHOOSE SESSION
+<!-- =========================================================
+     SESSION CHOICE
 ========================================================= -->
 
 <section class="choose" id="choose">
 
+
     <div class="choose-header reveal">
 
-        <div class="label">
-            02 — Find your story
+        <div class="eyebrow">
+            02 — Your story
         </div>
 
+
         <h2 class="choose-title">
-            Яку історію<br>
-            ми створимо <em>разом?</em>
+
+            Яку історію
+            <br>
+
+            створимо
+            <em>разом?</em>
+
         </h2>
 
-        <p class="choose-description">
-            Оберіть формат зйомки, який вам близький.
-            А далі я допоможу перетворити вашу ідею
-            на красиву фотосесію.
+
+        <p class="choose-subtitle">
+
+            Оберіть те, що найближче саме вам.
+            Якщо не знаєте, що підійде —
+            просто оберіть «Інше».
+
         </p>
 
     </div>
 
 
-    <div class="services">
+
+    <div class="session-grid">
 
 
-        <!-- WEDDING -->
+        <article
+            class="session reveal"
+            data-name="Wedding"
+        >
 
-        <article class="service-card reveal" data-name="Wedding">
-
-            <div class="service-number">
+            <div class="session-number">
                 01
             </div>
 
-            <div class="service-icon">
+            <div class="session-symbol">
                 W
             </div>
 
@@ -1383,22 +1680,24 @@ footer{
                 Wedding
             </h3>
 
-            <p>
-                Весілля
-            </p>
+            <small>
+                Весільна зйомка
+            </small>
 
         </article>
 
 
-        <!-- BAPTISM -->
 
-        <article class="service-card reveal" data-name="Хрестини">
+        <article
+            class="session reveal"
+            data-name="Хрестини"
+        >
 
-            <div class="service-number">
+            <div class="session-number">
                 02
             </div>
 
-            <div class="service-icon">
+            <div class="session-symbol">
                 B
             </div>
 
@@ -1406,22 +1705,24 @@ footer{
                 Хрестини
             </h3>
 
-            <p>
+            <small>
                 Baptism
-            </p>
+            </small>
 
         </article>
 
 
-        <!-- CEREMONY -->
 
-        <article class="service-card reveal" data-name="Обрядова фотосесія">
+        <article
+            class="session reveal"
+            data-name="Обрядова фотосесія"
+        >
 
-            <div class="service-number">
+            <div class="session-number">
                 03
             </div>
 
-            <div class="service-icon">
+            <div class="session-symbol">
                 C
             </div>
 
@@ -1429,22 +1730,24 @@ footer{
                 Обряди
             </h3>
 
-            <p>
+            <small>
                 Особливі моменти
-            </p>
+            </small>
 
         </article>
 
 
-        <!-- STUDIO -->
 
-        <article class="service-card reveal" data-name="Studio">
+        <article
+            class="session reveal"
+            data-name="Studio"
+        >
 
-            <div class="service-number">
+            <div class="session-number">
                 04
             </div>
 
-            <div class="service-icon">
+            <div class="session-symbol">
                 S
             </div>
 
@@ -1452,22 +1755,24 @@ footer{
                 Studio
             </h3>
 
-            <p>
-                Студійна зйомка
-            </p>
+            <small>
+                Студійна фотосесія
+            </small>
 
         </article>
 
 
-        <!-- PORTRAIT -->
 
-        <article class="service-card reveal" data-name="Portrait">
+        <article
+            class="session reveal"
+            data-name="Portrait"
+        >
 
-            <div class="service-number">
+            <div class="session-number">
                 05
             </div>
 
-            <div class="service-icon">
+            <div class="session-symbol">
                 P
             </div>
 
@@ -1475,22 +1780,24 @@ footer{
                 Portrait
             </h3>
 
-            <p>
+            <small>
                 Індивідуальна
-            </p>
+            </small>
 
         </article>
 
 
-        <!-- FAMILY -->
 
-        <article class="service-card reveal" data-name="Family">
+        <article
+            class="session reveal"
+            data-name="Family"
+        >
 
-            <div class="service-number">
+            <div class="session-number">
                 06
             </div>
 
-            <div class="service-icon">
+            <div class="session-symbol">
                 F
             </div>
 
@@ -1498,22 +1805,24 @@ footer{
                 Family
             </h3>
 
-            <p>
+            <small>
                 Сімейна
-            </p>
+            </small>
 
         </article>
 
 
-        <!-- LOVE -->
 
-        <article class="service-card reveal" data-name="Love Story">
+        <article
+            class="session reveal"
+            data-name="Love Story"
+        >
 
-            <div class="service-number">
+            <div class="session-number">
                 07
             </div>
 
-            <div class="service-icon">
+            <div class="session-symbol">
                 L
             </div>
 
@@ -1521,22 +1830,24 @@ footer{
                 Love Story
             </h3>
 
-            <p>
+            <small>
                 Для двох
-            </p>
+            </small>
 
         </article>
 
 
-        <!-- OTHER -->
 
-        <article class="service-card reveal" data-name="Інше">
+        <article
+            class="session reveal"
+            data-name="Інше"
+        >
 
-            <div class="service-number">
+            <div class="session-number">
                 08
             </div>
 
-            <div class="service-icon">
+            <div class="session-symbol">
                 +
             </div>
 
@@ -1544,9 +1855,9 @@ footer{
                 Інше
             </h3>
 
-            <p>
+            <small>
                 Ваша ідея
-            </p>
+            </small>
 
         </article>
 
@@ -1554,23 +1865,31 @@ footer{
     </div>
 
 
-    <!-- SELECTED -->
 
-    <div class="selection">
+    <!-- SELECTED SESSION -->
+
+    <div class="selected">
 
         <div>
 
-            <div class="selection-text">
-                Ви обрали
+            <div class="selected-label">
+                Обраний формат
             </div>
 
-            <div class="selection-name" id="selectedName">
-                Оберіть формат вище
+            <div
+                class="selected-name"
+                id="selectedName"
+            >
+                Оберіть зйомку
             </div>
 
         </div>
 
-        <a href="#contact" class="selection-button">
+
+        <a
+            href="#contact"
+            class="selected-button"
+        >
             Продовжити →
         </a>
 
@@ -1580,77 +1899,177 @@ footer{
 
 
 
-<!-- ========================================================
+<!-- =========================================================
+     MARQUEE
+========================================================= -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>
+            Wedding
+        </span>
+
+        <span class="marquee-dot">
+            ✦
+        </span>
+
+        <span>
+            Love Story
+        </span>
+
+        <span class="marquee-dot">
+            ✦
+        </span>
+
+        <span>
+            Studio
+        </span>
+
+        <span class="marquee-dot">
+            ✦
+        </span>
+
+        <span>
+            Family
+        </span>
+
+        <span class="marquee-dot">
+            ✦
+        </span>
+
+        <span>
+            Portrait
+        </span>
+
+        <span class="marquee-dot">
+            ✦
+        </span>
+
+        <span>
+            Wedding
+        </span>
+
+        <span class="marquee-dot">
+            ✦
+        </span>
+
+        <span>
+            Love Story
+        </span>
+
+        <span class="marquee-dot">
+            ✦
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
      PORTFOLIO
 ========================================================= -->
 
 <section class="portfolio" id="portfolio">
 
-    <div class="portfolio-header reveal">
+
+    <div class="portfolio-head reveal">
 
         <div>
 
-            <div class="label">
+            <div class="eyebrow">
                 03 — Selected work
             </div>
 
-            <h2>
-                Кадри, які<br>
-                говорять <em>самі.</em>
+            <h2 class="portfolio-title">
+
+                Ваші моменти.
+                <br>
+
+                Наші
+                <em>кадри.</em>
+
             </h2>
 
         </div>
 
-        <p class="portfolio-note">
+
+        <p class="portfolio-description">
+
             Тут згодом з'являться справжні
-            фотографії Неллі — великі,
-            атмосферні та без зайвого тексту.
+            фотографії Неллі.
+
+            <br><br>
+
+            Великі кадри, мінімум тексту,
+            максимум атмосфери.
+
         </p>
 
     </div>
 
 
-    <div class="portfolio-grid reveal">
 
-        <div class="photo-placeholder">
+    <div class="gallery reveal">
+
+
+        <div class="gallery-item">
+
             PHOTO
 
-            <span class="photo-tag">
+            <span class="gallery-tag">
                 Wedding
             </span>
+
         </div>
 
-        <div class="photo-placeholder">
+
+        <div class="gallery-item">
+
             PHOTO
 
-            <span class="photo-tag">
+            <span class="gallery-tag">
                 Studio
             </span>
+
         </div>
 
-        <div class="photo-placeholder">
+
+        <div class="gallery-item">
+
             PHOTO
 
-            <span class="photo-tag">
+            <span class="gallery-tag">
                 Baptism
             </span>
+
         </div>
 
-        <div class="photo-placeholder">
+
+        <div class="gallery-item">
+
             PHOTO
 
-            <span class="photo-tag">
+            <span class="gallery-tag">
                 Portrait
             </span>
+
         </div>
 
-        <div class="photo-placeholder">
+
+        <div class="gallery-item">
+
             PHOTO
 
-            <span class="photo-tag">
-                Love story
+            <span class="gallery-tag">
+                Love Story
             </span>
+
         </div>
+
 
     </div>
 
@@ -1658,13 +2077,14 @@ footer{
 
 
 
-<!-- ========================================================
+<!-- =========================================================
      ABOUT
 ========================================================= -->
 
 <section class="about" id="about">
 
-    <div class="about-visual reveal">
+
+    <div class="about-photo reveal">
 
         <span>
             N.
@@ -1675,34 +2095,46 @@ footer{
 
     <div class="reveal">
 
-        <div class="label">
-            04 — About
+        <div class="eyebrow">
+            04 — About Nelli
         </div>
 
-        <h2>
-            Привіт,<br>
-            я <em>Неллі.</em>
+
+        <h2 class="about-title">
+
+            Привіт,
+            <br>
+
+            я
+            <em>Неллі.</em>
+
         </h2>
+
 
         <p class="about-text">
 
             Фотограф у Празі.
-            Люблю красиве світло, живі емоції
-            та моменти, які не потрібно вигадувати.
 
             <br><br>
 
             Весілля, хрестини, обрядові події,
-            студійні та індивідуальні фотосесії —
-            кожна історія для мене особлива.
+            студійні, сімейні та індивідуальні
+            фотосесії.
+
+            <br><br>
+
+            Мені подобається ловити не просто
+            красивий кадр, а справжню емоцію
+            всередині нього.
 
         </p>
+
 
         <div class="quote">
 
             «Найкращі фотографії —
-            це ті, де ви бачите не позу,
-            а себе.»
+            це ті, де ви бачите
+            себе справжніх.»
 
         </div>
 
@@ -1712,51 +2144,62 @@ footer{
 
 
 
-<!-- ========================================================
+<!-- =========================================================
      CONTACT
 ========================================================= -->
 
 <section class="contact" id="contact">
 
+
     <div class="reveal">
 
-        <div class="label">
+        <div class="eyebrow">
             05 — Let's create
         </div>
 
-        <h2>
-            Давайте<br>
-            створимо<br>
-            <em>вашу історію.</em>
+
+        <h2 class="contact-title">
+
+            Розкажіть
+            <br>
+
+            про свою
+            <br>
+
+            <em>історію.</em>
+
         </h2>
 
     </div>
 
 
-    <div class="contact-info reveal">
+    <div class="contact-text reveal">
 
-        <p>
+        Напишіть, яку зйомку ви хочете,
+        бажану дату та кілька слів
+        про вашу ідею.
 
-            Розкажіть мені, що ви задумали.
-            Весілля, хрестини, студійна зйомка
-            або щось зовсім інше.
+        <br><br>
 
-            <br><br>
+        Навіть якщо ви ще не знаєте,
+        як саме все має виглядати —
+        це нормально.
 
-            Напишіть кілька слів —
-            і разом придумаємо формат.
+        <div class="contact-links">
 
-        </p>
-
-
-        <div class="contact-buttons">
-
-            <a href="#" class="contact-btn">
+            <a
+                href="#"
+                class="contact-link"
+            >
                 Instagram ↗
             </a>
 
-            <a href="mailto:hello@example.com" class="contact-btn">
-                Написати email ↗
+
+            <a
+                href="mailto:hello@example.com"
+                class="contact-link"
+            >
+                Написати ↗
             </a>
 
         </div>
@@ -1767,11 +2210,11 @@ footer{
 
 
 
-<!-- ========================================================
+<!-- =========================================================
      FOOTER
 ========================================================= -->
 
-<footer>
+<footer class="footer">
 
     <span>
         NELLI PHOTO · PRAGUE
@@ -1788,67 +2231,130 @@ footer{
 <script>
 
 /* =========================================================
-   CURSOR
+   CUSTOM CURSOR
 ========================================================= */
 
-const cursor = document.querySelector(".cursor");
-
-document.addEventListener("mousemove", e => {
-
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-});
+const cursor =
+    document.querySelector(".cursor");
 
 
-document.querySelectorAll("a, button, .service-card").forEach(el => {
+document.addEventListener(
+    "mousemove",
+    (event) => {
 
-    el.addEventListener("mouseenter", () => {
-        cursor.classList.add("big");
+        cursor.style.left =
+            event.clientX + "px";
+
+        cursor.style.top =
+            event.clientY + "px";
+
+    }
+);
+
+
+document
+    .querySelectorAll(
+        "a, button, .session, .gallery-item"
+    )
+    .forEach(element => {
+
+        element.addEventListener(
+            "mouseenter",
+            () => {
+
+                cursor.classList.add("active");
+
+            }
+        );
+
+        element.addEventListener(
+            "mouseleave",
+            () => {
+
+                cursor.classList.remove("active");
+
+            }
+        );
+
     });
-
-    el.addEventListener("mouseleave", () => {
-        cursor.classList.remove("big");
-    });
-
-});
 
 
 /* =========================================================
-   SERVICE SELECTION
+   HERO PARALLAX
 ========================================================= */
 
-const cards = document.querySelectorAll(".service-card");
+const light =
+    document.querySelector(".hero-light");
+
+
+document.addEventListener(
+    "mousemove",
+    (event) => {
+
+        const x =
+            (event.clientX /
+                window.innerWidth - .5) * 35;
+
+        const y =
+            (event.clientY /
+                window.innerHeight - .5) * 35;
+
+
+        light.style.transform =
+            `translate(${x}px, ${y}px)`;
+
+    }
+);
+
+
+/* =========================================================
+   SESSION SELECT
+========================================================= */
+
+const sessions =
+    document.querySelectorAll(".session");
 
 const selectedName =
     document.getElementById("selectedName");
 
 
-cards.forEach(card => {
+sessions.forEach(session => {
 
-    card.addEventListener("click", () => {
+    session.addEventListener(
+        "click",
+        () => {
 
-        cards.forEach(item => {
-            item.style.borderColor = "#34322d";
-        });
+            sessions.forEach(item => {
 
-        card.style.borderColor = "#c8a984";
+                item.style.borderColor =
+                    "#33312d";
 
-        const name = card.dataset.name;
+            });
 
-        selectedName.textContent = name;
 
-        selectedName.style.opacity = "0";
+            session.style.borderColor =
+                "#b99b78";
 
-        setTimeout(() => {
 
-            selectedName.style.transition = ".5s";
+            const name =
+                session.dataset.name;
 
-            selectedName.style.opacity = "1";
 
-        }, 50);
+            selectedName.style.opacity = "0";
 
-    });
+
+            setTimeout(() => {
+
+                selectedName.textContent =
+                    name;
+
+                selectedName.style.opacity =
+                    "1";
+
+            }, 180);
+
+        }
+    );
 
 });
 
@@ -1857,59 +2363,74 @@ cards.forEach(card => {
    SCROLL REVEAL
 ========================================================= */
 
-const observer = new IntersectionObserver(
+const observer =
+    new IntersectionObserver(
+        (entries) => {
 
-    entries => {
+            entries.forEach(entry => {
 
-        entries.forEach(entry => {
+                if(entry.isIntersecting) {
 
-            if(entry.isIntersecting){
+                    entry.target
+                        .classList
+                        .add("visible");
 
-                entry.target.classList.add("show");
+                    observer
+                        .unobserve(entry.target);
 
-                observer.unobserve(entry.target);
+                }
 
-            }
+            });
 
-        });
-
-    },
-
-    {
-        threshold:.12
-    }
-
-);
+        },
+        {
+            threshold: .12
+        }
+    );
 
 
-document.querySelectorAll(".reveal").forEach(el => {
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
 
-    observer.observe(el);
+        observer.observe(element);
 
-});
+    });
 
 
 /* =========================================================
-   PARALLAX HERO
+   SMOOTH CONTACT BUTTON
 ========================================================= */
 
-const orb = document.querySelector(".hero-orb");
+document
+    .querySelectorAll('a[href^="#"]')
+    .forEach(link => {
 
-window.addEventListener("mousemove", e => {
+        link.addEventListener(
+            "click",
+            function(event) {
 
-    const x =
-        (e.clientX / window.innerWidth - .5) * 20;
+                const target =
+                    document.querySelector(
+                        this.getAttribute("href")
+                    );
 
-    const y =
-        (e.clientY / window.innerHeight - .5) * 20;
+                if(target) {
 
-    orb.style.transform =
-        `translate(${x}px, ${y}px)`;
+                    event.preventDefault();
 
-});
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    });
 
 </script>
-
 
 </body>
 </html>
