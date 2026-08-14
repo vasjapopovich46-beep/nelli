@@ -1,34 +1,28 @@
-```html
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Nelli Photography</title>
-  <meta
-    name="description"
-    content="Nelli Photography — фотографія про справжні моменти, людей та емоції."
-  />
+  <title>NELLI — Photography</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
     rel="stylesheet"
-  />
+  >
 
   <style>
     :root {
-      --bg: #f7f3ee;
-      --paper: #fffdf9;
-      --dark: #25211e;
-      --muted: #756e67;
-      --line: #ddd5cc;
-      --accent: #a67c63;
-      --accent-dark: #80604d;
-      --white: #ffffff;
+      --black: #080808;
+      --black-soft: #111111;
+      --gold: #c7a56a;
+      --gold-light: #e0c58d;
+      --white: #f7f5f1;
+      --gray: #a8a39b;
+      --line: rgba(199,165,106,.22);
     }
 
     * {
@@ -42,10 +36,21 @@
     }
 
     body {
-      background: var(--bg);
-      color: var(--dark);
-      font-family: "Inter", sans-serif;
-      line-height: 1.6;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Montserrat", sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
     }
 
     button,
@@ -55,606 +60,450 @@
       font: inherit;
     }
 
-    button {
-      cursor: pointer;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
     .container {
       width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
+      margin: auto;
     }
 
-    /* NAVIGATION */
+    /* =========================
+       HEADER
+    ========================= */
 
     header {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(247, 243, 238, 0.88);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(221, 213, 204, 0.7);
+      width: 100%;
+      z-index: 1000;
+
+      background: rgba(8,8,8,.86);
+      backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid var(--line);
     }
 
     .nav {
-      height: 78px;
+      height: 82px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .brand {
+    .logo {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
-    .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--dark);
-      color: var(--white);
-      display: grid;
-      place-items: center;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 24px;
+    /*
+      Твоє фото / логотип.
+      Файл вже є в репозиторії.
+      РАМКИ НЕМАЄ.
+    */
+
+    .logo img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      border: 0;
+      outline: 0;
+      box-shadow: none;
     }
 
-    .brand-text strong {
+    .logo-text {
+      letter-spacing: 5px;
+      font-size: 21px;
+      font-weight: 400;
+    }
+
+    .logo-sub {
       display: block;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 24px;
-      line-height: 1;
-    }
-
-    .brand-text span {
-      display: block;
-      margin-top: 3px;
+      color: var(--gold);
       font-size: 8px;
-      letter-spacing: 3px;
-      color: var(--muted);
+      letter-spacing: 4px;
+      margin-top: -2px;
     }
 
     .nav-links {
       display: flex;
-      gap: 34px;
       align-items: center;
-      font-size: 13px;
+      gap: 28px;
     }
 
     .nav-links a {
-      position: relative;
-      color: #4f4842;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.7px;
+      color: #d5d1ca;
+      transition: .25s;
     }
 
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -7px;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.25s ease;
+    .nav-links a:hover {
+      color: var(--gold-light);
     }
 
-    .nav-links a:hover::after {
-      width: 100%;
+    .language {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 1px;
     }
 
-    .nav-button {
-      padding: 12px 20px;
-      border: 1px solid var(--dark);
-      background: var(--dark);
-      color: white;
-      border-radius: 999px;
-      transition: 0.25s;
-    }
-
-    .nav-button:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-
-    /* HERO */
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
       min-height: 100vh;
-      padding: 150px 0 80px;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 70px;
+
+      display: flex;
       align-items: center;
+
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 75% 40%,
+          rgba(199,165,106,.10),
+          transparent 32%
+        ),
+        var(--black);
+    }
+
+    .hero::after {
+      content: "NELLI";
+
+      position: absolute;
+      right: -80px;
+      bottom: -100px;
+
+      font-family: "Cormorant Garamond", serif;
+      font-size: 250px;
+
+      color: rgba(255,255,255,.025);
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      padding-top: 80px;
+      max-width: 720px;
     }
 
     .eyebrow {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      letter-spacing: 4px;
-      color: var(--accent);
-      font-size: 11px;
-      font-weight: 600;
       margin-bottom: 22px;
     }
 
     .hero h1 {
       font-family: "Cormorant Garamond", serif;
-      font-weight: 500;
-      font-size: clamp(64px, 8vw, 112px);
-      line-height: 0.82;
-      letter-spacing: -4px;
-      margin-bottom: 30px;
+      font-size: clamp(72px, 12vw, 150px);
+      font-weight: 300;
+      line-height: .76;
+      letter-spacing: -3px;
+      margin-bottom: 35px;
     }
 
-    .hero h1 em {
-      color: var(--accent);
+    .hero h1 span {
+      color: var(--gold);
       font-style: italic;
     }
 
-    .hero-text {
-      max-width: 510px;
-      color: var(--muted);
-      font-size: 16px;
-      font-weight: 300;
-      margin-bottom: 36px;
+    .hero-description {
+      color: var(--gray);
+      max-width: 520px;
+      font-size: 14px;
+      margin-bottom: 35px;
     }
 
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .button {
-      border: 0;
-      border-radius: 999px;
-      padding: 15px 26px;
-      transition: 0.25s ease;
+    .hero-button {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
+      gap: 18px;
 
-    .button-primary {
-      background: var(--dark);
-      color: white;
-    }
+      border: 1px solid var(--gold);
+      padding: 15px 25px;
 
-    .button-primary:hover {
-      background: var(--accent);
-      transform: translateY(-2px);
-    }
+      color: var(--gold-light);
 
-    .button-light {
-      background: transparent;
-      border: 1px solid var(--line);
-      color: var(--dark);
-    }
-
-    .button-light:hover {
-      border-color: var(--dark);
-    }
-
-    .hero-visual {
-      position: relative;
-      min-height: 620px;
-    }
-
-    .hero-image {
-      position: absolute;
-      inset: 0 30px 0 0;
-      overflow: hidden;
-      border-radius: 240px 240px 18px 18px;
-      background:
-        linear-gradient(
-          145deg,
-          #cfc3b8,
-          #eee7df 48%,
-          #a8998d
-        );
-    }
-
-    .hero-image::before {
-      content: "";
-      position: absolute;
-      width: 55%;
-      height: 70%;
-      left: 23%;
-      top: 12%;
-      border-radius: 48% 48% 35% 35%;
-      background:
-        radial-gradient(
-          circle at 50% 28%,
-          #ead8ca 0 16%,
-          transparent 16.5%
-        ),
-        linear-gradient(
-          90deg,
-          #6c5a50,
-          #b9a397 45%,
-          #68554b
-        );
-      opacity: 0.9;
-    }
-
-    .hero-image::after {
-      content: "N";
-      position: absolute;
-      inset: auto 0 30px;
-      text-align: center;
-      color: rgba(255,255,255,0.75);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 170px;
-      line-height: 1;
-    }
-
-    .floating-card {
-      position: absolute;
-      right: 0;
-      bottom: 45px;
-      width: 190px;
-      padding: 22px;
-      background: rgba(255,253,249,0.94);
-      border: 1px solid var(--line);
-      box-shadow: 0 25px 60px rgba(50,40,30,0.12);
-    }
-
-    .floating-card span {
       font-size: 10px;
       letter-spacing: 2px;
-      color: var(--accent);
+      text-transform: uppercase;
+
+      transition: .3s;
     }
 
-    .floating-card strong {
-      display: block;
-      margin-top: 8px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 25px;
-      font-weight: 500;
+    .hero-button:hover {
+      background: var(--gold);
+      color: var(--black);
     }
 
-    /* SECTION */
+    .scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 20px;
+
+      color: #777;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* =========================
+       GENERAL SECTION
+    ========================= */
 
     section {
-      padding: 110px 0;
+      padding: 120px 0;
     }
 
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 30px;
-      align-items: end;
-      margin-bottom: 50px;
+    .section-title {
+      margin-bottom: 55px;
     }
 
-    .section-head h2 {
+    .section-title h2 {
       font-family: "Cormorant Garamond", serif;
-      font-size: clamp(46px, 6vw, 72px);
-      line-height: 0.9;
-      font-weight: 500;
+      font-size: clamp(50px, 7vw, 85px);
+      font-weight: 300;
+      line-height: .9;
     }
 
-    .section-head p {
-      max-width: 390px;
-      color: var(--muted);
-      font-size: 14px;
+    .section-title h2 span {
+      color: var(--gold);
+      font-style: italic;
     }
 
-    /* ABOUT */
+    /* =========================
+       ABOUT
+    ========================= */
 
     .about {
-      background: var(--dark);
-      color: white;
+      background: var(--black-soft);
     }
 
     .about-grid {
       display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
+      grid-template-columns: 1fr 1.15fr;
       gap: 90px;
       align-items: center;
     }
 
-    .about-image {
-      min-height: 540px;
-      border-radius: 180px 180px 20px 20px;
+    .about-photo {
+      min-height: 570px;
+
       background:
         linear-gradient(
           145deg,
-          #b3a39a,
-          #6e5d53
+          #2c2823,
+          #141311
         );
-      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       overflow: hidden;
     }
 
-    .about-image::before {
-      content: "";
-      position: absolute;
-      width: 62%;
-      height: 76%;
-      left: 19%;
-      top: 10%;
-      border-radius: 48% 48% 20% 20%;
-      background:
-        linear-gradient(
-          150deg,
-          #d8c7bb,
-          #8d7668
-        );
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .about-copy .eyebrow {
-      color: #cba990;
-    }
-
-    .about-copy h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(48px, 6vw, 75px);
-      line-height: 0.92;
-      font-weight: 500;
-      margin-bottom: 30px;
-    }
-
-    .about-copy p {
-      color: #c7beb7;
-      max-width: 590px;
+    .about-text p {
+      color: var(--gray);
+      font-size: 14px;
       margin-bottom: 20px;
-      font-weight: 300;
+      max-width: 600px;
     }
 
-    /* PORTFOLIO */
+    .signature {
+      margin-top: 35px;
+
+      font-family: "Cormorant Garamond", serif;
+      font-size: 40px;
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* =========================
+       PORTFOLIO
+    ========================= */
 
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 18px;
+      gap: 12px;
     }
 
     .portfolio-item {
-      min-height: 300px;
+      min-height: 360px;
       position: relative;
       overflow: hidden;
-      background: #d8cec5;
+      background: #181614;
     }
 
     .portfolio-item:nth-child(1) {
       grid-column: span 7;
-      min-height: 500px;
+      min-height: 550px;
     }
 
     .portfolio-item:nth-child(2) {
       grid-column: span 5;
-      min-height: 500px;
+      min-height: 550px;
     }
 
-    .portfolio-item:nth-child(3) {
-      grid-column: span 4;
-    }
-
-    .portfolio-item:nth-child(4) {
-      grid-column: span 4;
-    }
-
+    .portfolio-item:nth-child(3),
+    .portfolio-item:nth-child(4),
     .portfolio-item:nth-child(5) {
       grid-column: span 4;
     }
 
-    .portfolio-art {
+    .portfolio-item img {
       width: 100%;
       height: 100%;
-      min-height: inherit;
-      transition: transform 0.7s ease;
+      object-fit: cover;
+      transition: transform .7s;
     }
 
-    .portfolio-item:hover .portfolio-art {
+    .portfolio-item:hover img {
       transform: scale(1.04);
     }
 
-    .art-1 {
-      background:
-        radial-gradient(
-          circle at 50% 35%,
-          #e9d7c8 0 12%,
-          transparent 12.5%
-        ),
-        linear-gradient(
-          145deg,
-          #7e6b60,
-          #d0bcae
-        );
-    }
+    .portfolio-placeholder {
+      width: 100%;
+      height: 100%;
 
-    .art-2 {
-      background:
-        radial-gradient(
-          circle at 45% 30%,
-          #e9d4c1 0 10%,
-          transparent 10.5%
-        ),
-        linear-gradient(
-          155deg,
-          #a98d7b,
-          #ded0c6
-        );
-    }
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    .art-3 {
       background:
         linear-gradient(
-          145deg,
-          #d9c7ba,
-          #837065
+          135deg,
+          #26221d,
+          #0d0c0b
         );
+
+      color: rgba(199,165,106,.25);
+
+      font-family: "Cormorant Garamond", serif;
+      font-size: 70px;
     }
 
-    .art-4 {
-      background:
-        linear-gradient(
-          45deg,
-          #706056,
-          #c7b4a7
-        );
-    }
-
-    .art-5 {
-      background:
-        linear-gradient(
-          160deg,
-          #c7b5a8,
-          #8c7567
-        );
-    }
-
-    .portfolio-label {
+    .portfolio-caption {
       position: absolute;
-      left: 20px;
+      left: 22px;
       bottom: 20px;
-      color: white;
-      z-index: 2;
-      text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+
+      text-shadow: 0 3px 15px #000;
     }
 
-    .portfolio-label span {
-      display: block;
-      font-size: 10px;
+    .portfolio-caption small {
+      color: var(--gold-light);
+      font-size: 9px;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    .portfolio-label strong {
+    .portfolio-caption strong {
+      display: block;
       font-family: "Cormorant Garamond", serif;
-      font-size: 28px;
-      font-weight: 500;
+      font-size: 29px;
+      font-weight: 400;
     }
 
-    /* SERVICES */
+    /* =========================
+       SERVICES
+    ========================= */
 
     .services {
-      background: var(--paper);
+      background: var(--black-soft);
     }
 
-    .service-grid {
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      gap: 1px;
+      background: var(--line);
     }
 
     .service {
-      padding: 38px;
-      border: 1px solid var(--line);
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: 0.3s;
+      background: var(--black-soft);
+      padding: 45px 35px;
+      min-height: 300px;
+
+      transition: .3s;
     }
 
     .service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 50px rgba(50,40,30,0.08);
+      background: #171512;
     }
 
     .service-number {
+      color: var(--gold);
       font-family: "Cormorant Garamond", serif;
-      font-size: 36px;
-      color: var(--accent);
+      font-size: 35px;
     }
 
     .service h3 {
       font-family: "Cormorant Garamond", serif;
-      font-size: 36px;
-      font-weight: 500;
-      margin-bottom: 14px;
+      font-size: 38px;
+      font-weight: 400;
+      margin: 45px 0 15px;
     }
 
     .service p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* PROCESS */
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
-    }
-
-    .process {
-      border-top: 1px solid var(--line);
-      padding-top: 22px;
-    }
-
-    .process-number {
-      color: var(--accent);
-      font-size: 11px;
-      letter-spacing: 2px;
-    }
-
-    .process h3 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 30px;
-      font-weight: 500;
-      margin: 18px 0 10px;
-    }
-
-    .process p {
-      color: var(--muted);
+      color: var(--gray);
       font-size: 13px;
     }
 
-    /* CONTACT */
+    /* =========================
+       CONTACT
+    ========================= */
 
     .contact {
-      background: #ebe3da;
+      background:
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(199,165,106,.07),
+          transparent 35%
+        ),
+        var(--black);
     }
 
     .contact-grid {
       display: grid;
-      grid-template-columns: 0.8fr 1.2fr;
+      grid-template-columns: .8fr 1.2fr;
       gap: 80px;
-      align-items: start;
     }
 
-    .contact-copy h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(52px, 6vw, 78px);
-      line-height: 0.9;
-      font-weight: 500;
-      margin-bottom: 25px;
+    .contact-info p {
+      color: var(--gray);
+      font-size: 14px;
+      max-width: 450px;
+      margin-bottom: 30px;
     }
 
-    .contact-copy p {
-      color: var(--muted);
-      max-width: 410px;
-    }
-
-    .contact-details {
-      margin-top: 35px;
+    .contact-links {
       display: grid;
       gap: 12px;
     }
 
-    .contact-details a {
-      color: var(--dark);
+    .contact-links a {
+      color: var(--gold-light);
+      font-size: 13px;
     }
 
-    .contact-form {
-      background: var(--paper);
-      padding: 40px;
+    .booking-form {
       border: 1px solid var(--line);
+      padding: 40px;
+      background: rgba(255,255,255,.015);
     }
 
     .form-grid {
@@ -665,7 +514,7 @@
 
     .field {
       display: grid;
-      gap: 8px;
+      gap: 7px;
     }
 
     .field.full {
@@ -673,22 +522,30 @@
     }
 
     .field label {
-      font-size: 11px;
+      color: #aaa49a;
+      font-size: 9px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--muted);
     }
 
     .field input,
-    .field textarea,
-    .field select {
+    .field select,
+    .field textarea {
       width: 100%;
-      border: 1px solid var(--line);
-      background: #fff;
-      padding: 14px 15px;
+
+      border: 1px solid rgba(255,255,255,.13);
+      background: #0d0d0d;
+
+      color: white;
+
+      padding: 13px 14px;
       outline: none;
-      color: var(--dark);
-      border-radius: 2px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--gold);
     }
 
     .field textarea {
@@ -696,99 +553,150 @@
       resize: vertical;
     }
 
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-      border-color: var(--accent);
-    }
-
-    .form-bottom {
-      margin-top: 22px;
+    .submit-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
+
+      margin-top: 25px;
+      gap: 20px;
     }
 
-    .form-message {
-      font-size: 13px;
-      color: var(--accent-dark);
+    .submit-button {
+      border: 1px solid var(--gold);
+      background: var(--gold);
+      color: #090909;
+
+      padding: 14px 24px;
+
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      transition: .3s;
     }
 
-    /* FOOTER */
+    .submit-button:hover {
+      background: transparent;
+      color: var(--gold-light);
+    }
+
+    .submit-button:disabled {
+      opacity: .5;
+      cursor: wait;
+    }
+
+    #formMessage {
+      color: var(--gold-light);
+      font-size: 12px;
+    }
+
+    /* =========================
+       CLIENT PROFILE
+    ========================= */
+
+    .client-profile {
+      display: none;
+    }
+
+    .client-profile.visible {
+      display: block;
+      margin-top: 40px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      background: #0e0e0e;
+    }
+
+    .client-profile h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      color: var(--gold-light);
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .profile-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      font-size: 12px;
+    }
+
+    .profile-row span:first-child {
+      color: #777;
+    }
+
+    .profile-row span:last-child {
+      color: #ddd;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
-      background: var(--dark);
-      color: white;
-      padding: 55px 0;
+      padding: 45px 0;
+      border-top: 1px solid var(--line);
     }
 
     .footer-inner {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 30px;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .footer-brand {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 32px;
+    .footer-logo {
+      color: var(--gold);
+      letter-spacing: 5px;
+      font-size: 18px;
     }
 
     .footer-copy {
-      color: #a9a19a;
-      font-size: 12px;
+      color: #666;
+      font-size: 10px;
     }
 
-    /* RESPONSIVE */
+    /* =========================
+       RESPONSIVE
+    ========================= */
 
     @media (max-width: 900px) {
+
       .nav-links {
         display: none;
       }
 
-      .hero,
       .about-grid,
       .contact-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding-top: 125px;
-      }
-
-      .hero-visual {
-        min-height: 500px;
-      }
-
-      .about-grid {
-        gap: 50px;
-      }
-
-      .service-grid {
+      .services-grid {
         grid-template-columns: 1fr;
       }
 
-      .process-grid {
-        grid-template-columns: 1fr 1fr;
+      .about-photo {
+        min-height: 420px;
       }
+
     }
 
     @media (max-width: 650px) {
+
       .container {
-        width: min(100% - 28px, 1180px);
+        width: calc(100% - 28px);
       }
 
       section {
-        padding: 75px 0;
+        padding: 80px 0;
       }
 
       .hero h1 {
-        font-size: 70px;
-      }
-
-      .hero-visual {
-        min-height: 430px;
+        font-size: 80px;
       }
 
       .portfolio-grid {
@@ -799,11 +707,7 @@
       .portfolio-item,
       .portfolio-item:nth-child(n) {
         grid-column: span 1;
-        min-height: 360px;
-      }
-
-      .process-grid {
-        grid-template-columns: 1fr;
+        min-height: 380px;
       }
 
       .form-grid {
@@ -814,150 +718,179 @@
         grid-column: auto;
       }
 
-      .contact-form {
-        padding: 25px;
+      .booking-form {
+        padding: 24px;
       }
 
-      .form-bottom {
-        align-items: stretch;
+      .submit-row {
         flex-direction: column;
+        align-items: stretch;
+      }
+
+      .submit-button {
+        width: 100%;
       }
 
       .footer-inner {
         flex-direction: column;
         align-items: flex-start;
       }
+
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
+  <!-- =========================
+       HEADER
+  ========================= -->
 
   <header>
+
     <div class="container nav">
 
-      <a href="#top" class="brand">
-        <div class="brand-mark">N</div>
+      <a href="#home" class="logo">
 
-        <div class="brand-text">
-          <strong>Nelli</strong>
-          <span>PHOTOGRAPHY</span>
+        <img
+          src="e6e5c1df-9682-4b22-adb4-764d0fd31df0.png"
+          alt="Nelli Photography logo"
+        >
+
+        <div>
+          <div class="logo-text">
+            NELLI
+          </div>
+
+          <span class="logo-sub">
+            PHOTOGRAPHY
+          </span>
         </div>
+
       </a>
 
       <nav class="nav-links">
+
         <a href="#about">Про мене</a>
+
         <a href="#portfolio">Портфоліо</a>
+
         <a href="#services">Послуги</a>
+
         <a href="#contact">Контакти</a>
 
-        <a href="#contact" class="nav-button">
-          Забронювати
-        </a>
+        <span class="language">
+          UA · RU · EN · CZ
+        </span>
+
       </nav>
 
     </div>
+
   </header>
 
-  <!-- HERO -->
+  <!-- =========================
+       HERO
+  ========================= -->
 
-  <main id="top">
+  <main id="home">
 
-    <section class="container hero">
+    <section class="hero">
 
-      <div>
+      <div class="container">
 
-        <div class="eyebrow">
-          Photography · Moments · People
-        </div>
+        <div class="hero-content">
 
-        <h1>
-          Ваші
-          <br />
-          <em>моменти.</em>
-        </h1>
+          <div class="eyebrow">
+            Photography · Prague · Europe
+          </div>
 
-        <p class="hero-text">
-          Я створюю фотографії, до яких хочеться
-          повертатися. Без зайвих постановок —
-          тільки ви, ваші люди та справжні емоції.
-        </p>
+          <h1>
+            YOUR
+            <br>
+            <span>STORY</span>
+          </h1>
 
-        <div class="hero-actions">
+          <p class="hero-description">
+            Фотографія про людей, почуття та моменти,
+            які хочеться залишити з собою назавжди.
+          </p>
 
           <a
             href="#contact"
-            class="button button-primary"
+            class="hero-button"
           >
-            Забронювати зйомку →
-          </a>
-
-          <a
-            href="#portfolio"
-            class="button button-light"
-          >
-            Дивитися портфоліо
+            Забронювати зйомку
+            <span>→</span>
           </a>
 
         </div>
 
       </div>
 
-      <div class="hero-visual">
-
-        <div class="hero-image"></div>
-
-        <div class="floating-card">
-          <span>ABOUT MY WORK</span>
-
-          <strong>
-            Capturing
-            <br />
-            real stories.
-          </strong>
-        </div>
-
+      <div class="scroll">
+        Scroll to discover
       </div>
 
     </section>
 
-    <!-- ABOUT -->
+    <!-- =========================
+         ABOUT
+    ========================= -->
 
     <section id="about" class="about">
 
-      <div class="container about-grid">
+      <div class="container">
 
-        <div class="about-image"></div>
+        <div class="about-grid">
 
-        <div class="about-copy">
+          <div class="about-photo">
 
-          <div class="eyebrow">
-            Про мене
+            <img
+              src="e6e5c1df-9682-4b22-adb4-764d0fd31df0.png"
+              alt="Nelli Photography"
+            >
+
           </div>
 
-          <h2>
-            Фотографія,
-            <br />
-            яка відчувається.
-          </h2>
+          <div class="about-text">
 
-          <p>
-            Привіт, я Nelli. Для мене фотографія —
-            це не просто красивий кадр.
-          </p>
+            <div class="section-title">
 
-          <p>
-            Це погляд, дотик, сміх, тиша між двома
-            людьми та маленькі моменти, які згодом
-            стають великими спогадами.
-          </p>
+              <div class="eyebrow">
+                About me
+              </div>
 
-          <p>
-            На зйомці я хочу, щоб вам було легко
-            бути собою.
-          </p>
+              <h2>
+                HELLO,
+                <br>
+                <span>I'M NELLI.</span>
+              </h2>
+
+            </div>
+
+            <p>
+              Я фотографую людей такими, якими вони є —
+              справжніми, живими та різними.
+            </p>
+
+            <p>
+              Для мене хороша фотографія — це не просто
+              правильне світло чи композиція. Це відчуття,
+              яке повертає вас у конкретний момент.
+            </p>
+
+            <p>
+              Саме тому на моїх зйомках немає потреби
+              вміти позувати. Я допоможу вам розслабитися
+              і просто бути собою.
+            </p>
+
+            <div class="signature">
+              Nelli
+            </div>
+
+          </div>
 
         </div>
 
@@ -965,79 +898,117 @@
 
     </section>
 
-    <!-- PORTFOLIO -->
+    <!-- =========================
+         PORTFOLIO
+    ========================= -->
 
     <section id="portfolio">
 
       <div class="container">
 
-        <div class="section-head">
+        <div class="section-title">
 
-          <div>
-            <div class="eyebrow">
-              Portfolio
-            </div>
-
-            <h2>
-              Історії
-              <br />
-              в кадрі.
-            </h2>
+          <div class="eyebrow">
+            Selected work
           </div>
 
-          <p>
-            Весілля, love story, портрети та
-            особисті історії — кожна зйомка має
-            свій характер.
-          </p>
+          <h2>
+            MY
+            <span>WORK.</span>
+          </h2>
 
         </div>
 
         <div class="portfolio-grid">
 
           <div class="portfolio-item">
-            <div class="portfolio-art art-1"></div>
 
-            <div class="portfolio-label">
-              <span>01 · Wedding</span>
-              <strong>Love story</strong>
+            <div class="portfolio-placeholder">
+              N
             </div>
+
+            <div class="portfolio-caption">
+              <small>
+                Wedding
+              </small>
+
+              <strong>
+                The day
+              </strong>
+            </div>
+
           </div>
 
           <div class="portfolio-item">
-            <div class="portfolio-art art-2"></div>
 
-            <div class="portfolio-label">
-              <span>02 · Portrait</span>
-              <strong>For her</strong>
+            <div class="portfolio-placeholder">
+              II
             </div>
+
+            <div class="portfolio-caption">
+              <small>
+                Love Story
+              </small>
+
+              <strong>
+                Two of us
+              </strong>
+            </div>
+
           </div>
 
           <div class="portfolio-item">
-            <div class="portfolio-art art-3"></div>
 
-            <div class="portfolio-label">
-              <span>03 · Couple</span>
-              <strong>Two of us</strong>
+            <div class="portfolio-placeholder">
+              III
             </div>
+
+            <div class="portfolio-caption">
+              <small>
+                Portrait
+              </small>
+
+              <strong>
+                Her story
+              </strong>
+            </div>
+
           </div>
 
           <div class="portfolio-item">
-            <div class="portfolio-art art-4"></div>
 
-            <div class="portfolio-label">
-              <span>04 · Wedding</span>
-              <strong>The day</strong>
+            <div class="portfolio-placeholder">
+              IV
             </div>
+
+            <div class="portfolio-caption">
+              <small>
+                Couple
+              </small>
+
+              <strong>
+                Together
+              </strong>
+            </div>
+
           </div>
 
           <div class="portfolio-item">
-            <div class="portfolio-art art-5"></div>
 
-            <div class="portfolio-label">
-              <span>05 · Portrait</span>
-              <strong>Her story</strong>
+            <div class="portfolio-placeholder">
+              V
             </div>
+
+            <div class="portfolio-caption">
+              <small>
+                Portrait
+              </small>
+
+              <strong>
+                You
+              </strong>
+            </div>
+
           </div>
 
         </div>
@@ -1046,34 +1017,28 @@
 
     </section>
 
-    <!-- SERVICES -->
+    <!-- =========================
+         SERVICES
+    ========================= -->
 
     <section id="services" class="services">
 
       <div class="container">
 
-        <div class="section-head">
+        <div class="section-title">
 
-          <div>
-            <div class="eyebrow">
-              Services
-            </div>
-
-            <h2>
-              Оберемо
-              <br />
-              вашу історію.
-            </h2>
+          <div class="eyebrow">
+            Services
           </div>
 
-          <p>
-            Підберемо формат зйомки під вашу ідею,
-            настрій та кількість часу.
-          </p>
+          <h2>
+            WHAT I
+            <span>DO.</span>
+          </h2>
 
         </div>
 
-        <div class="service-grid">
+        <div class="services-grid">
 
           <article class="service">
 
@@ -1082,14 +1047,17 @@
             </div>
 
             <div>
+
               <h3>
                 Portrait
               </h3>
 
               <p>
-                Індивідуальна портретна зйомка,
-                яка допоможе побачити себе по-новому.
+                Індивідуальні портрети,
+                personal branding та зйомки
+                для себе.
               </p>
+
             </div>
 
           </article>
@@ -1101,14 +1069,17 @@
             </div>
 
             <div>
+
               <h3>
                 Love Story
               </h3>
 
               <p>
-                Зйомка для двох — прогулянка,
-                побачення або просто ваш звичайний день.
+                Щирі історії двох людей —
+                прогулянки, побачення та
+                ваші особливі моменти.
               </p>
+
             </div>
 
           </article>
@@ -1120,14 +1091,16 @@
             </div>
 
             <div>
+
               <h3>
                 Wedding
               </h3>
 
               <p>
-                Найважливіші моменти дня — від
-                ранкових зборів до останнього танцю.
+                Повний день або окремі частини
+                весілля. Від деталей до емоцій.
               </p>
+
             </div>
 
           </article>
@@ -1138,261 +1111,245 @@
 
     </section>
 
-    <!-- PROCESS -->
-
-    <section>
-
-      <div class="container">
-
-        <div class="section-head">
-
-          <div>
-            <div class="eyebrow">
-              How it works
-            </div>
-
-            <h2>
-              Все просто.
-            </h2>
-          </div>
-
-        </div>
-
-        <div class="process-grid">
-
-          <div class="process">
-            <span class="process-number">01</span>
-
-            <h3>
-              Заявка
-            </h3>
-
-            <p>
-              Розкажіть, яку зйомку ви хочете.
-            </p>
-          </div>
-
-          <div class="process">
-            <span class="process-number">02</span>
-
-            <h3>
-              Знайомство
-            </h3>
-
-            <p>
-              Обговоримо ідею, дату та деталі.
-            </p>
-          </div>
-
-          <div class="process">
-            <span class="process-number">03</span>
-
-            <h3>
-              Зйомка
-            </h3>
-
-            <p>
-              Зустрічаємось і створюємо вашу історію.
-            </p>
-          </div>
-
-          <div class="process">
-            <span class="process-number">04</span>
-
-            <h3>
-              Ваші фото
-            </h3>
-
-            <p>
-              Ви отримуєте готову галерею.
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- CONTACT -->
+    <!-- =========================
+         CONTACT
+    ========================= -->
 
     <section id="contact" class="contact">
 
-      <div class="container contact-grid">
+      <div class="container">
 
-        <div class="contact-copy">
+        <div class="contact-grid">
 
-          <div class="eyebrow">
-            Let's create
+          <div class="contact-info">
+
+            <div class="section-title">
+
+              <div class="eyebrow">
+                Contact
+              </div>
+
+              <h2>
+                LET'S
+                <br>
+                <span>CREATE.</span>
+              </h2>
+
+            </div>
+
+            <p>
+              Розкажіть мені про вашу ідею,
+              дату та формат зйомки.
+              Я зв'яжуся з вами особисто.
+            </p>
+
+            <div class="contact-links">
+
+              <a href="mailto:nelli@example.com">
+                nelli@example.com
+              </a>
+
+              <a href="tel:+380000000000">
+                +38 000 000 00 00
+              </a>
+
+              <a href="#">
+                Instagram · @nelli.photography
+              </a>
+
+            </div>
+
           </div>
 
-          <h2>
-            Готові
-            <br />
-            створити
-            <br />
-            історію?
-          </h2>
+          <!-- =========================
+               BOOKING FORM
+          ========================= -->
 
-          <p>
-            Залиште заявку — я зв'яжуся з вами,
-            щоб обговорити зйомку та відповісти
-            на всі питання.
-          </p>
+          <div>
 
-          <div class="contact-details">
+            <form
+              id="bookingForm"
+              class="booking-form"
+            >
 
-            <a href="mailto:nelli@example.com">
-              nelli@example.com
-            </a>
+              <div class="form-grid">
 
-            <a href="tel:+380000000000">
-              +38 (000) 000-00-00
-            </a>
+                <div class="field">
 
-            <span>
-              Instagram · @nelli.photography
-            </span>
+                  <label for="clientName">
+                    Ім'я та прізвище
+                  </label>
+
+                  <input
+                    id="clientName"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Ваше ім'я"
+                  >
+
+                </div>
+
+                <div class="field">
+
+                  <label for="clientPhone">
+                    Телефон
+                  </label>
+
+                  <input
+                    id="clientPhone"
+                    name="phone"
+                    type="tel"
+                    required
+                    placeholder="+420..."
+                  >
+
+                </div>
+
+                <div class="field">
+
+                  <label for="clientEmail">
+                    Email
+                  </label>
+
+                  <input
+                    id="clientEmail"
+                    name="email"
+                    type="email"
+                    placeholder="email@example.com"
+                  >
+
+                </div>
+
+                <div class="field">
+
+                  <label for="clientService">
+                    Тип зйомки
+                  </label>
+
+                  <select
+                    id="clientService"
+                    name="service"
+                  >
+
+                    <option value="">
+                      Оберіть
+                    </option>
+
+                    <option value="Portrait">
+                      Portrait
+                    </option>
+
+                    <option value="Love Story">
+                      Love Story
+                    </option>
+
+                    <option value="Wedding">
+                      Wedding
+                    </option>
+
+                    <option value="Other">
+                      Інше
+                    </option>
+
+                  </select>
+
+                </div>
+
+                <div class="field full">
+
+                  <label for="clientDate">
+                    Бажана дата
+                  </label>
+
+                  <input
+                    id="clientDate"
+                    name="date"
+                    type="date"
+                  >
+
+                </div>
+
+                <div class="field full">
+
+                  <label for="clientMessage">
+                    Повідомлення
+                  </label>
+
+                  <textarea
+                    id="clientMessage"
+                    name="message"
+                    placeholder="Розкажіть про вашу зйомку..."
+                  ></textarea>
+
+                </div>
+
+              </div>
+
+              <div class="submit-row">
+
+                <div id="formMessage"></div>
+
+                <button
+                  id="submitButton"
+                  class="submit-button"
+                  type="submit"
+                >
+                  Надіслати заявку
+                </button>
+
+              </div>
+
+            </form>
+
+            <!-- =========================
+                 CLIENT PROFILE
+            ========================= -->
+
+            <div
+              id="clientProfile"
+              class="client-profile"
+            >
+
+              <h3>
+                Ваш профіль створено
+              </h3>
+
+              <div class="profile-row">
+                <span>Ім'я</span>
+                <span id="profileName"></span>
+              </div>
+
+              <div class="profile-row">
+                <span>Телефон</span>
+                <span id="profilePhone"></span>
+              </div>
+
+              <div class="profile-row">
+                <span>Email</span>
+                <span id="profileEmail"></span>
+              </div>
+
+              <div class="profile-row">
+                <span>Зйомка</span>
+                <span id="profileService"></span>
+              </div>
+
+              <div class="profile-row">
+                <span>Дата</span>
+                <span id="profileDate"></span>
+              </div>
+
+              <div class="profile-row">
+                <span>Статус</span>
+                <span>Нова заявка</span>
+              </div>
+
+            </div>
 
           </div>
 
         </div>
-
-        <form
-          id="bookingForm"
-          class="contact-form"
-        >
-
-          <div class="form-grid">
-
-            <div class="field">
-
-              <label for="name">
-                Ім'я *
-              </label>
-
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Ваше ім'я"
-                required
-              />
-
-            </div>
-
-            <div class="field">
-
-              <label for="phone">
-                Телефон *
-              </label>
-
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="+380..."
-                required
-              />
-
-            </div>
-
-            <div class="field">
-
-              <label for="email">
-                Email
-              </label>
-
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="you@example.com"
-              />
-
-            </div>
-
-            <div class="field">
-
-              <label for="service">
-                Тип зйомки
-              </label>
-
-              <select
-                id="service"
-                name="service"
-              >
-                <option value="">
-                  Оберіть
-                </option>
-
-                <option value="Portrait">
-                  Portrait
-                </option>
-
-                <option value="Love Story">
-                  Love Story
-                </option>
-
-                <option value="Wedding">
-                  Wedding
-                </option>
-
-                <option value="Other">
-                  Інше
-                </option>
-              </select>
-
-            </div>
-
-            <div class="field full">
-
-              <label for="date">
-                Бажана дата
-              </label>
-
-              <input
-                id="date"
-                name="date"
-                type="date"
-              />
-
-            </div>
-
-            <div class="field full">
-
-              <label for="message">
-                Повідомлення
-              </label>
-
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Розкажіть трохи про вашу зйомку..."
-              ></textarea>
-
-            </div>
-
-          </div>
-
-          <div class="form-bottom">
-
-            <div
-              id="formMessage"
-              class="form-message"
-            ></div>
-
-            <button
-              id="submitButton"
-              type="submit"
-              class="button button-primary"
-            >
-              Надіслати заявку →
-            </button>
-
-          </div>
-
-        </form>
 
       </div>
 
@@ -1400,30 +1357,43 @@
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer>
 
     <div class="container footer-inner">
 
-      <div class="footer-brand">
-        Nelli Photography
+      <div class="footer-logo">
+        NELLI
       </div>
 
       <div class="footer-copy">
-        © 2026 Nelli Photography. All moments reserved.
+        © 2026 Nelli Photography
       </div>
 
     </div>
 
   </footer>
 
-  <!-- SUPABASE -->
+  <!-- =========================
+       SUPABASE
+  ========================= -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <script>
-    const SUPABASE_URL = "http://127.0.0.1:54321";
+
+    /*
+      ВАЖЛИВО:
+
+      Тут використовується publishable key.
+      Service-role key сюди НІКОЛИ не вставляємо.
+    */
+
+    const SUPABASE_URL =
+      "http://127.0.0.1:54321";
 
     const SUPABASE_KEY =
       "sb_publishable_ACJWlzQHlZjBrEguHvfOxg_3BJgxAaH";
@@ -1434,65 +1404,174 @@
         SUPABASE_KEY
       );
 
+
     const form =
       document.getElementById("bookingForm");
 
-    const message =
+    const formMessage =
       document.getElementById("formMessage");
 
-    const button =
+    const submitButton =
       document.getElementById("submitButton");
 
-    form.addEventListener("submit", async function (event) {
+    const clientProfile =
+      document.getElementById("clientProfile");
 
-      event.preventDefault();
 
-      message.textContent = "";
-      button.disabled = true;
-      button.textContent = "Надсилаємо...";
+    form.addEventListener(
+      "submit",
+      async function(event) {
 
-      const formData =
-        new FormData(form);
+        event.preventDefault();
 
-      const client = {
-        name: formData.get("name"),
-        phone: formData.get("phone"),
-        email: formData.get("email") || null,
-        service: formData.get("service") || null,
-        date: formData.get("date") || null,
-        notes: formData.get("message") || null
-      };
+        formMessage.textContent =
+          "Надсилаємо заявку...";
 
-      const { error } =
-        await supabaseClient
-          .from("clients")
-          .insert([client]);
+        submitButton.disabled = true;
 
-      if (error) {
 
-        console.error(error);
+        const data =
+          new FormData(form);
 
-        message.textContent =
-          "Не вдалося надіслати заявку. Спробуйте ще раз.";
 
-        button.disabled = false;
-        button.textContent =
-          "Надіслати заявку →";
+        const name =
+          data.get("name").trim();
 
-        return;
+        const phone =
+          data.get("phone").trim();
+
+        const email =
+          data.get("email").trim();
+
+        const service =
+          data.get("service");
+
+        const date =
+          data.get("date");
+
+        const message =
+          data.get("message").trim();
+
+
+        /*
+          Створюємо клієнта.
+
+          Поля підібрані під CRM:
+          name
+          phone
+          email
+          service
+          date
+          notes
+        */
+
+        const newClient = {
+
+          name: name,
+
+          phone: phone,
+
+          email: email || null,
+
+          service: service || null,
+
+          date: date || null,
+
+          notes: message || null
+
+        };
+
+
+        const result =
+          await supabaseClient
+            .from("clients")
+            .insert(newClient)
+            .select()
+            .single();
+
+
+        if (result.error) {
+
+          console.error(
+            "Supabase error:",
+            result.error
+          );
+
+          formMessage.textContent =
+            "Не вдалося зберегти заявку. Перевіримо підключення до бази.";
+
+          submitButton.disabled = false;
+
+          return;
+        }
+
+
+        /*
+          Профіль клієнта.
+
+          Після успішного запису
+          показуємо створені дані.
+        */
+
+        const client =
+          result.data;
+
+
+        document.getElementById(
+          "profileName"
+        ).textContent =
+          client.name || "—";
+
+
+        document.getElementById(
+          "profilePhone"
+        ).textContent =
+          client.phone || "—";
+
+
+        document.getElementById(
+          "profileEmail"
+        ).textContent =
+          client.email || "—";
+
+
+        document.getElementById(
+          "profileService"
+        ).textContent =
+          client.service || "—";
+
+
+        document.getElementById(
+          "profileDate"
+        ).textContent =
+          client.date || "—";
+
+
+        clientProfile.classList.add(
+          "visible"
+        );
+
+
+        formMessage.textContent =
+          "Заявку успішно отримано ✓";
+
+
+        form.reset();
+
+
+        submitButton.disabled = false;
+
+
+        clientProfile.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
       }
 
-      form.reset();
+    );
 
-      message.textContent =
-        "Дякую! Заявку отримано. Я зв'яжуся з вами найближчим часом.";
-
-      button.disabled = false;
-      button.textContent =
-        "Надіслати заявку →";
-    });
   </script>
 
 </body>
 </html>
-```
