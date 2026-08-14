@@ -1,2234 +1,848 @@
 <!DOCTYPE html>
 <html lang="uk">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<meta
-    name="description"
-    content="Nelli Photography — фотограф у Празі. Весілля, хрещення, дні народження, сімейні, портретні та студійні фотосесії."
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NELLI — Photography</title>
 
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
-    rel="stylesheet"
->
-
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root{
+    --bg:#0c0c0c;
+    --bg2:#131313;
+    --text:#f4f1ec;
+    --muted:#aaa49d;
+    --line:rgba(255,255,255,.12);
+    --accent:#d7c5a4;
 }
 
-html {
-    scroll-behavior: smooth;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    background: #10100f;
-    color: #eee9e1;
-    font-family: "DM Sans", sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
+html{
+    scroll-behavior:smooth;
 }
 
-body.no-scroll {
-    overflow: hidden;
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Inter,sans-serif;
+    overflow-x:hidden;
 }
 
-img {
-    display: block;
-    width: 100%;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button,
-input,
-textarea,
-select {
-    font: inherit;
-}
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-:root {
-
-    --black: #10100f;
-    --dark: #171715;
-    --dark2: #1d1c19;
-
-    --cream: #eee9e1;
-    --muted: #9b958b;
-
-    --line: rgba(238,233,225,.13);
-
-    --accent: #c6b29a;
-
-    --serif: "Cormorant Garamond", serif;
-    --sans: "DM Sans", sans-serif;
-}
-
-
-/* =====================================================
-   CURSOR
-===================================================== */
-
-.cursor-dot {
-
-    position: fixed;
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #fff;
-
-    pointer-events: none;
-
-    z-index: 9999;
-
-    transform: translate(-50%,-50%);
-
-    mix-blend-mode: difference;
-
-    transition:
-        width .25s,
-        height .25s;
-}
-
-.cursor-ring {
-
-    position: fixed;
-
-    width: 35px;
-    height: 35px;
-
-    border: 1px solid rgba(255,255,255,.55);
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    z-index: 9998;
-
-    transform: translate(-50%,-50%);
-
-    transition:
-        width .35s,
-        height .35s,
-        background .35s;
-}
-
-
-/* =====================================================
-   PRELOADER
-===================================================== */
-
-.loader {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: #10100f;
-
-    z-index: 10000;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    flex-direction: column;
-
-    transition:
-        opacity .8s,
-        visibility .8s;
-}
-
-.loader.hidden {
-
-    opacity: 0;
-
-    visibility: hidden;
-}
-
-.loader-logo {
-
-    font-family: var(--serif);
-
-    font-size: 60px;
-
-    font-weight: 300;
-
-    letter-spacing: -.06em;
-}
-
-.loader-line {
-
-    width: 120px;
-
-    height: 1px;
-
-    background: rgba(255,255,255,.2);
-
-    margin-top: 25px;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-.loader-line::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background: #eee9e1;
-
-    transform: translateX(-100%);
-
-    animation: loading 1.4s forwards;
-}
-
-@keyframes loading {
-
-    to {
-        transform: translateX(0);
-    }
-
-}
-
-
-/* =====================================================
-   NAV
-===================================================== */
-
-.nav {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    height: 82px;
-
-    padding: 0 5vw;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    z-index: 1000;
-
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
     background:
-        linear-gradient(
-            to bottom,
-            rgba(16,16,15,.92),
-            rgba(16,16,15,0)
-        );
-
-    backdrop-filter: blur(8px);
-
-    transition:
-        background .4s,
-        height .4s;
+      radial-gradient(circle at 20% 20%,rgba(215,197,164,.06),transparent 30%),
+      radial-gradient(circle at 80% 70%,rgba(255,255,255,.035),transparent 30%);
+    z-index:-1;
 }
 
-.nav.scrolled {
+a{
+    color:inherit;
+    text-decoration:none;
+}
 
-    height: 68px;
+button{
+    font:inherit;
+}
 
+/* ================= HEADER ================= */
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:82px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    z-index:1000;
+    transition:.4s;
+}
+
+header.scrolled{
+    background:rgba(10,10,10,.88);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--line);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo img{
+    width:45px;
+    height:45px;
+    object-fit:contain;
+    border-radius:50%;
+    mix-blend-mode:screen;
+}
+
+.logo-text{
+    font-family:"Cormorant Garamond",serif;
+    font-size:28px;
+    letter-spacing:5px;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#d4d0ca;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:white;
+}
+
+.lang-wrap{
+    position:relative;
+}
+
+.lang-btn{
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.04);
+    color:white;
+    padding:10px 15px;
+    border-radius:30px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.lang-menu{
+    position:absolute;
+    right:0;
+    top:50px;
+    width:170px;
+    padding:8px;
+    background:#171717;
+    border:1px solid var(--line);
+    border-radius:15px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:.3s;
+}
+
+.lang-menu.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.lang-option{
+    width:100%;
+    padding:11px;
+    border:0;
+    background:none;
+    color:white;
+    cursor:pointer;
+    text-align:left;
+    border-radius:9px;
+}
+
+.lang-option:hover{
+    background:rgba(255,255,255,.08);
+}
+
+.menu-btn{
+    display:none;
+    border:0;
+    background:none;
+    color:white;
+    font-size:25px;
+    cursor:pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:1.05fr .95fr;
+    align-items:center;
+    padding:120px 7% 70px;
+    gap:70px;
+}
+
+.hero-left{
+    animation:fadeUp 1.2s ease both;
+}
+
+.kicker{
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:5px;
+    font-size:11px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(70px,10vw,150px);
+    line-height:.75;
+    font-weight:500;
+    letter-spacing:-5px;
+}
+
+.hero h1 span{
+    display:block;
+    margin-left:70px;
+    font-style:italic;
+    color:#cfc8bd;
+}
+
+.hero-description{
+    max-width:480px;
+    color:var(--muted);
+    line-height:1.8;
+    margin:45px 0 30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 24px;
+    border-radius:100px;
+    border:1px solid var(--line);
+    transition:.35s;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.btn.primary{
+    background:#eee9e1;
+    color:#111;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+.btn.primary:hover{
+    background:white;
+}
+
+.hero-right{
+    position:relative;
+    height:650px;
+}
+
+.hero-photo{
+    position:absolute;
+    width:75%;
+    height:90%;
+    right:0;
+    top:5%;
+    overflow:hidden;
+    border-radius:2px;
+}
+
+.hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 1.2s;
+}
+
+.hero-photo:hover img{
+    transform:scale(1.05);
+}
+
+.hero-frame{
+    position:absolute;
+    width:70%;
+    height:80%;
+    left:0;
+    bottom:0;
+    border:1px solid rgba(215,197,164,.4);
+}
+
+/* ================= MARQUEE ================= */
+
+.marquee{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:20px 0;
+}
+
+.marquee-inner{
+    display:inline-block;
+    animation:marquee 25s linear infinite;
+}
+
+.marquee span{
+    margin:0 35px;
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    font-style:italic;
+    color:#c8c0b5;
+}
+
+/* ================= GENERAL ================= */
+
+section{
+    padding:120px 7%;
+}
+
+.section-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:55px;
+    gap:30px;
+}
+
+.section-number{
+    font-size:11px;
+    letter-spacing:3px;
+    color:var(--accent);
+}
+
+.section-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(50px,7vw,90px);
+    font-weight:500;
+    line-height:.85;
+}
+
+.section-description{
+    max-width:370px;
+    color:var(--muted);
+    line-height:1.7;
+}
+
+/* ================= SERVICES ================= */
+
+.services{
+    background:#101010;
+}
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+}
+
+.service{
+    min-height:300px;
+    padding:35px;
+    background:#151515;
+    border:1px solid rgba(255,255,255,.05);
+    position:relative;
+    overflow:hidden;
+    transition:.5s;
+}
+
+.service:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,rgba(215,197,164,.08),transparent 50%);
+    opacity:0;
+    transition:.5s;
+}
+
+.service:hover{
+    transform:translateY(-8px);
+}
+
+.service:hover:before{
+    opacity:1;
+}
+
+.service-num{
+    color:#777;
+    font-size:12px;
+}
+
+.service-icon{
+    font-size:35px;
+    margin:40px 0 25px;
+    filter:grayscale(1);
+}
+
+.service h3{
+    font-family:"Cormorant Garamond",serif;
+    font-size:32px;
+    font-weight:500;
+}
+
+.service p{
+    color:var(--muted);
+    margin-top:12px;
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* ================= PORTFOLIO ================= */
+
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    grid-auto-rows:250px;
+    gap:12px;
+}
+
+.photo{
+    position:relative;
+    overflow:hidden;
+    background:#1b1b1b;
+}
+
+.photo:nth-child(1){grid-column:span 5;grid-row:span 2}
+.photo:nth-child(2){grid-column:span 7}
+.photo:nth-child(3){grid-column:span 4}
+.photo:nth-child(4){grid-column:span 3}
+.photo:nth-child(5){grid-column:span 5}
+.photo:nth-child(6){grid-column:span 4}
+.photo:nth-child(7){grid-column:span 8}
+.photo:nth-child(8){grid-column:span 4}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:1s;
+    filter:saturate(.8);
+}
+
+.photo:hover img{
+    transform:scale(1.08);
+    filter:saturate(1);
+}
+
+.photo-label{
+    position:absolute;
+    left:20px;
+    bottom:20px;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(10px);
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:11px;
+}
+
+/* ================= PACKAGES ================= */
+
+.packages{
+    background:#101010;
+}
+
+.package-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.package{
+    padding:40px 32px;
+    border:1px solid var(--line);
+    background:#141414;
+    transition:.4s;
+}
+
+.package:hover{
+    transform:translateY(-10px);
+    border-color:rgba(215,197,164,.5);
+}
+
+.package.featured{
+    background:#e8e2d8;
+    color:#151515;
+}
+
+.package-name{
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:3px;
+}
+
+.package-price{
+    font-family:"Cormorant Garamond",serif;
+    font-size:55px;
+    margin:25px 0;
+}
+
+.package ul{
+    list-style:none;
+}
+
+.package li{
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    font-size:14px;
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:100px;
+    align-items:center;
+}
+
+.about-photo{
+    height:650px;
+    overflow:hidden;
+}
+
+.about-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.about-text h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:75px;
+    font-weight:500;
+    line-height:.9;
+    margin-bottom:35px;
+}
+
+.about-text p{
+    color:var(--muted);
+    line-height:1.9;
+    max-width:600px;
+}
+
+/* ================= CONTACT ================= */
+
+.contact{
+    text-align:center;
+    min-height:70vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
     background:
-        rgba(16,16,15,.88);
-
-    backdrop-filter: blur(18px);
+      radial-gradient(circle at center,rgba(215,197,164,.07),transparent 45%);
 }
 
-.brand {
-
-    font-family: var(--serif);
-
-    font-size: 30px;
-
-    letter-spacing: -.06em;
-
-    white-space: nowrap;
+.contact h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(70px,11vw,150px);
+    font-weight:500;
+    line-height:.8;
 }
 
-.brand span {
-
-    font-style: italic;
-
-    color: #b9ab9a;
+.contact p{
+    color:var(--muted);
+    margin:35px auto;
+    max-width:450px;
+    line-height:1.7;
 }
 
-.nav-links {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 30px;
-
-    font-size: 9px;
-
-    letter-spacing: .18em;
-
-    text-transform: uppercase;
+.contact-links{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
-.nav-links a {
-
-    color: #a7a097;
-
-    transition: color .3s;
+.contact-link{
+    padding:14px 22px;
+    border:1px solid var(--line);
+    border-radius:100px;
+    transition:.3s;
 }
 
-.nav-links a:hover {
-
-    color: #fff;
+.contact-link:hover{
+    background:#eee9e1;
+    color:#111;
 }
 
+/* ================= FOOTER ================= */
 
-/* =====================================================
-   LANGUAGE
-===================================================== */
-
-.language {
-
-    position: relative;
+footer{
+    padding:35px 7%;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    color:#777;
+    font-size:12px;
 }
 
-.language-button {
+/* ================= ANIMATION ================= */
 
-    height: 36px;
-
-    min-width: 55px;
-
-    padding: 0 12px;
-
-    border: 1px solid var(--line);
-
-    border-radius: 50px;
-
-    background: rgba(255,255,255,.03);
-
-    color: #eee9e1;
-
-    cursor: pointer;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 6px;
-
-    font-size: 13px;
-
-    transition: .3s;
+.reveal{
+    opacity:0;
+    transform:translateY(50px);
+    transition:1s ease;
 }
 
-.language-button:hover {
-
-    background: rgba(255,255,255,.08);
+.reveal.visible{
+    opacity:1;
+    transform:none;
 }
 
-.language-menu {
-
-    position: absolute;
-
-    top: 48px;
-
-    right: 0;
-
-    width: 180px;
-
-    padding: 8px;
-
-    background: #1d1c19;
-
-    border: 1px solid var(--line);
-
-    border-radius: 16px;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.4);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform:
-        translateY(-8px);
-
-    transition: .3s;
-}
-
-.language.open .language-menu {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    transform: none;
-}
-
-.language-option {
-
-    width: 100%;
-
-    padding: 10px 12px;
-
-    border: 0;
-
-    background: transparent;
-
-    color: #c7c1b8;
-
-    border-radius: 10px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    cursor: pointer;
-
-    text-align: left;
-
-    transition: .25s;
-}
-
-.language-option:hover {
-
-    background: rgba(255,255,255,.08);
-
-    color: white;
-}
-
-
-/* =====================================================
-   MENU BUTTON
-===================================================== */
-
-.menu-button {
-
-    display: none;
-
-    width: 42px;
-    height: 42px;
-
-    border: 1px solid var(--line);
-
-    border-radius: 50%;
-
-    background: transparent;
-
-    color: white;
-
-    cursor: pointer;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-
-    min-height: 100vh;
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    overflow: hidden;
-
-    background:
-
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(180,155,125,.17),
-            transparent 30%
-        ),
-
-        #10100f;
-}
-
-.hero-image {
-
-    position: absolute;
-
-    inset: 5% 5% 0 5%;
-
-    opacity: .35;
-
-    overflow: hidden;
-
-    border-radius: 0 0 50% 50%;
-}
-
-.hero-image img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    filter:
-        grayscale(.45)
-        contrast(1.05)
-        brightness(.65);
-
-    transform: scale(1.05);
-
-    animation: heroZoom 8s ease-out forwards;
-}
-
-@keyframes heroZoom {
-
-    from {
-        transform: scale(1.1);
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
     }
-
-    to {
-        transform: scale(1);
+    to{
+        opacity:1;
+        transform:none;
     }
 }
 
-.hero-overlay {
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(16,16,15,.35),
-            rgba(16,16,15,.72) 70%,
-            #10100f
-        );
+@keyframes marquee{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
 }
 
-.hero-circle {
+/* ================= MOBILE ================= */
 
-    position: absolute;
+@media(max-width:900px){
 
-    width: min(70vw,850px);
-
-    aspect-ratio: 1;
-
-    border: 1px solid rgba(255,255,255,.06);
-
-    border-radius: 50%;
-
-    animation:
-        circleRotate 35s linear infinite;
-}
-
-@keyframes circleRotate {
-
-    from {
-        transform: rotate(0);
+    header{
+        padding:0 5%;
     }
 
-    to {
-        transform: rotate(360deg);
+    nav{
+        position:absolute;
+        top:82px;
+        left:0;
+        width:100%;
+        background:#101010;
+        flex-direction:column;
+        padding:25px;
+        display:none;
     }
-}
 
-.hero-content {
-
-    position: relative;
-
-    z-index: 2;
-
-    text-align: center;
-
-    max-width: 900px;
-
-    padding:
-        130px 20px 100px;
-}
-
-.hero-logo {
-
-    width: min(310px,70vw);
-
-    margin:
-        0 auto 35px;
-
-    background: transparent;
-
-    border: 0;
-
-    box-shadow: none;
-}
-
-.hero-logo img {
-
-    background: transparent;
-
-    border: 0;
-
-    box-shadow: none;
-
-    mix-blend-mode: screen;
-
-    filter:
-        drop-shadow(
-            0 20px 50px rgba(0,0,0,.4)
-        );
-}
-
-.eyebrow {
-
-    color: var(--accent);
-
-    font-size: 9px;
-
-    letter-spacing: .32em;
-
-    text-transform: uppercase;
-
-    margin-bottom: 22px;
-}
-
-.hero h1 {
-
-    font-family: var(--serif);
-
-    font-size:
-        clamp(55px,8vw,105px);
-
-    line-height: .82;
-
-    font-weight: 300;
-
-    letter-spacing: -.07em;
-}
-
-.hero h1 em {
-
-    font-style: italic;
-
-    color: #c4b6a4;
-}
-
-.hero-text {
-
-    max-width: 600px;
-
-    margin:
-        35px auto 0;
-
-    color: #aaa49b;
-
-    font-size: 14px;
-
-    line-height: 1.8;
-}
-
-.hero-actions {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-top: 35px;
-
-    flex-wrap: wrap;
-}
-
-.button {
-
-    padding: 15px 23px;
-
-    border-radius: 100px;
-
-    border: 1px solid rgba(255,255,255,.22);
-
-    font-size: 9px;
-
-    letter-spacing: .15em;
-
-    text-transform: uppercase;
-
-    transition: .4s;
-}
-
-.button.primary {
-
-    background: #eee9e1;
-
-    color: #111;
-
-    border-color: #eee9e1;
-}
-
-.button:hover {
-
-    transform: translateY(-4px);
-}
-
-.button.secondary:hover {
-
-    background: rgba(255,255,255,.08);
-}
-
-.scroll {
-
-    position: absolute;
-
-    bottom: 25px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    color: #77716a;
-
-    font-size: 8px;
-
-    letter-spacing: .25em;
-
-    text-transform: uppercase;
-}
-
-
-/* =====================================================
-   SECTION COMMON
-===================================================== */
-
-.section {
-
-    padding: 150px 6vw;
-}
-
-.section-label {
-
-    color: #756e65;
-
-    font-size: 9px;
-
-    letter-spacing: .25em;
-
-    text-transform: uppercase;
-}
-
-.section-title {
-
-    margin-top: 20px;
-
-    font-family: var(--serif);
-
-    font-size:
-        clamp(55px,7vw,100px);
-
-    font-weight: 300;
-
-    line-height: .84;
-
-    letter-spacing: -.07em;
-}
-
-.section-title em {
-
-    font-style: italic;
-
-    color: #bba994;
-}
-
-
-/* =====================================================
-   INTRO
-===================================================== */
-
-.intro {
-
-    background: #eee9e1;
-
-    color: #171613;
-
-    display: grid;
-
-    grid-template-columns:
-        .5fr 1.5fr;
-
-    gap: 10vw;
-
-    align-items: center;
-}
-
-.intro .section-label {
-
-    color: #777168;
-}
-
-.intro-copy {
-
-    max-width: 750px;
-}
-
-.intro-copy p {
-
-    max-width: 650px;
-
-    margin-top: 40px;
-
-    color: #6e675e;
-
-    font-size: 17px;
-
-    line-height: 1.9;
-}
-
-.intro-note {
-
-    margin-top: 35px;
-
-    font-family: var(--serif);
-
-    font-size: 27px;
-
-    font-style: italic;
-
-    color: #38342f;
-}
-
-
-/* =====================================================
-   SERVICES
-===================================================== */
-
-.services {
-
-    background: #171715;
-}
-
-.services-intro {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: end;
-
-    gap: 40px;
-
-    margin-bottom: 75px;
-}
-
-.services-description {
-
-    max-width: 430px;
-
-    color: #858078;
-
-    font-size: 13px;
-
-    line-height: 1.9;
-}
-
-.services-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap: 12px;
-}
-
-.service-card {
-
-    position: relative;
-
-    min-height: 390px;
-
-    padding: 27px;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            145deg,
-            #25231f,
-            #151514
-        );
-
-    border: 1px solid rgba(255,255,255,.09);
-
-    transition:
-        transform .7s cubic-bezier(.2,.8,.2,1),
-        border-color .5s;
-}
-
-.service-card::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-    height: 300px;
-
-    right: -150px;
-    bottom: -150px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255,255,255,.07);
-
-    transition:
-        transform .8s;
-}
-
-.service-card:hover {
-
-    transform:
-        translateY(-10px);
-
-    border-color:
-        rgba(198,178,154,.5);
-}
-
-.service-card:hover::before {
-
-    transform: scale(1.6);
-}
-
-.service-number {
-
-    color: #666159;
-
-    font-size: 9px;
-
-    letter-spacing: .2em;
-}
-
-.service-symbol {
-
-    margin-top: 45px;
-
-    font-family: var(--serif);
-
-    font-size: 95px;
-
-    font-style: italic;
-
-    line-height: .8;
-
-    color: #a79b8d;
-
-    transition: .6s;
-}
-
-.service-card:hover .service-symbol {
-
-    transform:
-        translateX(10px)
-        rotate(-5deg);
-
-    color: #e2d7c7;
-}
-
-.service-info {
-
-    position: absolute;
-
-    left: 27px;
-
-    bottom: 28px;
-}
-
-.service-info h3 {
-
-    font-family: var(--serif);
-
-    font-size: 39px;
-
-    font-weight: 300;
-}
-
-.service-info p {
-
-    margin-top: 8px;
-
-    max-width: 320px;
-
-    color: #777168;
-
-    font-size: 11px;
-
-    line-height: 1.6;
-}
-
-.service-arrow {
-
-    position: absolute;
-
-    right: 27px;
-
-    bottom: 27px;
-
-    width: 43px;
-    height: 43px;
-
-    border: 1px solid #403d37;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    transition: .4s;
-}
-
-.service-card:hover .service-arrow {
-
-    background: #eee9e1;
-
-    color: #111;
-
-    transform: rotate(45deg);
-}
-
-
-/* =====================================================
-   MARQUEE
-===================================================== */
-
-.marquee {
-
-    overflow: hidden;
-
-    white-space: nowrap;
-
-    padding: 26px 0;
-
-    background: #c8b49d;
-
-    color: #171613;
-}
-
-.marquee-track {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 35px;
-
-    animation:
-        marquee 30s linear infinite;
-}
-
-.marquee span {
-
-    font-family: var(--serif);
-
-    font-size: 32px;
-
-    font-style: italic;
-}
-
-.marquee i {
-
-    font-style: normal;
-
-    opacity: .5;
-}
-
-@keyframes marquee {
-
-    to {
-        transform:
-            translateX(-50%);
+    nav.open{
+        display:flex;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        padding-top:140px;
+    }
+
+    .hero-right{
+        height:500px;
+    }
+
+    .hero h1{
+        font-size:85px;
+    }
+
+    .hero h1 span{
+        margin-left:35px;
+    }
+
+    .service-grid,
+    .package-grid{
+        grid-template-columns:1fr;
+    }
+
+    .portfolio-grid{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        grid-auto-rows:220px;
+    }
+
+    .photo:nth-child(n){
+        grid-column:span 1;
+        grid-row:span 1;
+    }
+
+    .photo:first-child{
+        grid-column:span 2;
+        grid-row:span 2;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    .about-photo{
+        height:500px;
+    }
+
+    .about-text h2{
+        font-size:60px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
     }
 }
 
+@media(max-width:550px){
 
-/* =====================================================
-   PORTFOLIO
-===================================================== */
-
-.portfolio {
-
-    background: #eee9e1;
-
-    color: #171613;
-}
-
-.portfolio-head {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: end;
-
-    gap: 40px;
-
-    margin-bottom: 70px;
-}
-
-.portfolio-description {
-
-    max-width: 360px;
-
-    color: #777067;
-
-    font-size: 12px;
-
-    line-height: 1.8;
-}
-
-.gallery {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(12,1fr);
-
-    grid-auto-rows: 75px;
-
-    gap: 12px;
-}
-
-.gallery-item {
-
-    position: relative;
-
-    overflow: hidden;
-
-    background: #b9b0a4;
-}
-
-.gallery-item img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    transition:
-        transform 1s,
-        filter 1s;
-}
-
-.gallery-item:hover img {
-
-    transform: scale(1.07);
-
-    filter: brightness(.8);
-}
-
-.gallery-item::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.5),
-            transparent 45%
-        );
-
-    pointer-events: none;
-}
-
-.gallery-caption {
-
-    position: absolute;
-
-    left: 18px;
-    bottom: 17px;
-
-    z-index: 2;
-
-    color: white;
-
-    font-size: 8px;
-
-    letter-spacing: .18em;
-
-    text-transform: uppercase;
-}
-
-.g1 {
-
-    grid-column:
-        span 7;
-
-    grid-row:
-        span 7;
-}
-
-.g2 {
-
-    grid-column:
-        span 5;
-
-    grid-row:
-        span 5;
-}
-
-.g3 {
-
-    grid-column:
-        span 5;
-
-    grid-row:
-        span 6;
-}
-
-.g4 {
-
-    grid-column:
-        span 4;
-
-    grid-row:
-        span 4;
-}
-
-.g5 {
-
-    grid-column:
-        span 3;
-
-    grid-row:
-        span 4;
-}
-
-
-/* =====================================================
-   ABOUT
-===================================================== */
-
-.about {
-
-    background: #171715;
-
-    display: grid;
-
-    grid-template-columns:
-        .8fr 1.2fr;
-
-    gap: 10vw;
-
-    align-items: center;
-}
-
-.about-photo {
-
-    aspect-ratio: 4/5;
-
-    overflow: hidden;
-
-    background: #34312b;
-}
-
-.about-photo img {
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
-
-.about-copy {
-
-    max-width: 620px;
-}
-
-.about-text {
-
-    margin-top: 38px;
-
-    color: #928b82;
-
-    font-size: 15px;
-
-    line-height: 1.9;
-}
-
-.quote {
-
-    margin-top: 45px;
-
-    padding-top: 25px;
-
-    border-top:
-        1px solid var(--line);
-
-    font-family: var(--serif);
-
-    font-size: 28px;
-
-    line-height: 1.35;
-
-    color: #d5ccbf;
-}
-
-
-/* =====================================================
-   CONTACT
-===================================================== */
-
-.contact {
-
-    background: #c8b49d;
-
-    color: #171613;
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 10vw;
-
-    align-items: center;
-}
-
-.contact .section-label {
-
-    color: #6e6256;
-}
-
-.contact-description {
-
-    margin-top: 30px;
-
-    max-width: 550px;
-
-    color: #514a42;
-
-    font-size: 15px;
-
-    line-height: 1.9;
-}
-
-.contact-buttons {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    gap: 10px;
-
-    margin-top: 35px;
-}
-
-.contact-button {
-
-    padding: 14px 20px;
-
-    border:
-        1px solid rgba(23,22,19,.3);
-
-    border-radius: 100px;
-
-    font-size: 9px;
-
-    letter-spacing: .15em;
-
-    text-transform: uppercase;
-
-    transition: .35s;
-}
-
-.contact-button:hover {
-
-    background: #171613;
-
-    color: #fff;
-
-    border-color: #171613;
-}
-
-
-/* =====================================================
-   BOOKING
-===================================================== */
-
-.booking {
-
-    margin-top: 45px;
-
-    padding: 30px;
-
-    background:
-        rgba(255,255,255,.22);
-
-    border:
-        1px solid rgba(23,22,19,.15);
-
-    border-radius: 20px;
-}
-
-.booking h3 {
-
-    font-family: var(--serif);
-
-    font-size: 32px;
-
-    font-weight: 300;
-}
-
-.form-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 12px;
-
-    margin-top: 25px;
-}
-
-.form-field {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 7px;
-}
-
-.form-field.full {
-
-    grid-column:
-        span 2;
-}
-
-.form-field label {
-
-    font-size: 8px;
-
-    letter-spacing: .16em;
-
-    text-transform: uppercase;
-
-    color: #645a50;
-}
-
-.form-field input,
-.form-field textarea,
-.form-field select {
-
-    width: 100%;
-
-    border: 0;
-
-    border-bottom:
-        1px solid rgba(23,22,19,.25);
-
-    background: transparent;
-
-    padding: 10px 0;
-
-    outline: none;
-
-    color: #171613;
-
-    font-size: 13px;
-}
-
-.form-field textarea {
-
-    min-height: 80px;
-
-    resize: vertical;
-}
-
-.form-submit {
-
-    margin-top: 22px;
-
-    border: 0;
-
-    background: #171613;
-
-    color: white;
-
-    border-radius: 100px;
-
-    padding: 15px 25px;
-
-    font-size: 9px;
-
-    letter-spacing: .15em;
-
-    text-transform: uppercase;
-
-    cursor: pointer;
-
-    transition: .35s;
-}
-
-.form-submit:hover {
-
-    transform: translateY(-3px);
-
-    background: #2a2824;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-
-    background: #10100f;
-
-    padding: 30px 5vw;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    color: #68625b;
-
-    font-size: 8px;
-
-    letter-spacing: .16em;
-
-    text-transform: uppercase;
-}
-
-
-/* =====================================================
-   REVEAL
-===================================================== */
-
-.reveal {
-
-    opacity: 0;
-
-    transform:
-        translateY(35px);
-
-    transition:
-        opacity .9s ease,
-        transform .9s
-        cubic-bezier(.2,.8,.2,1);
-}
-
-.reveal.visible {
-
-    opacity: 1;
-
-    transform: none;
-}
-
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-.mobile-menu {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: #11110f;
-
-    z-index: 999;
-
-    padding: 120px 30px 40px;
-
-    transform:
-        translateX(100%);
-
-    transition:
-        transform .5s
-        cubic-bezier(.2,.8,.2,1);
-}
-
-.mobile-menu.open {
-
-    transform:
-        translateX(0);
-}
-
-.mobile-menu a {
-
-    display: block;
-
-    font-family: var(--serif);
-
-    font-size: 48px;
-
-    padding: 12px 0;
-
-    border-bottom:
-        1px solid var(--line);
-}
-
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media(max-width:900px) {
-
-    .nav-links {
-
-        display: none;
+    section{
+        padding:90px 5%;
     }
 
-    .menu-button {
-
-        display: block;
+    .logo-text{
+        font-size:22px;
+        letter-spacing:3px;
     }
 
-    .nav {
-
-        gap: 10px;
+    .hero h1{
+        font-size:67px;
     }
 
-    .services-intro {
-
-        display: block;
+    .hero-right{
+        height:420px;
     }
 
-    .services-description {
-
-        margin-top: 25px;
+    .portfolio-grid{
+        grid-template-columns:1fr;
     }
 
-    .intro,
-    .about,
-    .contact {
-
-        grid-template-columns: 1fr;
-
-        gap: 60px;
+    .photo:first-child{
+        grid-column:span 1;
     }
 
-    .contact {
-
-        padding-bottom: 100px;
+    .section-top{
+        flex-direction:column;
+        align-items:flex-start;
     }
-
 }
-
-
-@media(max-width:650px) {
-
-    .section {
-
-        padding: 100px 6vw;
-    }
-
-    .hero {
-
-        min-height: 100svh;
-    }
-
-    .hero-image {
-
-        inset: 0;
-    }
-
-    .hero-content {
-
-        padding:
-            120px 20px 80px;
-    }
-
-    .hero-logo {
-
-        width: 75vw;
-    }
-
-    .hero h1 {
-
-        font-size: 49px;
-    }
-
-    .hero-text {
-
-        font-size: 13px;
-    }
-
-    .services-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-    .service-card {
-
-        min-height: 330px;
-    }
-
-    .service-symbol {
-
-        font-size: 80px;
-    }
-
-    .gallery {
-
-        grid-template-columns: 1fr;
-
-        grid-auto-rows: 300px;
-    }
-
-    .gallery-item {
-
-        grid-column: span 1 !important;
-
-        grid-row: span 1 !important;
-    }
-
-    .portfolio-head {
-
-        display: block;
-    }
-
-    .portfolio-description {
-
-        margin-top: 25px;
-    }
-
-    .form-grid {
-
-        grid-template-columns: 1fr;
-    }
-
-    .form-field.full {
-
-        grid-column:
-            span 1;
-    }
-
-    .booking {
-
-        padding: 22px;
-    }
-
-    footer {
-
-        flex-direction: column;
-
-        gap: 12px;
-    }
-
-    .cursor-dot,
-    .cursor-ring {
-
-        display: none;
-    }
-
-}
-
-
-/* =====================================================
-   LANGUAGE MOBILE
-===================================================== */
-
-@media(max-width:500px) {
-
-    .brand {
-
-        font-size: 26px;
-    }
-
-    .language-menu {
-
-        right: -45px;
-    }
-
-}
-
-
-/* =====================================================
-   REDUCED MOTION
-===================================================== */
-
-@media(prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration: .01ms !important;
-
-        animation-iteration-count: 1 !important;
-
-        scroll-behavior: auto !important;
-
-        transition-duration: .01ms !important;
-    }
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
+<header id="header">
 
-<!-- =====================================================
-     LOADER
-===================================================== -->
+    <a href="#home" class="logo">
 
-<div class="loader" id="loader">
+        <!-- ЗАМІНИ ЦЕ ПОСИЛАННЯ НА ЛОГОТИП -->
+        <img src="logo.png" alt="Nelli Photography">
 
-    <div class="loader-logo">
-        NELLI
-    </div>
-
-    <div class="loader-line"></div>
-
-</div>
-
-
-<!-- =====================================================
-     CURSOR
-===================================================== -->
-
-<div class="cursor-dot" id="cursorDot"></div>
-
-<div class="cursor-ring" id="cursorRing"></div>
-
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
-
-<header class="nav" id="nav">
-
-    <a
-        href="#home"
-        class="brand"
-    >
-        NELLI <span>photo</span>
+        <span class="logo-text">NELLI</span>
     </a>
 
-
-    <nav class="nav-links">
-
-        <a href="#services"
-           data-i18n="navServices">
-            Зйомки
-        </a>
-
-        <a href="#portfolio"
-           data-i18n="navPortfolio">
-            Портфоліо
-        </a>
-
-        <a href="#about"
-           data-i18n="navAbout">
-            Про мене
-        </a>
-
-        <a href="#contact"
-           data-i18n="navContact">
-            Контакти
-        </a>
-
+    <nav id="nav">
+        <a href="#services" data-i18n="nav_services">Послуги</a>
+        <a href="#portfolio" data-i18n="nav_portfolio">Портфоліо</a>
+        <a href="#packages" data-i18n="nav_packages">Пакети</a>
+        <a href="#about" data-i18n="nav_about">Про мене</a>
+        <a href="#contact" data-i18n="nav_contact">Контакти</a>
     </nav>
 
+    <div style="display:flex;align-items:center;gap:15px">
 
-    <div style="
-        display:flex;
-        align-items:center;
-        gap:10px;
-    ">
+        <div class="lang-wrap">
 
-
-        <!-- LANGUAGE -->
-
-        <div
-            class="language"
-            id="language"
-        >
-
-            <button
-                class="language-button"
-                id="languageButton"
-            >
-
-                <span id="currentFlag">
-                    🇺🇦
-                </span>
-
-                <span id="currentLang">
-                    UA
-                </span>
-
-                ▾
-
+            <button class="lang-btn" id="langBtn">
+                <span id="currentFlag">🇺🇦</span>
+                <span id="currentLang">UA</span>
+                <span>⌄</span>
             </button>
 
+            <div class="lang-menu" id="langMenu">
 
-            <div class="language-menu">
-
-
-                <button
-                    class="language-option"
-                    data-lang="uk"
-                >
-                    🇺🇦
-                    Українська
+                <button class="lang-option" data-lang="uk">
+                    🇺🇦 Українська
                 </button>
 
-
-                <button
-                    class="language-option"
-                    data-lang="cs"
-                >
-                    🇨🇿
-                    Čeština
+                <button class="lang-option" data-lang="ru">
+                    🇷🇺 Русский
                 </button>
 
-
-                <button
-                    class="language-option"
-                    data-lang="en"
-                >
-                    🇬🇧
-                    English
+                <button class="lang-option" data-lang="en">
+                    🇬🇧 English
                 </button>
 
-
-                <button
-                    class="language-option"
-                    data-lang="ru"
-                >
-                    🇷🇺
-                    Русский
-                </button>
-
-
-                <button
-                    class="language-option"
-                    data-lang="hy"
-                >
-                    🇦🇲
-                    Հայերեն
-                </button>
-
-
-                <button
-                    class="language-option"
-                    data-lang="vi"
-                >
-                    🇻🇳
-                    Tiếng Việt
-                </button>
-
-
-                <button
-                    class="language-option"
-                    data-lang="zh"
-                >
-                    🇨🇳
-                    中文
-                </button>
-
-
-                <button
-                    class="language-option"
-                    data-lang="ja"
-                >
-                    🇯🇵
-                    日本語
+                <button class="lang-option" data-lang="cs">
+                    🇨🇿 Čeština
                 </button>
 
             </div>
 
         </div>
 
-
-        <button
-            class="menu-button"
-            id="menuButton"
-        >
-            ☰
-        </button>
+        <button class="menu-btn" id="menuBtn">☰</button>
 
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     MOBILE MENU
-===================================================== -->
+<main>
 
-<div
-    class="mobile-menu"
-    id="mobileMenu"
->
+<!-- HERO -->
 
-    <a
-        href="#services"
-        data-mobile-link
-        data-i18n="navServices"
-    >
-        Зйомки
-    </a>
+<section class="hero" id="home">
 
-    <a
-        href="#portfolio"
-        data-mobile-link
-        data-i18n="navPortfolio"
-    >
-        Портфоліо
-    </a>
+    <div class="hero-left">
 
-    <a
-        href="#about"
-        data-mobile-link
-        data-i18n="navAbout"
-    >
-        Про мене
-    </a>
-
-    <a
-        href="#contact"
-        data-mobile-link
-        data-i18n="navContact"
-    >
-        Контакти
-    </a>
-
-</div>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section
-    class="hero"
-    id="home"
->
-
-
-    <div class="hero-image">
-
-        <!--
-            ЗАМІНИ НА СВОЄ ФОТО
-
-            hero.jpg
-        -->
-
-        <img
-            src="hero.jpg"
-            alt="Nelli Photography"
-        >
-
-    </div>
-
-
-    <div class="hero-overlay"></div>
-
-
-    <div class="hero-circle"></div>
-
-
-    <div class="hero-content">
-
-
-        <!--
-            ЛОГОТИП
-
-            Залиш назву файлу,
-            якщо твій логотип має
-            саме таку назву.
-        -->
-
-        <div class="hero-logo">
-
-            <img
-                src="e6e5c1df-9682-4b22-adb4-764d0fd31df0.png"
-                alt="Nelli"
-            >
-
+        <div class="kicker" data-i18n="hero_kicker">
+            Photography · Prague
         </div>
-
-
-        <div
-            class="eyebrow"
-            data-i18n="heroEyebrow"
-        >
-            Фотограф у Празі
-        </div>
-
 
         <h1>
-
-            <span data-i18n="heroTitle1">
-                Ваші моменти.
-            </span>
-
-            <br>
-
-            <em data-i18n="heroTitle2">
-                Моя історія в кадрі.
-            </em>
-
+            Nelli
+            <span>stories.</span>
         </h1>
 
-
-        <p
-            class="hero-text"
-            data-i18n="heroText"
-        >
-            Весілля · Хрещення · Дні народження ·
-            Сімейні та портретні зйомки · Студія ·
-            Особливі події
+        <p class="hero-description" data-i18n="hero_text">
+            Фотографую справжні моменти, емоції та людей такими,
+            якими вони є. Весілля, сімейні історії, хрестини,
+            дні народження та красиві портрети.
         </p>
 
-
-        <div class="hero-actions">
-
-            <a
-                href="#services"
-                class="button primary"
-                data-i18n="heroButton"
-            >
-                Обрати зйомку
-            </a>
-
-            <a
-                href="#portfolio"
-                class="button secondary"
-                data-i18n="heroPortfolio"
-            >
+        <div class="hero-buttons">
+            <a href="#portfolio" class="btn primary" data-i18n="hero_btn1">
                 Дивитися роботи
             </a>
 
+            <a href="#contact" class="btn" data-i18n="hero_btn2">
+                Забронювати дату
+            </a>
         </div>
 
     </div>
 
 
-    <div class="scroll">
-        Scroll
-    </div>
+    <div class="hero-right">
 
-</section>
+        <div class="hero-frame"></div>
 
+        <div class="hero-photo">
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
-
-<section class="section intro reveal">
-
-
-    <div>
-
-        <div
-            class="section-label"
-            data-i18n="introLabel"
-        >
-            01 — Фотографія
-        </div>
-
-    </div>
-
-
-    <div class="intro-copy">
-
-        <h2 class="section-title">
-
-            <span data-i18n="introTitle1">
-                Не просто
-            </span>
-
-            <br>
-
-            <em data-i18n="introTitle2">
-                фотографії.
-            </em>
-
-        </h2>
-
-
-        <p data-i18n="introText">
-
-            Фотографія для мене — це спосіб
-            залишити емоцію. Не постановка
-            заради красивого кадру, а справжні
-            моменти, до яких хочеться повертатися
-            через роки.
-
-        </p>
-
-
-        <div
-            class="intro-note"
-            data-i18n="introQuote"
-        >
-            «Найцінніше — те, що неможливо
-            повторити вдруге.»
+            <!-- ГОЛОВНЕ ФОТО -->
+            <img src="hero.jpg" alt="Nelli Photography">
 
         </div>
 
@@ -2237,998 +851,343 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     SERVICES
-===================================================== -->
-
-<section
-    class="section services"
-    id="services"
->
-
-
-    <div class="services-intro reveal">
-
-        <div>
-
-            <div
-                class="section-label"
-                data-i18n="servicesLabel"
-            >
-                02 — Зйомки
-            </div>
-
-
-            <h2 class="section-title">
-
-                <span data-i18n="servicesTitle1">
-                    Ваша
-                </span>
-
-                <br>
-
-                <em data-i18n="servicesTitle2">
-                    історія.
-                </em>
-
-            </h2>
-
-        </div>
-
-
-        <p
-            class="services-description"
-            data-i18n="servicesDescription"
-        >
-
-            Оберіть подію або формат.
-            Якщо вашого варіанту немає —
-            просто напишіть мені.
-            Ми придумаємо зйомку саме під вас.
-
-        </p>
-
-    </div>
-
-
-    <div class="services-grid">
-
-
-        <!-- 01 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                01
-            </span>
-
-            <div class="service-symbol">
-                W
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="wedding">
-                    Весілля
-                </h3>
-
-                <p data-i18n="weddingDesc">
-                    Ваш день від першого
-                    погляду до останнього танцю.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 02 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                02
-            </span>
-
-            <div class="service-symbol">
-                C
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="christening">
-                    Хрещення
-                </h3>
-
-                <p data-i18n="christeningDesc">
-                    Один із найважливіших
-                    днів вашої дитини.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 03 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                03
-            </span>
-
-            <div class="service-symbol">
-                B
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="birthday">
-                    День народження
-                </h3>
-
-                <p data-i18n="birthdayDesc">
-                    Свято, емоції, люди
-                    та моменти, які залишаться.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 04 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                04
-            </span>
-
-            <div class="service-symbol">
-                F
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="family">
-                    Сімейна
-                </h3>
-
-                <p data-i18n="familyDesc">
-                    Теплі фотографії
-                    вашої сім'ї.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 05 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                05
-            </span>
-
-            <div class="service-symbol">
-                P
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="portrait">
-                    Портрет
-                </h3>
-
-                <p data-i18n="portraitDesc">
-                    Характер, стиль
-                    і ваша особистість.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 06 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                06
-            </span>
-
-            <div class="service-symbol">
-                S
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="studio">
-                    Студія
-                </h3>
-
-                <p data-i18n="studioDesc">
-                    Світло, стиль
-                    і контроль кожної деталі.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 07 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                07
-            </span>
-
-            <div class="service-symbol">
-                M
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="maternity">
-                    Вагітність
-                </h3>
-
-                <p data-i18n="maternityDesc">
-                    Ніжна історія
-                    нового життя.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 08 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                08
-            </span>
-
-            <div class="service-symbol">
-                K
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="children">
-                    Дитяча
-                </h3>
-
-                <p data-i18n="childrenDesc">
-                    Справжні емоції
-                    та безтурботне дитинство.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 09 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                09
-            </span>
-
-            <div class="service-symbol">
-                L
-            </div>
-
-            <div class="service-info">
-
-                <h3>
-                    Love Story
-                </h3>
-
-                <p data-i18n="loveDesc">
-                    Ваша історія
-                    про двох.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-        <!-- 10 -->
-
-        <a
-            href="#contact"
-            class="service-card reveal"
-        >
-
-            <span class="service-number">
-                10
-            </span>
-
-            <div class="service-symbol">
-                +
-            </div>
-
-            <div class="service-info">
-
-                <h3 data-i18n="other">
-                    Інша подія
-                </h3>
-
-                <p data-i18n="otherDesc">
-                    Маєте іншу ідею?
-                    Розкажіть мені.
-                </p>
-
-            </div>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </a>
-
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     MARQUEE
-===================================================== -->
+<!-- MARQUEE -->
 
 <div class="marquee">
+    <div class="marquee-inner">
+        <span>Weddings</span>
+        <span>Family</span>
+        <span>Christenings</span>
+        <span>Portraits</span>
+        <span>Birthday</span>
+        <span>Studio</span>
+        <span>Love Story</span>
 
-    <div class="marquee-track">
-
-        <span>
-            your story in frames
-        </span>
-
-        <i>✦</i>
-
-        <span>
-            moments worth keeping
-        </span>
-
-        <i>✦</i>
-
-        <span>
-            your story in frames
-        </span>
-
-        <i>✦</i>
-
-        <span>
-            moments worth keeping
-        </span>
-
-        <i>✦</i>
-
-        <span>
-            your story in frames
-        </span>
-
-        <i>✦</i>
-
-        <span>
-            moments worth keeping
-        </span>
-
+        <span>Weddings</span>
+        <span>Family</span>
+        <span>Christenings</span>
+        <span>Portraits</span>
+        <span>Birthday</span>
+        <span>Studio</span>
+        <span>Love Story</span>
     </div>
-
 </div>
 
 
-<!-- =====================================================
-     PORTFOLIO
-===================================================== -->
+<!-- SERVICES -->
 
-<section
-    class="section portfolio"
-    id="portfolio"
->
+<section class="services reveal" id="services">
 
-
-    <div class="portfolio-head reveal">
+    <div class="section-top">
 
         <div>
+            <div class="section-number">01 / SERVICES</div>
+            <h2 class="section-title" data-i18n="services_title">
+                Що я<br>знімаю
+            </h2>
+        </div>
 
-            <div
-                class="section-label"
-                data-i18n="portfolioLabel"
-            >
-                03 — Портфоліо
-            </div>
+        <p class="section-description" data-i18n="services_desc">
+            Кожна подія має свою атмосферу. Моє завдання —
+            зберегти її так, щоб через роки ви могли знову
+            відчути цей момент.
+        </p>
+
+    </div>
 
 
-            <h2 class="section-title">
+    <div class="service-grid">
 
-                <span data-i18n="portfolioTitle1">
-                    Кадри,
-                </span>
+        <div class="service">
+            <span class="service-num">01</span>
+            <div class="service-icon">♡</div>
+            <h3 data-i18n="wedding">Весілля</h3>
+            <p data-i18n="wedding_desc">
+                Від ранкових зборів до останнього танцю.
+            </p>
+        </div>
 
-                <br>
+        <div class="service">
+            <span class="service-num">02</span>
+            <div class="service-icon">✦</div>
+            <h3 data-i18n="christening">Хрестини</h3>
+            <p data-i18n="christening_desc">
+                Ніжні та щирі фотографії особливого дня.
+            </p>
+        </div>
 
-                <em data-i18n="portfolioTitle2">
-                    які залишаються.
-                </em>
+        <div class="service">
+            <span class="service-num">03</span>
+            <div class="service-icon">○</div>
+            <h3 data-i18n="birthday">День народження</h3>
+            <p data-i18n="birthday_desc">
+                Емоції, гості, деталі та атмосфера свята.
+            </p>
+        </div>
 
+        <div class="service">
+            <span class="service-num">04</span>
+            <div class="service-icon">⌁</div>
+            <h3 data-i18n="studio">Студія</h3>
+            <p data-i18n="studio_desc">
+                Стильні портрети та творчі фотосесії.
+            </p>
+        </div>
+
+        <div class="service">
+            <span class="service-num">05</span>
+            <div class="service-icon">∞</div>
+            <h3 data-i18n="family">Сімейні</h3>
+            <p data-i18n="family_desc">
+                Живі кадри без штучних поз.
+            </p>
+        </div>
+
+        <div class="service">
+            <span class="service-num">06</span>
+            <div class="service-icon">♡</div>
+            <h3 data-i18n="lovestory">Love Story</h3>
+            <p data-i18n="lovestory_desc">
+                Історія двох людей у красивих кадрах.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PORTFOLIO -->
+
+<section class="reveal" id="portfolio">
+
+    <div class="section-top">
+
+        <div>
+            <div class="section-number">02 / PORTFOLIO</div>
+            <h2 class="section-title" data-i18n="portfolio_title">
+                Обрані<br>історії
+            </h2>
+        </div>
+
+        <p class="section-description" data-i18n="portfolio_desc">
+            Тут з'являтимуться найкращі моменти з ваших
+            фотосесій.
+        </p>
+
+    </div>
+
+
+    <div class="portfolio-grid">
+
+        <div class="photo">
+            <img src="photo1.jpg" alt="Wedding">
+            <div class="photo-label" data-i18n="wedding">Весілля</div>
+        </div>
+
+        <div class="photo">
+            <img src="photo2.jpg" alt="Portrait">
+            <div class="photo-label" data-i18n="portrait">Портрет</div>
+        </div>
+
+        <div class="photo">
+            <img src="photo3.jpg" alt="Family">
+            <div class="photo-label" data-i18n="family">Сімейна</div>
+        </div>
+
+        <div class="photo">
+            <img src="photo4.jpg" alt="Studio">
+            <div class="photo-label" data-i18n="studio">Студія</div>
+        </div>
+
+        <div class="photo">
+            <img src="photo5.jpg" alt="Christening">
+            <div class="photo-label" data-i18n="christening">Хрестини</div>
+        </div>
+
+        <div class="photo">
+            <img src="photo6.jpg" alt="Birthday">
+            <div class="photo-label" data-i18n="birthday">День народження</div>
+        </div>
+
+        <div class="photo">
+            <img src="photo7.jpg" alt="Love Story">
+            <div class="photo-label">Love Story</div>
+        </div>
+
+        <div class="photo">
+            <img src="photo8.jpg" alt="Family">
+            <div class="photo-label" data-i18n="family">Сімейна</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PACKAGES -->
+
+<section class="packages reveal" id="packages">
+
+    <div class="section-top">
+
+        <div>
+            <div class="section-number">03 / PACKAGES</div>
+
+            <h2 class="section-title" data-i18n="packages_title">
+                Формати<br>зйомки
             </h2>
 
         </div>
 
-
-        <p
-            class="portfolio-description"
-            data-i18n="portfolioDescription"
-        >
-
-            Тут будуть ваші найкращі
-            фотографії. Просто замініть
-            файли photo-1.jpg, photo-2.jpg
-            та інші на власні.
-
+        <p class="section-description" data-i18n="packages_desc">
+            Пакети можна легко змінити під ваші реальні
+            ціни та умови.
         </p>
 
     </div>
 
 
-    <div class="gallery">
+    <div class="package-grid">
 
+        <div class="package">
 
-        <div class="gallery-item g1">
+            <div class="package-name" data-i18n="package1">
+                MINI
+            </div>
 
-            <img
-                src="photo-1.jpg"
-                alt="Wedding photography"
-            >
+            <div class="package-price">
+                €120
+            </div>
 
-            <span
-                class="gallery-caption"
-                data-i18n="galleryWedding"
-            >
-                Wedding
-            </span>
-
-        </div>
-
-
-        <div class="gallery-item g2">
-
-            <img
-                src="photo-2.jpg"
-                alt="Portrait photography"
-            >
-
-            <span
-                class="gallery-caption"
-                data-i18n="galleryPortrait"
-            >
-                Portrait
-            </span>
+            <ul>
+                <li data-i18n="p1_1">1 година зйомки</li>
+                <li data-i18n="p1_2">20 оброблених фото</li>
+                <li data-i18n="p1_3">Онлайн-галерея</li>
+                <li data-i18n="p1_4">Термін 7–10 днів</li>
+            </ul>
 
         </div>
 
 
-        <div class="gallery-item g3">
+        <div class="package featured">
 
-            <img
-                src="photo-3.jpg"
-                alt="Family photography"
-            >
+            <div class="package-name" data-i18n="package2">
+                STORY
+            </div>
 
-            <span
-                class="gallery-caption"
-                data-i18n="galleryFamily"
-            >
-                Family
-            </span>
+            <div class="package-price">
+                €250
+            </div>
 
-        </div>
-
-
-        <div class="gallery-item g4">
-
-            <img
-                src="photo-4.jpg"
-                alt="Studio photography"
-            >
-
-            <span
-                class="gallery-caption"
-                data-i18n="galleryStudio"
-            >
-                Studio
-            </span>
+            <ul>
+                <li data-i18n="p2_1">2–3 години зйомки</li>
+                <li data-i18n="p2_2">50+ оброблених фото</li>
+                <li data-i18n="p2_3">Онлайн-галерея</li>
+                <li data-i18n="p2_4">Допомога з локацією</li>
+            </ul>
 
         </div>
 
 
-        <div class="gallery-item g5">
+        <div class="package">
 
-            <img
-                src="photo-5.jpg"
-                alt="Event photography"
-            >
+            <div class="package-name" data-i18n="package3">
+                EVENT
+            </div>
 
-            <span
-                class="gallery-caption"
-                data-i18n="galleryEvent"
-            >
-                Event
-            </span>
+            <div class="package-price">
+                €450+
+            </div>
+
+            <ul>
+                <li data-i18n="p3_1">Події та свята</li>
+                <li data-i18n="p3_2">Велика кількість фото</li>
+                <li data-i18n="p3_3">Авторська обробка</li>
+                <li data-i18n="p3_4">Індивідуальний пакет</li>
+            </ul>
 
         </div>
-
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     ABOUT
-===================================================== -->
+<!-- ABOUT -->
 
-<section
-    class="section about"
-    id="about"
->
+<section class="about reveal" id="about">
 
-
-    <div class="about-photo reveal">
-
-        <img
-            src="about.jpg"
-            alt="Nelli photographer"
-        >
-
+    <div class="about-photo">
+        <img src="about.jpg" alt="Nelli">
     </div>
 
+    <div class="about-text">
 
-    <div class="about-copy reveal">
+        <div class="section-number">04 / ABOUT</div>
 
-        <div
-            class="section-label"
-            data-i18n="aboutLabel"
-        >
-            04 — Про мене
-        </div>
-
-
-        <h2 class="section-title">
-
-            <span data-i18n="aboutTitle1">
-                Неллі
-            </span>
-
-            <br>
-
-            <em data-i18n="aboutTitle2">
-                за кадром.
-            </em>
-
+        <h2 data-i18n="about_title">
+            Люди.<br>
+            Емоції.<br>
+            Історії.
         </h2>
 
-
-        <p
-            class="about-text"
-            data-i18n="aboutText"
-        >
-
-            Тут буде особиста історія
-            Неллі — як вона прийшла
-            у фотографію, що любить
-            знімати та чому обрала
-            саме цей стиль.
-
+        <p data-i18n="about_text">
+            Я Nelli — фотограф, яка любить справжні моменти.
+            Без зайвої постановки та награних емоцій.
+            Мені важливо, щоб після фотосесії ви отримали
+            не просто красиві фотографії, а спогади,
+            до яких захочеться повертатися.
         </p>
-
-
-        <div
-            class="quote"
-            data-i18n="quote"
-        >
-
-            «Найкращі фотографії —
-            це ті, де ви впізнаєте себе.»
-
-        </div>
 
     </div>
 
 </section>
 
 
-<!-- =====================================================
-     CONTACT
-===================================================== -->
+<!-- CONTACT -->
 
-<section
-    class="section contact"
-    id="contact"
->
+<section class="contact reveal" id="contact">
 
+    <div class="section-number">05 / CONTACT</div>
 
-    <div class="reveal">
+    <h2 data-i18n="contact_title">
+        Створимо<br>
+        щось справжнє.
+    </h2>
 
-        <div
-            class="section-label"
-            data-i18n="contactLabel"
-        >
-            05 — Запис
-        </div>
+    <p data-i18n="contact_text">
+        Розкажіть мені про вашу подію або ідею —
+        і ми разом придумаємо найкращий формат зйомки.
+    </p>
 
+    <div class="contact-links">
 
-        <h2 class="section-title">
+        <a class="contact-link" href="https://instagram.com/" target="_blank">
+            Instagram
+        </a>
 
-            <span data-i18n="contactTitle1">
-                Давайте
-            </span>
+        <a class="contact-link" href="mailto:example@email.com">
+            Email
+        </a>
 
-            <br>
-
-            <em data-i18n="contactTitle2">
-                створимо.
-            </em>
-
-        </h2>
-
-
-        <p
-            class="contact-description"
-            data-i18n="contactDescription"
-        >
-
-            Розкажіть про вашу подію,
-            дату та бажаний формат.
-            Неллі зв'яжеться з вами
-            та допоможе все організувати.
-
-        </p>
-
-
-        <div class="contact-buttons">
-
-            <a
-                href="https://www.instagram.com/viii.hairstylist/"
-                target="_blank"
-                rel="noopener"
-                class="contact-button"
-            >
-                Instagram
-            </a>
-
-            <a
-                href="mailto:YOUR_EMAIL@example.com"
-                class="contact-button"
-            >
-                Email
-            </a>
-
-            <a
-                href="tel:+420000000000"
-                class="contact-button"
-            >
-                Phone
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <div class="reveal">
-
-
-        <div class="booking">
-
-            <h3 data-i18n="formTitle">
-                Розкажіть про зйомку
-            </h3>
-
-
-            <form
-                action="https://formspree.io/f/xnpavyge"
-                method="POST"
-            >
-
-
-                <div class="form-grid">
-
-
-                    <div class="form-field">
-
-                        <label data-i18n="name">
-                            Ваше ім'я
-                        </label>
-
-                        <input
-                            type="text"
-                            name="name"
-                            required
-                            placeholder="Ваше ім'я"
-                        >
-
-                    </div>
-
-
-                    <div class="form-field">
-
-                        <label data-i18n="email">
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            name="email"
-                            required
-                            placeholder="email@example.com"
-                        >
-
-                    </div>
-
-
-                    <div class="form-field">
-
-                        <label data-i18n="phone">
-                            Телефон
-                        </label>
-
-                        <input
-                            type="tel"
-                            name="phone"
-                            placeholder="+420..."
-                        >
-
-                    </div>
-
-
-                    <div class="form-field">
-
-                        <label data-i18n="date">
-                            Дата
-                        </label>
-
-                        <input
-                            type="date"
-                            name="date"
-                        >
-
-                    </div>
-
-
-                    <div class="form-field full">
-
-                        <label data-i18n="type">
-                            Тип зйомки
-                        </label>
-
-
-                        <select
-                            name="session"
-                            required
-                        >
-
-                            <option
-                                value=""
-                                data-i18n="choose"
-                            >
-                                Оберіть тип
-                            </option>
-
-                            <option
-                                value="Wedding"
-                                data-i18n="wedding"
-                            >
-                                Весілля
-                            </option>
-
-                            <option
-                                value="Christening"
-                                data-i18n="christening"
-                            >
-                                Хрещення
-                            </option>
-
-                            <option
-                                value="Birthday"
-                                data-i18n="birthday"
-                            >
-                                День народження
-                            </option>
-
-                            <option
-                                value="Family"
-                                data-i18n="family"
-                            >
-                                Сімейна
-                            </option>
-
-                            <option
-                                value="Portrait"
-                                data-i18n="portrait"
-                            >
-                                Портрет
-                            </option>
-
-                            <option
-                                value="Studio"
-                                data-i18n="studio"
-                            >
-                                Студія
-                            </option>
-
-                            <option
-                                value="Maternity"
-                                data-i18n="maternity"
-                            >
-                                Вагітність
-                            </option>
-
-                            <option
-                                value="Children"
-                                data-i18n="children"
-                            >
-                                Дитяча
-                            </option>
-
-                            <option
-                                value="Love Story"
-                            >
-                                Love Story
-                            </option>
-
-                            <option
-                                value="Other"
-                                data-i18n="other"
-                            >
-                                Інша подія
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-field full">
-
-                        <label data-i18n="message">
-                            Розкажіть про вашу подію
-                        </label>
-
-                        <textarea
-                            name="message"
-                            placeholder="Дата, місце, кількість людей, побажання..."
-                        ></textarea>
-
-                    </div>
-
-                </div>
-
-
-                <input
-                    type="hidden"
-                    name="_subject"
-                    value="Нова заявка з сайту NELLI"
-                >
-
-
-                <input
-                    type="hidden"
-                    name="language"
-                    id="formLanguage"
-                    value="uk"
-                >
-
-
-                <button
-                    type="submit"
-                    class="form-submit"
-                    data-i18n="send"
-                >
-                    Надіслати заявку →
-                </button>
-
-
-            </form>
-
-        </div>
+        <a class="contact-link" href="tel:+420000000000">
+            Phone
+        </a>
 
     </div>
 
 </section>
 
+</main>
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
-    <span>
-        © 2026 NELLI PHOTOGRAPHY
-    </span>
+    <span>© 2026 NELLI PHOTOGRAPHY</span>
 
     <span data-i18n="footer">
-        Фотограф у Празі
+        Prague · Czech Republic
     </span>
 
 </footer>
@@ -3236,2030 +1195,390 @@ footer {
 
 <script>
 
-/* =====================================================
-   LOADER
-===================================================== */
-
-window.addEventListener(
-    "load",
-    () => {
-
-        setTimeout(
-            () => {
-
-                document
-                    .getElementById("loader")
-                    .classList
-                    .add("hidden");
-
-            },
-            900
-        );
-
-    }
-);
-
-
-/* =====================================================
-   NAV SCROLL
-===================================================== */
-
-const nav =
-    document.getElementById("nav");
-
-window.addEventListener(
-    "scroll",
-    () => {
-
-        if(window.scrollY > 50) {
-
-            nav.classList.add("scrolled");
-
-        } else {
-
-            nav.classList.remove("scrolled");
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   REVEAL ANIMATION
-===================================================== */
-
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(
-                entry => {
-
-                    if(
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target
-                            .classList
-                            .add("visible");
-
-                        revealObserver
-                            .unobserve(entry.target);
-
-                    }
-
-                }
-            );
-
-        },
-        {
-            threshold: .12
-        }
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(
-        element => {
-
-            revealObserver.observe(element);
-
-        }
-    );
-
-
-/* =====================================================
-   CURSOR
-===================================================== */
-
-const cursorDot =
-    document.getElementById("cursorDot");
-
-const cursorRing =
-    document.getElementById("cursorRing");
-
-if(
-    window.matchMedia(
-        "(pointer:fine)"
-    ).matches
-) {
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    let ringX = 0;
-    let ringY = 0;
-
-
-    window.addEventListener(
-        "mousemove",
-        event => {
-
-            mouseX = event.clientX;
-            mouseY = event.clientY;
-
-            cursorDot.style.left =
-                mouseX + "px";
-
-            cursorDot.style.top =
-                mouseY + "px";
-
-        }
-    );
-
-
-    function animateCursor() {
-
-        ringX +=
-            (mouseX - ringX) * .15;
-
-        ringY +=
-            (mouseY - ringY) * .15;
-
-        cursorRing.style.left =
-            ringX + "px";
-
-        cursorRing.style.top =
-            ringY + "px";
-
-        requestAnimationFrame(
-            animateCursor
-        );
-
-    }
-
-    animateCursor();
-
-
-    document
-        .querySelectorAll("a,button")
-        .forEach(
-            element => {
-
-                element.addEventListener(
-                    "mouseenter",
-                    () => {
-
-                        cursorRing.style.width =
-                            "55px";
-
-                        cursorRing.style.height =
-                            "55px";
-
-                    }
-                );
-
-
-                element.addEventListener(
-                    "mouseleave",
-                    () => {
-
-                        cursorRing.style.width =
-                            "35px";
-
-                        cursorRing.style.height =
-                            "35px";
-
-                    }
-                );
-
-            }
-        );
-
-}
-
-
-/* =====================================================
-   LANGUAGE SYSTEM
-===================================================== */
+/* ================= LANGUAGES ================= */
 
 const translations = {
 
-
-    uk: {
-
-        flag: "🇺🇦",
-        short: "UA",
-
-        navServices: "Зйомки",
-        navPortfolio: "Портфоліо",
-        navAbout: "Про мене",
-        navContact: "Контакти",
-
-        heroEyebrow: "Фотограф у Празі",
-
-        heroTitle1: "Ваші моменти.",
-        heroTitle2: "Моя історія в кадрі.",
-
-        heroText:
-            "Весілля · Хрещення · Дні народження · Сімейні та портретні зйомки · Студія · Особливі події",
-
-        heroButton:
-            "Обрати зйомку",
-
-        heroPortfolio:
-            "Дивитися роботи",
-
-        introLabel:
-            "01 — Фотографія",
-
-        introTitle1:
-            "Не просто",
-
-        introTitle2:
-            "фотографії.",
-
-        introText:
-            "Фотографія для мене — це спосіб залишити емоцію. Не постановка заради красивого кадру, а справжні моменти, до яких хочеться повертатися через роки.",
-
-        introQuote:
-            "«Найцінніше — те, що неможливо повторити вдруге.»",
-
-        servicesLabel:
-            "02 — Зйомки",
-
-        servicesTitle1:
-            "Ваша",
-
-        servicesTitle2:
-            "історія.",
-
-        servicesDescription:
-            "Оберіть подію або формат. Якщо вашого варіанту немає — просто напишіть мені. Ми придумаємо зйомку саме під вас.",
-
-        wedding:
-            "Весілля",
-
-        weddingDesc:
-            "Ваш день від першого погляду до останнього танцю.",
-
-        christening:
-            "Хрещення",
-
-        christeningDesc:
-            "Один із найважливіших днів вашої дитини.",
-
-        birthday:
-            "День народження",
-
-        birthdayDesc:
-            "Свято, емоції, люди та моменти, які залишаться.",
-
-        family:
-            "Сімейна",
-
-        familyDesc:
-            "Теплі фотографії вашої сім'ї.",
-
-        portrait:
-            "Портрет",
-
-        portraitDesc:
-            "Характер, стиль і ваша особистість.",
-
-        studio:
-            "Студія",
-
-        studioDesc:
-            "Світло, стиль і контроль кожної деталі.",
-
-        maternity:
-            "Вагітність",
-
-        maternityDesc:
-            "Ніжна історія нового життя.",
-
-        children:
-            "Дитяча",
-
-        childrenDesc:
-            "Справжні емоції та безтурботне дитинство.",
-
-        other:
-            "Інша подія",
-
-        otherDesc:
-            "Маєте іншу ідею? Розкажіть мені.",
-
-        loveDesc:
-            "Ваша історія про двох.",
-
-        portfolioLabel:
-            "03 — Портфоліо",
-
-        portfolioTitle1:
-            "Кадри,",
-
-        portfolioTitle2:
-            "які залишаються.",
-
-        portfolioDescription:
-            "Тут будуть ваші найкращі фотографії. Просто замініть файли photo-1.jpg, photo-2.jpg та інші на власні.",
-
-        galleryWedding:
-            "Wedding",
-
-        galleryPortrait:
-            "Portrait",
-
-        galleryFamily:
-            "Family",
-
-        galleryStudio:
-            "Studio",
-
-        galleryEvent:
-            "Event",
-
-        aboutLabel:
-            "04 — Про мене",
-
-        aboutTitle1:
-            "Неллі",
-
-        aboutTitle2:
-            "за кадром.",
-
-        aboutText:
-            "Тут буде особиста історія Неллі — як вона прийшла у фотографію, що любить знімати та чому обрала саме цей стиль.",
-
-        quote:
-            "«Найкращі фотографії — це ті, де ви впізнаєте себе.»",
-
-        contactLabel:
-            "05 — Запис",
-
-        contactTitle1:
-            "Давайте",
-
-        contactTitle2:
-            "створимо.",
-
-        contactDescription:
-            "Розкажіть про вашу подію, дату та бажаний формат. Неллі зв'яжеться з вами та допоможе все організувати.",
-
-        formTitle:
-            "Розкажіть про зйомку",
-
-        name:
-            "Ваше ім'я",
-
-        email:
-            "Email",
-
-        phone:
-            "Телефон",
-
-        date:
-            "Дата",
-
-        type:
-            "Тип зйомки",
-
-        choose:
-            "Оберіть тип",
-
-        message:
-            "Розкажіть про вашу подію",
-
-        send:
-            "Надіслати заявку →",
-
-        footer:
-            "Фотограф у Празі"
-
-    },
-
-
-    cs: {
-
-        flag: "🇨🇿",
-        short: "CZ",
-
-        navServices: "Focení",
-        navPortfolio: "Portfolio",
-        navAbout: "O mně",
-        navContact: "Kontakt",
-
-        heroEyebrow:
-            "Fotografka v Praze",
-
-        heroTitle1:
-            "Vaše okamžiky.",
-
-        heroTitle2:
-            "Můj příběh v obraze.",
-
-        heroText:
-            "Svatby · Křtiny · Narozeniny · Rodinné a portrétní focení · Studio · Speciální události",
-
-        heroButton:
-            "Vybrat focení",
-
-        heroPortfolio:
-            "Prohlédnout portfolio",
-
-        introLabel:
-            "01 — Fotografie",
-
-        introTitle1:
-            "Nejen",
-
-        introTitle2:
-            "fotografie.",
-
-        introText:
-            "Fotografie je pro mě způsob, jak zachytit emoci. Ne dokonalá póza, ale skutečné okamžiky, ke kterým se budete chtít vracet.",
-
-        introQuote:
-            "„To nejcennější nelze zopakovat.“",
-
-        servicesLabel:
-            "02 — Focení",
-
-        servicesTitle1:
-            "Váš",
-
-        servicesTitle2:
-            "příběh.",
-
-        servicesDescription:
-            "Vyberte si událost nebo typ focení. Pokud zde svou představu nevidíte, napište mi.",
-
-        wedding:
-            "Svatba",
-
-        weddingDesc:
-            "Váš den od prvního pohledu až po poslední tanec.",
-
-        christening:
-            "Křtiny",
-
-        christeningDesc:
-            "Jeden z nejdůležitějších dnů vašeho dítěte.",
-
-        birthday:
-            "Narozeniny",
-
-        birthdayDesc:
-            "Oslava, emoce, lidé a okamžiky, které zůstanou.",
-
-        family:
-            "Rodinné",
-
-        familyDesc:
-            "Přirozené a teplé fotografie vaší rodiny.",
-
-        portrait:
-            "Portrét",
-
-        portraitDesc:
-            "Charakter, styl a vaše osobnost.",
-
-        studio:
-            "Studio",
-
-        studioDesc:
-            "Světlo, styl a kontrola každého detailu.",
-
-        maternity:
-            "Těhotenské",
-
-        maternityDesc:
-            "Jemný příběh nového života.",
-
-        children:
-            "Dětské",
-
-        childrenDesc:
-            "Skutečné emoce a bezstarostné dětství.",
-
-        other:
-            "Jiná událost",
-
-        otherDesc:
-            "Máte jiný nápad? Napište mi.",
-
-        loveDesc:
-            "Váš příběh ve dvou.",
-
-        portfolioLabel:
-            "03 — Portfolio",
-
-        portfolioTitle1:
-            "Okamžiky,",
-
-        portfolioTitle2:
-            "které zůstávají.",
-
-        portfolioDescription:
-            "Zde budou vaše nejlepší fotografie. Jednoduše nahraďte soubory vlastními fotografiemi.",
-
-        galleryWedding:
-            "Wedding",
-
-        galleryPortrait:
-            "Portrait",
-
-        galleryFamily:
-            "Family",
-
-        galleryStudio:
-            "Studio",
-
-        galleryEvent:
-            "Event",
-
-        aboutLabel:
-            "04 — O mně",
-
-        aboutTitle1:
-            "Nelli",
-
-        aboutTitle2:
-            "za objektivem.",
-
-        aboutText:
-            "Zde bude osobní příběh Nelli — jak se dostala k fotografii a co ji na focení baví.",
-
-        quote:
-            "„Nejlepší fotografie jsou ty, ve kterých poznáte sami sebe.“",
-
-        contactLabel:
-            "05 — Rezervace",
-
-        contactTitle1:
-            "Pojďme",
-
-        contactTitle2:
-            "tvořit.",
-
-        contactDescription:
-            "Napište mi o vaší události, datu a představě. Ozvu se vám a pomůžu vše naplánovat.",
-
-        formTitle:
-            "Řekněte mi o focení",
-
-        name:
-            "Vaše jméno",
-
-        email:
-            "Email",
-
-        phone:
-            "Telefon",
-
-        date:
-            "Datum",
-
-        type:
-            "Typ focení",
-
-        choose:
-            "Vyberte typ",
-
-        message:
-            "Řekněte mi více",
-
-        send:
-            "Odeslat poptávku →",
-
-        footer:
-            "Fotografka v Praze"
-
-    },
-
-
-    en: {
-
-        flag: "🇬🇧",
-        short: "EN",
-
-        navServices: "Sessions",
-        navPortfolio: "Portfolio",
-        navAbout: "About",
-        navContact: "Contact",
-
-        heroEyebrow:
-            "Photographer in Prague",
-
-        heroTitle1:
-            "Your moments.",
-
-        heroTitle2:
-            "My story in frames.",
-
-        heroText:
-            "Weddings · Christenings · Birthdays · Family & Portraits · Studio · Special Events",
-
-        heroButton:
-            "Choose a session",
-
-        heroPortfolio:
-            "View portfolio",
-
-        introLabel:
-            "01 — Photography",
-
-        introTitle1:
-            "More than",
-
-        introTitle2:
-            "photographs.",
-
-        introText:
-            "Photography is a way of preserving emotion. Not perfect poses, but real moments you will want to return to years from now.",
-
-        introQuote:
-            "\"The most precious moments cannot be repeated.\"",
-
-        servicesLabel:
-            "02 — Sessions",
-
-        servicesTitle1:
-            "Your",
-
-        servicesTitle2:
-            "story.",
-
-        servicesDescription:
-            "Choose an event or photography style. If you don't see what you need, simply contact me.",
-
-        wedding:
-            "Wedding",
-
-        weddingDesc:
-            "Your day from the first look to the last dance.",
-
-        christening:
-            "Christening",
-
-        christeningDesc:
-            "One of the most important days for your child.",
-
-        birthday:
-            "Birthday",
-
-        birthdayDesc:
-            "Celebration, emotions, people and memories.",
-
-        family:
-            "Family",
-
-        familyDesc:
-            "Warm and natural family photography.",
-
-        portrait:
-            "Portrait",
-
-        portraitDesc:
-            "Character, style and personality.",
-
-        studio:
-            "Studio",
-
-        studioDesc:
-            "Light, style and control of every detail.",
-
-        maternity:
-            "Maternity",
-
-        maternityDesc:
-            "A gentle story of new life.",
-
-        children:
-            "Children",
-
-        childrenDesc:
-            "Real emotions and childhood.",
-
-        other:
-            "Other event",
-
-        otherDesc:
-            "Have another idea? Tell me about it.",
-
-        loveDesc:
-            "Your story of two.",
-
-        portfolioLabel:
-            "03 — Portfolio",
-
-        portfolioTitle1:
-            "Frames",
-
-        portfolioTitle2:
-            "that remain.",
-
-        portfolioDescription:
-            "This is where your best photographs will appear. Simply replace the image files with your own.",
-
-        galleryWedding:
-            "Wedding",
-
-        galleryPortrait:
-            "Portrait",
-
-        galleryFamily:
-            "Family",
-
-        galleryStudio:
-            "Studio",
-
-        galleryEvent:
-            "Event",
-
-        aboutLabel:
-            "04 — About",
-
-        aboutTitle1:
-            "Nelli",
-
-        aboutTitle2:
-            "behind the camera.",
-
-        aboutText:
-            "This section will tell Nelli's personal story — how she discovered photography and what she loves about creating images.",
-
-        quote:
-            "\"The best photographs are the ones where you recognize yourself.\"",
-
-        contactLabel:
-            "05 — Booking",
-
-        contactTitle1:
-            "Let's",
-
-        contactTitle2:
-            "create.",
-
-        contactDescription:
-            "Tell me about your event, date and idea. I will get back to you and help organize everything.",
-
-        formTitle:
-            "Tell me about your session",
-
-        name:
-            "Your name",
-
-        email:
-            "Email",
-
-        phone:
-            "Phone",
-
-        date:
-            "Date",
-
-        type:
-            "Session type",
-
-        choose:
-            "Choose a type",
-
-        message:
-            "Tell me about your event",
-
-        send:
-            "Send request →",
-
-        footer:
-            "Photographer in Prague"
-
-    },
-
-
-    ru: {
-
-        flag: "🇷🇺",
-        short: "RU",
-
-        navServices: "Съёмки",
-        navPortfolio: "Портфолио",
-        navAbout: "Обо мне",
-        navContact: "Контакты",
-
-        heroEyebrow:
-            "Фотограф в Праге",
-
-        heroTitle1:
-            "Ваши моменты.",
-
-        heroTitle2:
-            "Моя история в кадре.",
-
-        heroText:
-            "Свадьбы · Крещения · Дни рождения · Семейные и портретные съёмки · Студия · События",
-
-        heroButton:
-            "Выбрать съёмку",
-
-        heroPortfolio:
-            "Смотреть работы",
-
-        introLabel:
-            "01 — Фотография",
-
-        introTitle1:
-            "Не просто",
-
-        introTitle2:
-            "фотографии.",
-
-        introText:
-            "Фотография для меня — способ сохранить эмоцию. Не идеальная поза, а настоящие моменты, к которым хочется возвращаться.",
-
-        introQuote:
-            "«Самое ценное невозможно повторить.»",
-
-        servicesLabel:
-            "02 — Съёмки",
-
-        servicesTitle1:
-            "Ваша",
-
-        servicesTitle2:
-            "история.",
-
-        servicesDescription:
-            "Выберите событие или формат. Если вашего варианта нет — просто напишите мне.",
-
-        wedding:
-            "Свадьба",
-
-        weddingDesc:
-            "Ваш день от первого взгляда до последнего танца.",
-
-        christening:
-            "Крещение",
-
-        christeningDesc:
-            "Один из самых важных дней вашего ребёнка.",
-
-        birthday:
-            "День рождения",
-
-        birthdayDesc:
-            "Праздник, эмоции, люди и воспоминания.",
-
-        family:
-            "Семейная",
-
-        familyDesc:
-            "Тёплые и настоящие фотографии вашей семьи.",
-
-        portrait:
-            "Портрет",
-
-        portraitDesc:
-            "Характер, стиль и индивидуальность.",
-
-        studio:
-            "Студия",
-
-        studioDesc:
-            "Свет, стиль и контроль каждой детали.",
-
-        maternity:
-            "Беременность",
-
-        maternityDesc:
-            "Нежная история новой жизни.",
-
-        children:
-            "Детская",
-
-        childrenDesc:
-            "Настоящие эмоции и детство.",
-
-        other:
-            "Другое событие",
-
-        otherDesc:
-            "Есть другая идея? Расскажите мне.",
-
-        loveDesc:
-            "Ваша история вдвоём.",
-
-        portfolioLabel:
-            "03 — Портфолио",
-
-        portfolioTitle1:
-            "Кадры,",
-
-        portfolioTitle2:
-            "которые остаются.",
-
-        portfolioDescription:
-            "Здесь будут ваши лучшие фотографии. Просто замените файлы своими фотографиями.",
-
-        galleryWedding:
-            "Wedding",
-
-        galleryPortrait:
-            "Portrait",
-
-        galleryFamily:
-            "Family",
-
-        galleryStudio:
-            "Studio",
-
-        galleryEvent:
-            "Event",
-
-        aboutLabel:
-            "04 — Обо мне",
-
-        aboutTitle1:
-            "Нелли",
-
-        aboutTitle2:
-            "за кадром.",
-
-        aboutText:
-            "Здесь будет личная история Нелли — как она пришла в фотографию и что любит снимать.",
-
-        quote:
-            "«Лучшие фотографии — те, где вы узнаёте себя.»",
-
-        contactLabel:
-            "05 — Запись",
-
-        contactTitle1:
-            "Давайте",
-
-        contactTitle2:
-            "создадим.",
-
-        contactDescription:
-            "Расскажите о вашем событии, дате и желаемом формате. Нелли свяжется с вами.",
-
-        formTitle:
-            "Расскажите о съёмке",
-
-        name:
-            "Ваше имя",
-
-        email:
-            "Email",
-
-        phone:
-            "Телефон",
-
-        date:
-            "Дата",
-
-        type:
-            "Тип съёмки",
-
-        choose:
-            "Выберите тип",
-
-        message:
-            "Расскажите о событии",
-
-        send:
-            "Отправить заявку →",
-
-        footer:
-            "Фотограф в Праге"
-
-    },
-
-
-    hy: {
-
-        flag: "🇦🇲",
-        short: "HY",
-
-        navServices: "Նկարահանումներ",
-        navPortfolio: "Պորտֆոլիո",
-        navAbout: "Իմ մասին",
-        navContact: "Կապ",
-
-        heroEyebrow:
-            "Լուսանկարիչ Պրահայում",
-
-        heroTitle1:
-            "Ձեր պահերը։",
-
-        heroTitle2:
-            "Իմ պատմությունը կադրում։",
-
-        heroText:
-            "Հարսանիքներ · Մկրտություններ · Ծննդյան օրեր · Ընտանեկան և ստուդիական նկարահանումներ",
-
-        heroButton:
-            "Ընտրել նկարահանում",
-
-        heroPortfolio:
-            "Դիտել աշխատանքները",
-
-        introLabel:
-            "01 — Լուսանկարչություն",
-
-        introTitle1:
-            "Ոչ միայն",
-
-        introTitle2:
-            "լուսանկարներ։",
-
-        introText:
-            "Լուսանկարչությունն ինձ համար զգացմունք պահելու միջոց է։",
-
-        introQuote:
-            "«Ամենաթանկ պահերը հնարավոր չէ կրկնել»",
-
-        servicesLabel:
-            "02 — Նկարահանումներ",
-
-        servicesTitle1:
-            "Ձեր",
-
-        servicesTitle2:
-            "պատմությունը։",
-
-        servicesDescription:
-            "Ընտրեք միջոցառումը կամ նկարահանման տեսակը։",
-
-        wedding:
-            "Հարսանիք",
-
-        weddingDesc:
-            "Ձեր օրը առաջին հայացքից մինչև վերջին պարը։",
-
-        christening:
-            "Մկրտություն",
-
-        christeningDesc:
-            "Ձեր երեխայի կարևոր օրը։",
-
-        birthday:
-            "Ծննդյան օր",
-
-        birthdayDesc:
-            "Տոն, զգացմունքներ և հիշողություններ։",
-
-        family:
-            "Ընտանեկան",
-
-        familyDesc:
-            "Ջերմ ընտանեկան լուսանկարներ։",
-
-        portrait:
-            "Պորտրետ",
-
-        portraitDesc:
-            "Ձեր ոճը և անհատականությունը։",
-
-        studio:
-            "Ստուդիա",
-
-        studioDesc:
-            "Լույս, ոճ և մանրուքների վերահսկում։",
-
-        maternity:
-            "Հղիություն",
-
-        maternityDesc:
-            "Նոր կյանքի նուրբ պատմություն։",
-
-        children:
-            "Երեխաներ",
-
-        childrenDesc:
-            "Իրական զգացմունքներ և մանկություն։",
-
-        other:
-            "Այլ միջոցառում",
-
-        otherDesc:
-            "Ունե՞ք այլ գաղափար։ Գրեք ինձ։",
-
-        loveDesc:
-            "Ձեր երկուսի պատմությունը։",
-
-        portfolioLabel:
-            "03 — Պորտֆոլիո",
-
-        portfolioTitle1:
-            "Կադրեր,",
-
-        portfolioTitle2:
-            "որոնք մնում են։",
-
-        portfolioDescription:
-            "Այստեղ կլինեն ձեր լավագույն լուսանկարները։",
-
-        galleryWedding:
-            "Wedding",
-
-        galleryPortrait:
-            "Portrait",
-
-        galleryFamily:
-            "Family",
-
-        galleryStudio:
-            "Studio",
-
-        galleryEvent:
-            "Event",
-
-        aboutLabel:
-            "04 — Իմ մասին",
-
-        aboutTitle1:
-            "Նելլի",
-
-        aboutTitle2:
-            "տեսախցիկի հետևում։",
-
-        aboutText:
-            "Այստեղ կլինի Նելլիի անձնական պատմությունը։",
-
-        quote:
-            "«Լավագույն լուսանկարներն այն են, որտեղ դուք ճանաչում եք ինքներդ ձեզ»։",
-
-        contactLabel:
-            "05 — Ամրագրում",
-
-        contactTitle1:
-            "Եկեք",
-
-        contactTitle2:
-            "ստեղծենք։",
-
-        contactDescription:
-            "Պատմեք ձեր միջոցառման և ցանկությունների մասին։",
-
-        formTitle:
-            "Պատմեք նկարահանման մասին",
-
-        name:
-            "Ձեր անունը",
-
-        email:
-            "Email",
-
-        phone:
-            "Հեռախոս",
-
-        date:
-            "Ամսաթիվ",
-
-        type:
-            "Նկարահանման տեսակ",
-
-        choose:
-            "Ընտրեք տեսակը",
-
-        message:
-            "Պատմեք միջոցառման մասին",
-
-        send:
-            "Ուղարկել →",
-
-        footer:
-            "Լուսանկարիչ Պրահայում"
-
-    },
-
-
-    vi: {
-
-        flag: "🇻🇳",
-        short: "VI",
-
-        navServices: "Dịch vụ",
-        navPortfolio: "Portfolio",
-        navAbout: "Giới thiệu",
-        navContact: "Liên hệ",
-
-        heroEyebrow:
-            "Nhiếp ảnh gia tại Prague",
-
-        heroTitle1:
-            "Khoảnh khắc của bạn.",
-
-        heroTitle2:
-            "Câu chuyện trong từng khung hình.",
-
-        heroText:
-            "Đám cưới · Lễ rửa tội · Sinh nhật · Gia đình · Chân dung · Studio",
-
-        heroButton:
-            "Chọn buổi chụp",
-
-        heroPortfolio:
-            "Xem portfolio",
-
-        introLabel:
-            "01 — Nhiếp ảnh",
-
-        introTitle1:
-            "Không chỉ là",
-
-        introTitle2:
-            "những bức ảnh.",
-
-        introText:
-            "Nhiếp ảnh là cách lưu giữ cảm xúc và những khoảnh khắc thật.",
-
-        introQuote:
-            "“Những khoảnh khắc quý giá nhất không thể lặp lại.”",
-
-        servicesLabel:
-            "02 — Buổi chụp",
-
-        servicesTitle1:
-            "Câu",
-
-        servicesTitle2:
-            "chuyện của bạn.",
-
-        servicesDescription:
-            "Chọn loại sự kiện hoặc phong cách chụp phù hợp với bạn.",
-
-        wedding:
-            "Đám cưới",
-
-        weddingDesc:
-            "Ngày đặc biệt của bạn từ đầu đến cuối.",
-
-        christening:
-            "Lễ rửa tội",
-
-        christeningDesc:
-            "Một ngày quan trọng của gia đình.",
-
-        birthday:
-            "Sinh nhật",
-
-        birthdayDesc:
-            "Niềm vui, cảm xúc và kỷ niệm.",
-
-        family:
-            "Gia đình",
-
-        familyDesc:
-            "Những khoảnh khắc ấm áp bên gia đình.",
-
-        portrait:
-            "Chân dung",
-
-        portraitDesc:
-            "Phong cách và cá tính của bạn.",
-
-        studio:
-            "Studio",
-
-        studioDesc:
-            "Ánh sáng, phong cách và từng chi tiết.",
-
-        maternity:
-            "Thai kỳ",
-
-        maternityDesc:
-            "Câu chuyện nhẹ nhàng về một sự sống mới.",
-
-        children:
-            "Trẻ em",
-
-        childrenDesc:
-            "Cảm xúc thật và tuổi thơ.",
-
-        other:
-            "Sự kiện khác",
-
-        otherDesc:
-            "Có ý tưởng khác? Hãy nói với tôi.",
-
-        loveDesc:
-            "Câu chuyện của hai người.",
-
-        portfolioLabel:
-            "03 — Portfolio",
-
-        portfolioTitle1:
-            "Những khung hình",
-
-        portfolioTitle2:
-            "còn mãi.",
-
-        portfolioDescription:
-            "Đây là nơi hiển thị những bức ảnh đẹp nhất của bạn.",
-
-        galleryWedding:
-            "Wedding",
-
-        galleryPortrait:
-            "Portrait",
-
-        galleryFamily:
-            "Family",
-
-        galleryStudio:
-            "Studio",
-
-        galleryEvent:
-            "Event",
-
-        aboutLabel:
-            "04 — Giới thiệu",
-
-        aboutTitle1:
-            "Nelli",
-
-        aboutTitle2:
-            "phía sau máy ảnh.",
-
-        aboutText:
-            "Câu chuyện cá nhân của Nelli và hành trình đến với nhiếp ảnh.",
-
-        quote:
-            "“Những bức ảnh đẹp nhất là nơi bạn nhận ra chính mình.”",
-
-        contactLabel:
-            "05 — Đặt lịch",
-
-        contactTitle1:
-            "Hãy",
-
-        contactTitle2:
-            "cùng tạo nên.",
-
-        contactDescription:
-            "Hãy kể cho tôi về sự kiện và mong muốn của bạn.",
-
-        formTitle:
-            "Thông tin buổi chụp",
-
-        name:
-            "Tên của bạn",
-
-        email:
-            "Email",
-
-        phone:
-            "Điện thoại",
-
-        date:
-            "Ngày",
-
-        type:
-            "Loại chụp",
-
-        choose:
-            "Chọn loại",
-
-        message:
-            "Thông tin sự kiện",
-
-        send:
-            "Gửi yêu cầu →",
-
-        footer:
-            "Nhiếp ảnh gia tại Prague"
-
-    },
-
-
-    zh: {
-
-        flag: "🇨🇳",
-        short: "中文",
-
-        navServices: "摄影服务",
-        navPortfolio: "作品集",
-        navAbout: "关于我",
-        navContact: "联系",
-
-        heroEyebrow:
-            "布拉格摄影师",
-
-        heroTitle1:
-            "记录你的瞬间。",
-
-        heroTitle2:
-            "用镜头讲述故事。",
-
-        heroText:
-            "婚礼 · 洗礼 · 生日 · 家庭 · 人像 · 摄影棚 · 特别活动",
-
-        heroButton:
-            "选择摄影",
-
-        heroPortfolio:
-            "查看作品",
-
-        introLabel:
-            "01 — 摄影",
-
-        introTitle1:
-            "不只是",
-
-        introTitle2:
-            "照片。",
-
-        introText:
-            "摄影是保存情感的方式，让真实的瞬间成为可以再次回忆的记忆。",
-
-        introQuote:
-            "“最珍贵的瞬间无法重来。”",
-
-        servicesLabel:
-            "02 — 摄影服务",
-
-        servicesTitle1:
-            "你的",
-
-        servicesTitle2:
-            "故事。",
-
-        servicesDescription:
-            "选择适合你的活动或摄影类型。",
-
-        wedding:
-            "婚礼",
-
-        weddingDesc:
-            "记录婚礼当天每一个重要瞬间。",
-
-        christening:
-            "洗礼",
-
-        christeningDesc:
-            "记录孩子的重要时刻。",
-
-        birthday:
-            "生日",
-
-        birthdayDesc:
-            "欢乐、情感和珍贵回忆。",
-
-        family:
-            "家庭",
-
-        familyDesc:
-            "温暖自然的家庭摄影。",
-
-        portrait:
-            "人像",
-
-        portraitDesc:
-            "展现你的风格和个性。",
-
-        studio:
-            "摄影棚",
-
-        studioDesc:
-            "灯光、风格和每一个细节。",
-
-        maternity:
-            "孕妇",
-
-        maternityDesc:
-            "记录新生命的温柔故事。",
-
-        children:
-            "儿童",
-
-        childrenDesc:
-            "真实的情感和童年。",
-
-        other:
-            "其他活动",
-
-        otherDesc:
-            "有其他想法？告诉我。",
-
-        loveDesc:
-            "属于两个人的故事。",
-
-        portfolioLabel:
-            "03 — 作品集",
-
-        portfolioTitle1:
-            "留下的",
-
-        portfolioTitle2:
-            "每一帧。",
-
-        portfolioDescription:
-            "这里将展示你最喜欢的摄影作品。",
-
-        galleryWedding:
-            "Wedding",
-
-        galleryPortrait:
-            "Portrait",
-
-        galleryFamily:
-            "Family",
-
-        galleryStudio:
-            "Studio",
-
-        galleryEvent:
-            "Event",
-
-        aboutLabel:
-            "04 — 关于我",
-
-        aboutTitle1:
-            "Nelli",
-
-        aboutTitle2:
-            "镜头之后。",
-
-        aboutText:
-            "这里将介绍Nelli的摄影故事和她对摄影的热爱。",
-
-        quote:
-            "“最好的照片，是你能在其中看到自己的照片。”",
-
-        contactLabel:
-            "05 — 预约",
-
-        contactTitle1:
-            "让我们",
-
-        contactTitle2:
-            "一起创造。",
-
-        contactDescription:
-            "告诉我你的活动、日期和想法。",
-
-        formTitle:
-            "告诉我你的摄影需求",
-
-        name:
-            "你的名字",
-
-        email:
-            "Email",
-
-        phone:
-            "电话",
-
-        date:
-            "日期",
-
-        type:
-            "摄影类型",
-
-        choose:
-            "选择类型",
-
-        message:
-            "告诉我更多",
-
-        send:
-            "发送申请 →",
-
-        footer:
-            "布拉格摄影师"
-
-    },
-
-
-    ja: {
-
-        flag: "🇯🇵",
-        short: "JP",
-
-        navServices: "撮影",
-        navPortfolio: "ポートフォリオ",
-        navAbout: "私について",
-        navContact: "お問い合わせ",
-
-        heroEyebrow:
-            "プラハのフォトグラファー",
-
-        heroTitle1:
-            "あなたの瞬間を。",
-
-        heroTitle2:
-            "一枚の写真に物語を。",
-
-        heroText:
-            "ウェディング · 洗礼 · 誕生日 · 家族 · ポートレート · スタジオ",
-
-        heroButton:
-            "撮影を選ぶ",
-
-        heroPortfolio:
-            "作品を見る",
-
-        introLabel:
-            "01 — Photography",
-
-        introTitle1:
-            "ただの",
-
-        introTitle2:
-            "写真ではなく。",
-
-        introText:
-            "写真は感情を残すためのもの。本当の瞬間を、何年後にも思い出せる形で残します。",
-
-        introQuote:
-            "「大切な瞬間は二度と同じようには訪れない。」",
-
-        servicesLabel:
-            "02 — 撮影",
-
-        servicesTitle1:
-            "あなたの",
-
-        servicesTitle2:
-            "物語。",
-
-        servicesDescription:
-            "イベントや撮影スタイルをお選びください。",
-
-        wedding:
-            "ウェディング",
-
-        weddingDesc:
-            "最初の瞬間から最後のダンスまで。",
-
-        christening:
-            "洗礼",
-
-        christeningDesc:
-            "お子様の大切な一日を記録します。",
-
-        birthday:
-            "誕生日",
-
-        birthdayDesc:
-            "笑顔、感情、思い出を残します。",
-
-        family:
-            "ファミリー",
-
-        familyDesc:
-            "自然で温かい家族写真。",
-
-        portrait:
-            "ポートレート",
-
-        portraitDesc:
-            "あなたの個性とスタイルを。",
-
-        studio:
-            "スタジオ",
-
-        studioDesc:
-            "光、スタイル、細部までこだわります。",
-
-        maternity:
-            "マタニティ",
-
-        maternityDesc:
-            "新しい命の優しい物語。",
-
-        children:
-            "キッズ",
-
-        childrenDesc:
-            "本当の笑顔と子どもの時間。",
-
-        other:
-            "その他",
-
-        otherDesc:
-            "別のアイデアもお気軽にどうぞ。",
-
-        loveDesc:
-            "二人だけのストーリー。",
-
-        portfolioLabel:
-            "03 — Portfolio",
-
-        portfolioTitle1:
-            "残る",
-
-        portfolioTitle2:
-            "一枚一枚。",
-
-        portfolioDescription:
-            "ここにはあなたの最高の写真が表示されます。",
-
-        galleryWedding:
-            "Wedding",
-
-        galleryPortrait:
-            "Portrait",
-
-        galleryFamily:
-            "Family",
-
-        galleryStudio:
-            "Studio",
-
-        galleryEvent:
-            "Event",
-
-        aboutLabel:
-            "04 — About",
-
-        aboutTitle1:
-            "Nelli",
-
-        aboutTitle2:
-            "カメラの後ろで。",
-
-        aboutText:
-            "Nelliの写真への想いやストーリーをここに掲載します。",
-
-        quote:
-            "「最高の写真は、自分自身を見つけられる写真。」",
-
-        contactLabel:
-            "05 — Booking",
-
-        contactTitle1:
-            "一緒に",
-
-        contactTitle2:
-            "作りましょう。",
-
-        contactDescription:
-            "イベントの日付やご希望を教えてください。",
-
-        formTitle:
-            "撮影について",
-
-        name:
-            "お名前",
-
-        email:
-            "Email",
-
-        phone:
-            "電話番号",
-
-        date:
-            "日付",
-
-        type:
-            "撮影タイプ",
-
-        choose:
-            "タイプを選択",
-
-        message:
-            "イベントについて",
-
-        send:
-            "送信する →",
-
-        footer:
-            "プラハのフォトグラファー"
-
-    }
+uk:{
+nav_services:"Послуги",
+nav_portfolio:"Портфоліо",
+nav_packages:"Пакети",
+nav_about:"Про мене",
+nav_contact:"Контакти",
+
+hero_kicker:"Photography · Prague",
+hero_text:"Фотографую справжні моменти, емоції та людей такими, якими вони є. Весілля, сімейні історії, хрестини, дні народження та красиві портрети.",
+hero_btn1:"Дивитися роботи",
+hero_btn2:"Забронювати дату",
+
+services_title:"Що я<br>знімаю",
+services_desc:"Кожна подія має свою атмосферу. Моє завдання — зберегти її так, щоб через роки ви могли знову відчути цей момент.",
+
+wedding:"Весілля",
+wedding_desc:"Від ранкових зборів до останнього танцю.",
+christening:"Хрестини",
+christening_desc:"Ніжні та щирі фотографії особливого дня.",
+birthday:"День народження",
+birthday_desc:"Емоції, гості, деталі та атмосфера свята.",
+studio:"Студія",
+studio_desc:"Стильні портрети та творчі фотосесії.",
+family:"Сімейні",
+family_desc:"Живі кадри без штучних поз.",
+lovestory:"Love Story",
+lovestory_desc:"Історія двох людей у красивих кадрах.",
+
+portfolio_title:"Обрані<br>історії",
+portfolio_desc:"Тут з'являтимуться найкращі моменти з ваших фотосесій.",
+portrait:"Портрет",
+
+packages_title:"Формати<br>зйомки",
+packages_desc:"Пакети можна легко змінити під ваші реальні ціни та умови.",
+
+package1:"MINI",
+package2:"STORY",
+package3:"EVENT",
+
+p1_1:"1 година зйомки",
+p1_2:"20 оброблених фото",
+p1_3:"Онлайн-галерея",
+p1_4:"Термін 7–10 днів",
+
+p2_1:"2–3 години зйомки",
+p2_2:"50+ оброблених фото",
+p2_3:"Онлайн-галерея",
+p2_4:"Допомога з локацією",
+
+p3_1:"Події та свята",
+p3_2:"Велика кількість фото",
+p3_3:"Авторська обробка",
+p3_4:"Індивідуальний пакет",
+
+about_title:"Люди.<br>Емоції.<br>Історії.",
+about_text:"Я Nelli — фотограф, яка любить справжні моменти. Без зайвої постановки та награних емоцій. Мені важливо, щоб після фотосесії ви отримали не просто красиві фотографії, а спогади, до яких захочеться повертатися.",
+
+contact_title:"Створимо<br>щось справжнє.",
+contact_text:"Розкажіть мені про вашу подію або ідею — і ми разом придумаємо найкращий формат зйомки.",
+
+footer:"Prague · Czech Republic"
+},
+
+ru:{
+nav_services:"Услуги",
+nav_portfolio:"Портфолио",
+nav_packages:"Пакеты",
+nav_about:"Обо мне",
+nav_contact:"Контакты",
+
+hero_kicker:"Photography · Prague",
+hero_text:"Фотографирую настоящие моменты, эмоции и людей такими, какие они есть. Свадьбы, семейные истории, крестины, дни рождения и красивые портреты.",
+hero_btn1:"Смотреть работы",
+hero_btn2:"Забронировать дату",
+
+services_title:"Что я<br>снимаю",
+services_desc:"Каждое событие имеет свою атмосферу. Моя задача — сохранить её так, чтобы спустя годы вы снова могли почувствовать этот момент.",
+
+wedding:"Свадьбы",
+wedding_desc:"От утренних сборов до последнего танца.",
+christening:"Крестины",
+christening_desc:"Нежные и искренние фотографии особенного дня.",
+birthday:"День рождения",
+birthday_desc:"Эмоции, гости, детали и атмосфера праздника.",
+studio:"Студия",
+studio_desc:"Стильные портреты и творческие фотосессии.",
+family:"Семейные",
+family_desc:"Живые кадры без искусственных поз.",
+lovestory:"Love Story",
+lovestory_desc:"История двух людей в красивых кадрах.",
+
+portfolio_title:"Избранные<br>истории",
+portfolio_desc:"Здесь будут лучшие моменты ваших фотосессий.",
+portrait:"Портрет",
+
+packages_title:"Форматы<br>съёмки",
+packages_desc:"Пакеты можно легко изменить под ваши реальные цены и условия.",
+
+package1:"MINI",
+package2:"STORY",
+package3:"EVENT",
+
+p1_1:"1 час съёмки",
+p1_2:"20 обработанных фото",
+p1_3:"Онлайн-галерея",
+p1_4:"Срок 7–10 дней",
+
+p2_1:"2–3 часа съёмки",
+p2_2:"50+ обработанных фото",
+p2_3:"Онлайн-галерея",
+p2_4:"Помощь с локацией",
+
+p3_1:"События и праздники",
+p3_2:"Большое количество фото",
+p3_3:"Авторская обработка",
+p3_4:"Индивидуальный пакет",
+
+about_title:"Люди.<br>Эмоции.<br>Истории.",
+about_text:"Я Nelli — фотограф, которая любит настоящие моменты. Без лишней постановки и наигранных эмоций. Мне важно, чтобы после фотосессии вы получили не просто красивые фотографии, а воспоминания, к которым захочется возвращаться.",
+
+contact_title:"Создадим<br>что-то настоящее.",
+contact_text:"Расскажите мне о вашем событии или идее — и мы вместе придумаем лучший формат съёмки.",
+
+footer:"Prague · Czech Republic"
+},
+
+en:{
+nav_services:"Services",
+nav_portfolio:"Portfolio",
+nav_packages:"Packages",
+nav_about:"About",
+nav_contact:"Contact",
+
+hero_kicker:"Photography · Prague",
+hero_text:"I capture real moments, emotions and people exactly as they are. Weddings, family stories, christenings, birthdays and beautiful portraits.",
+hero_btn1:"View portfolio",
+hero_btn2:"Book a date",
+
+services_title:"What I<br>shoot",
+services_desc:"Every event has its own atmosphere. My job is to preserve it so you can feel that moment again years later.",
+
+wedding:"Weddings",
+wedding_desc:"From getting ready to the last dance.",
+christening:"Christenings",
+christening_desc:"Tender and honest photographs of a special day.",
+birthday:"Birthdays",
+birthday_desc:"Emotions, guests, details and the atmosphere of the celebration.",
+studio:"Studio",
+studio_desc:"Stylish portraits and creative photoshoots.",
+family:"Family",
+family_desc:"Natural photographs without forced poses.",
+lovestory:"Love Story",
+lovestory_desc:"The story of two people in beautiful frames.",
+
+portfolio_title:"Selected<br>stories",
+portfolio_desc:"The best moments from your photoshoots will appear here.",
+portrait:"Portrait",
+
+packages_title:"Photography<br>packages",
+packages_desc:"Packages can easily be changed according to your real prices and conditions.",
+
+package1:"MINI",
+package2:"STORY",
+package3:"EVENT",
+
+p1_1:"1 hour shoot",
+p1_2:"20 edited photos",
+p1_3:"Online gallery",
+p1_4:"7–10 day delivery",
+
+p2_1:"2–3 hour shoot",
+p2_2:"50+ edited photos",
+p2_3:"Online gallery",
+p2_4:"Location assistance",
+
+p3_1:"Events & celebrations",
+p3_2:"Large number of photos",
+p3_3:"Professional editing",
+p3_4:"Custom package",
+
+about_title:"People.<br>Emotions.<br>Stories.",
+about_text:"I’m Nelli — a photographer who loves real moments. No unnecessary posing or fake emotions. I want you to leave every photoshoot with more than beautiful images — I want you to have memories you will want to return to.",
+
+contact_title:"Let's create<br>something real.",
+contact_text:"Tell me about your event or idea and together we will create the perfect photography experience.",
+
+footer:"Prague · Czech Republic"
+},
+
+cs:{
+nav_services:"Služby",
+nav_portfolio:"Portfolio",
+nav_packages:"Balíčky",
+nav_about:"O mně",
+nav_contact:"Kontakt",
+
+hero_kicker:"Photography · Prague",
+hero_text:"Fotografuji skutečné okamžiky, emoce a lidi takové, jací opravdu jsou. Svatby, rodinné příběhy, křtiny, narozeniny a krásné portréty.",
+hero_btn1:"Prohlédnout portfolio",
+hero_btn2:"Rezervovat termín",
+
+services_title:"Co<br>fotím",
+services_desc:"Každá událost má svou atmosféru. Mým úkolem je zachytit ji tak, abyste tento okamžik mohli znovu prožít i za několik let.",
+
+wedding:"Svatby",
+wedding_desc:"Od ranních příprav až po poslední tanec.",
+christening:"Křtiny",
+christening_desc:"Jemné a upřímné fotografie výjimečného dne.",
+birthday:"Narozeniny",
+birthday_desc:"Emoce, hosté, detaily a atmosféra oslavy.",
+studio:"Studio",
+studio_desc:"Stylové portréty a kreativní focení.",
+family:"Rodinné",
+family_desc:"Přirozené fotografie bez nucených póz.",
+lovestory:"Love Story",
+lovestory_desc:"Příběh dvou lidí v krásných fotografiích.",
+
+portfolio_title:"Vybrané<br>příběhy",
+portfolio_desc:"Zde se objeví nejlepší okamžiky z vašich focení.",
+portrait:"Portrét",
+
+packages_title:"Formáty<br>focení",
+packages_desc:"Balíčky lze snadno upravit podle vašich skutečných cen a podmínek.",
+
+package1:"MINI",
+package2:"STORY",
+package3:"EVENT",
+
+p1_1:"1 hodina focení",
+p1_2:"20 upravených fotografií",
+p1_3:"Online galerie",
+p1_4:"Dodání 7–10 dní",
+
+p2_1:"2–3 hodiny focení",
+p2_2:"50+ upravených fotografií",
+p2_3:"Online galerie",
+p2_4:"Pomoc s výběrem lokace",
+
+p3_1:"Akce a oslavy",
+p3_2:"Velké množství fotografií",
+p3_3:"Profesionální úprava",
+p3_4:"Individuální balíček",
+
+about_title:"Lidé.<br>Emoce.<br>Příběhy.",
+about_text:"Jsem Nelli — fotografka, která miluje opravdové okamžiky. Bez zbytečného aranžování a hraných emocí. Chci, abyste si z focení odnesli nejen krásné fotografie, ale také vzpomínky, ke kterým se budete chtít vracet.",
+
+contact_title:"Vytvořme<br>něco opravdového.",
+contact_text:"Napište mi o vaší události nebo nápadu a společně vytvoříme ideální formát focení.",
+
+footer:"Praha · Česká republika"
+}
 
 };
 
 
-/* =====================================================
-   LANGUAGE LOGIC
-===================================================== */
+/* LANGUAGE SWITCH */
 
-const language =
-    document.getElementById(
-        "language"
-    );
+const langBtn = document.getElementById("langBtn");
+const langMenu = document.getElementById("langMenu");
 
-const languageButton =
-    document.getElementById(
-        "languageButton"
-    );
+langBtn.addEventListener("click",()=>{
+    langMenu.classList.toggle("open");
+});
 
-const currentFlag =
-    document.getElementById(
-        "currentFlag"
-    );
+document.querySelectorAll(".lang-option").forEach(option=>{
 
-const currentLang =
-    document.getElementById(
-        "currentLang"
-    );
+    option.addEventListener("click",()=>{
 
-const formLanguage =
-    document.getElementById(
-        "formLanguage"
-    );
+        const lang = option.dataset.lang;
+
+        changeLanguage(lang);
+
+        langMenu.classList.remove("open");
+
+    });
+
+});
 
 
-languageButton.addEventListener(
-    "click",
-    () => {
+function changeLanguage(lang){
 
-        language.classList.toggle(
-            "open"
-        );
+    const data = translations[lang];
 
-    }
-);
+    document.documentElement.lang = lang;
 
+    document.querySelectorAll("[data-i18n]").forEach(element=>{
 
-document
-    .querySelectorAll(".language-option")
-    .forEach(
-        option => {
+        const key = element.dataset.i18n;
 
-            option.addEventListener(
-                "click",
-                () => {
-
-                    const lang =
-                        option.dataset.lang;
-
-                    setLanguage(lang);
-
-                    language.classList.remove(
-                        "open"
-                    );
-
-                }
-            );
-
+        if(data[key]){
+            element.innerHTML = data[key];
         }
-    );
+
+    });
 
 
-function setLanguage(lang) {
+    const info = {
 
-    const data =
-        translations[lang];
+        uk:["🇺🇦","UA"],
+        ru:["🇷🇺","RU"],
+        en:["🇬🇧","EN"],
+        cs:["🇨🇿","CZ"]
 
-    if(!data) return;
+    };
 
+    document.getElementById("currentFlag").textContent = info[lang][0];
 
-    document
-        .querySelectorAll("[data-i18n]")
-        .forEach(
-            element => {
+    document.getElementById("currentLang").textContent = info[lang][1];
 
-                const key =
-                    element.dataset.i18n;
-
-                if(
-                    data[key] !== undefined
-                ) {
-
-                    element.textContent =
-                        data[key];
-
-                }
-
-            }
-        );
-
-
-    currentFlag.textContent =
-        data.flag;
-
-    currentLang.textContent =
-        data.short;
-
-    formLanguage.value =
-        lang;
-
-
-    document.documentElement.lang =
-        lang;
-
-
-    localStorage.setItem(
-        "nelli-language",
-        lang
-    );
-
+    localStorage.setItem("nelliLanguage",lang);
 }
 
 
-const savedLanguage =
-    localStorage.getItem(
-        "nelli-language"
-    );
+/* LOAD SAVED LANGUAGE */
+
+const savedLanguage = localStorage.getItem("nelliLanguage") || "uk";
+
+changeLanguage(savedLanguage);
 
 
-setLanguage(
-    savedLanguage || "uk"
-);
+/* ================= MOBILE MENU ================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const nav = document.getElementById("nav");
+
+menuBtn.addEventListener("click",()=>{
+    nav.classList.toggle("open");
+});
+
+document.querySelectorAll("nav a").forEach(link=>{
+    link.addEventListener("click",()=>{
+        nav.classList.remove("open");
+    });
+});
 
 
-/* close language menu */
+/* ================= HEADER ================= */
 
-document.addEventListener(
-    "click",
-    event => {
+window.addEventListener("scroll",()=>{
 
-        if(
-            !language.contains(event.target)
-        ) {
+    const header = document.getElementById("header");
 
-            language.classList.remove(
-                "open"
-            );
-
-        }
-
+    if(window.scrollY > 50){
+        header.classList.add("scrolled");
+    }else{
+        header.classList.remove("scrolled");
     }
+
+});
+
+
+/* ================= REVEAL ANIMATION ================= */
+
+const observer = new IntersectionObserver(
+    entries=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                entry.target.classList.add("visible");
+            }
+        });
+    },
+    {threshold:.12}
 );
 
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-const menuButton =
-    document.getElementById(
-        "menuButton"
-    );
-
-const mobileMenu =
-    document.getElementById(
-        "mobileMenu"
-    );
+document.querySelectorAll(".reveal").forEach(el=>{
+    observer.observe(el);
+});
 
 
-menuButton.addEventListener(
-    "click",
-    () => {
+/* CLOSE LANGUAGE MENU */
 
-        mobileMenu.classList.toggle(
-            "open"
-        );
+document.addEventListener("click",(e)=>{
 
-        document.body.classList.toggle(
-            "no-scroll"
-        );
-
+    if(!e.target.closest(".lang-wrap")){
+        langMenu.classList.remove("open");
     }
-);
 
-
-document
-    .querySelectorAll("[data-mobile-link]")
-    .forEach(
-        link => {
-
-            link.addEventListener(
-                "click",
-                () => {
-
-                    mobileMenu.classList.remove(
-                        "open"
-                    );
-
-                    document.body.classList.remove(
-                        "no-scroll"
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-/* =====================================================
-   FORM
-===================================================== */
-
-const form =
-    document.querySelector(
-        ".booking form"
-    );
-
-
-form.addEventListener(
-    "submit",
-    () => {
-
-        const languageValue =
-            localStorage.getItem(
-                "nelli-language"
-            ) || "uk";
-
-        formLanguage.value =
-            languageValue;
-
-    }
-);
+});
 
 </script>
 
-
 </body>
-
 </html>
